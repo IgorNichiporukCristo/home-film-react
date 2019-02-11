@@ -4,12 +4,14 @@
   "description": "vzx",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack-dev-server --open --mode development --hot",
     "build": "webpack --mode production"
   },
-  "author": "xc",
+  "author": "Igor",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.16.4",
+    "fibers": "^3.1.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
@@ -18,9 +20,14 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
     "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "webpack-hot-middleware": "^2.24.3"
   }
 }
