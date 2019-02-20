@@ -4,14 +4,16 @@ const webpack = require('webpack');
 
 module.exports = {
     mode: 'development',
-    entry: [
-        'webpack-hot-middleware/client',
-        './src/index.js'
-    ],
+    devtool: 'source-map',
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'index_bundle.js'
+        filename: 'main.js',
+        publicPath: '/',
     },
+    entry: [       
+        './src/index.js',
+        'webpack-hot-middleware/client?path=/__what&timeout=2000&overlay=false'
+    ],
     devServer: {
         overlay: true,
         contentBase: './dist',
@@ -42,6 +44,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ] 
 }

@@ -1,33 +1,37 @@
-import path from 'path';
-import express from 'express';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from './config/webpack.dev.config.js';
+const express = require('express');
+const path = require('path');
+const webpack = require('webpack');
+const config = require('./webpack.config');
 
 const app = express();
-const DIST_DIR = __dirname;
-const HTML_FILE = path.join(DIST_DIR, 'index.html');
-const compiler = webpack(config)
 
-            app.use(webpackDevMiddleware(compiler, {
-                  publicPath: config.output.publicPath      
-            }))
-            app.use(webpackHotMiddleware(compiler))
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'dist')));
+  app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
+  
+} else {
+  const compiler = webpack(config);
 
+  app.use(require("webpack-dev-middleware")(compiler, {
+    noInfo: true, publicPath: config.output.publicPath
+  }));
+  app.use(require("webpack-hot-middleware")(compiler));
 
-            app.get('*', (req, res, next) => {
-              compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {
-                if (err) {
-                    return next(err)
-                }
-                res.set('content-type', 'text/html')
-                res.send(result)
-                res.end()
-             })
-            })
+  app.use('*', (req, res, next) => {
+    const filename = path.join(compiler.outputPath, '/index.html');
+    compiler.outputFileSystem.readFile(filename, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+      res.set('content-type', 'text/html');
+      res.send(result);
+      return res.end();
+    });
+  });
+}
 
-const PORT = process.env.PORT || 8080
-app.listen(PORT, () => {
-    console.log(`App listening to ${PORT}....`)
-})
+app.listen(process.env.PORT || 8080, () => {
+  console.log('Listening on port 8080!\n'); 
+});
