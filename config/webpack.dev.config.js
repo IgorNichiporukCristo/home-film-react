@@ -13,7 +13,6 @@ module.exports = merge(require('./webpack.global.config'), {
     entry: [     
         'react-hot-loader/patch', 
         'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', 
-        'webpack/hot/only-dev-server', 
         './src/index.jsx', 
         
     ],   
@@ -25,12 +24,13 @@ module.exports = merge(require('./webpack.global.config'), {
     module: {
         rules: [
           { 
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ]
+            test: /\.sass|scss$/,
+            exclude: /node_modules/,
+            use: [ 'css-hot-loader','style-loader', 'css-loader','sass-loader' ]
           },
           {
-           test: /\.(png|svg|jpg|gif)$/,
-           use: ['file-loader']
+            test: /\.(png|svg|jpg|gif)$/,
+            use: ['file-loader']
           }
         ],
       },
