@@ -25,8 +25,9 @@ module.exports = merge(require('./webpack.global.config'), {
     module: {
         rules: [
           { 
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ]
+            test: /\.sass|scss$/,
+            exclude: /node_modules/,
+            use: [ 'css-hot-loader','style-loader', 'css-loader','sass-loader' ]
           },
           {
            test: /\.(png|svg|jpg|gif)$/,
