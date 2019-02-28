@@ -4,10 +4,10 @@
   "description": "vzx",
   "main": "index.js",
   "scripts": {
-    "Prod": "cross-env NODE_ENV=production node server",
-    "Dev": "cross-env NODE_ENV=development node server",
+    "prod": "cross-env NODE_ENV=production node server",
+    "dev": "cross-env NODE_ENV=development node server",
     "build": "cross-env NODE_ENV=production webpack -p --config ./config/webpack.prod.config.js",
-    "prettier": "prettier --write src/**/*.js"
+    "prettier": "prettier --write src/**/*.jsx"
   },
   "author": "Igor",
   "license": "ISC",
@@ -29,6 +29,7 @@
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.1",
     "cross-env": "^5.2.0",
+    "css-hot-loader": "^1.4.3",
     "css-loader": "^2.1.0",
     "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
