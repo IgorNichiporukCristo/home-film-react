@@ -26,7 +26,7 @@ module.exports = merge(require('./webpack.global.config'), {
         use: [{loader: "url-loader"}]
       },
       {
-        test: /\.css$/,
+        test: /\.(sass|scss)$/,
         exclude: /node_modules/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
