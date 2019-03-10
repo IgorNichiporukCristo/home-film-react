@@ -5,12 +5,12 @@ import './HeaderContent.scss';
 function Search() {
     return (
       <div className='SEARCH'>
-        <div>
-          <h1>FILMS</h1>
-        </div>
-        <div>ih</div>
+        <h1>FILMS</h1> 
+        <input className="shadow" type="search" placeholder="Search" />
       </div>
     );
   }
+
+
 
   export default hot(module)(Search);

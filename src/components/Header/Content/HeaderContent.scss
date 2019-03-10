@@ -1,8 +1,21 @@
 .SEARCH{
     display: flex;
     justify-content: space-between;
-    background-color: rgb(12, 61, 61);
+    input {
+     outline:none;
+     background-color: transparent;
+     display: flex;
+     align-self: center;
+     margin-right: 30px;
+     height: 25px;
+     border-radius: 6px;
+     border: 2px solid rgb(238, 230, 238);
+     
+    }
 }
+.shadow:hover{
+    box-shadow: 0 0 10px rgb(238, 230, 238);
+ }
 .DESCRIPTION_FILM{
     display: flex;
     justify-content: space-between;
