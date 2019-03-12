@@ -3,14 +3,21 @@ import { hot } from 'react-hot-loader';
 import './header.scss';
 import Search from './Content/Search';
 import DescriptionFilm from './Content/DescriptionFilm';
+import '../../Api/Api';
 
-function Header() {
-  return (
-    <div className='header'> 
+class Header extends Component {
+  componentDidMount(){
+    this.Api;
+  }
+
+  render() { 
+    return (
+    <div className="header">
       <Search />
       <DescriptionFilm />
     </div>
-  );
+  );}
+ 
 }
 
 export default hot(module)(Header);
