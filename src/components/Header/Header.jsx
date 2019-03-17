@@ -12,9 +12,11 @@ class Header extends Component {
 
   render() { 
     return (
-    <div className="header">
-      <Search />
-      <DescriptionFilm />
+    <div>
+      <div className="header">
+        <Search />
+        <DescriptionFilm />
+      </div>
     </div>
   );}
  
