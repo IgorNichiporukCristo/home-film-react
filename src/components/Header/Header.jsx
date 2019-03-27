@@ -5,12 +5,7 @@ import Search from './Content/Search';
 import DescriptionFilm from './Content/DescriptionFilm';
 import '../../Api/Api';
 
-class Header extends Component {
-  componentDidMount(){
-    this.Api;
-  }
-
-  render() { 
+function Header(){
     return (
     <div>
       <div className="header">
@@ -18,8 +13,7 @@ class Header extends Component {
         <DescriptionFilm />
       </div>
     </div>
-  );}
- 
+  );
 }
 
 export default hot(module)(Header);
