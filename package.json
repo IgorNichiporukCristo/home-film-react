@@ -21,11 +21,14 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-hot-loader": "^4.7.0",
-    "react-router-dom": "^4.4.0"
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.4.0",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@anvilabs/eslint-config": "^19.1.0",
     "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
@@ -48,8 +51,6 @@
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "prettier": "^1.16.4",
-    "react-redux": "^6.0.1",
-    "redux": "^4.0.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "stylelint-config-standard": "^18.2.0",

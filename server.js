@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const config = require('./config/webpack.dev.config');
 const app = express();
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'dist')));
   app.use('*', (req, res) => {
