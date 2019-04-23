@@ -1,4 +1,5 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import FilmReducer from './reducers/addFilms';
 
-export default createStore(FilmReducer);
+export default createStore(FilmReducer, applyMiddleware(thunk));

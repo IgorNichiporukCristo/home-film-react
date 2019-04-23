@@ -3,13 +3,18 @@ import ADD_FILMS from '../constants';
 const initialState = {
   loading: false,
   error: false,
-  movie: [],
+  movie: {id: 1},
 };
 
 const filmReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FILMS:
-      return [...state, action.payload];
+      return {
+        ...state,
+        movie: {
+         ...action.movie,
+        }
+      };
     default:
       return state;
   }

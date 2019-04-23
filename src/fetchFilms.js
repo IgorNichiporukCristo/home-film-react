@@ -1,17 +1,21 @@
-import { ADD_FILMS } from "./constants";
+import  ADD_FILMS  from "./constants";
 
 const API_URL = "https://api.themoviedb.org/3/movie/550?api_key=ac122731994c8a0edef1603c3016ac82";
 
-const fetchFilms = () => {
+const fetchFilms = (dispatch) => {
   fetch(API_URL)
   .then(res => res.json())
-  .then((result) => ({ 
+  .then((result) => dispatch({ 
       type: ADD_FILMS,
-      payload: result
+      movie: result 
     }))
   .catch(error => error);
 };
 
-export { fetchFilms as default };
+const getSomething = () => {
+
+};
+
+export { fetchFilms, getSomething };
 
 

@@ -1,34 +1,46 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 //import FilmItem from './filmItem';
-//import fetchFilms from '../fetchFilms';
+import { fetchFilms } from '../fetchFilms';
 
 class Main extends Component {
   
   componentDidMount() {
-
+    const { getFilms } = this.props;
+    getFilms();
   }
 
   render() {
-    console.log(this.props);
+    const { movie } = this.props;
       return (
         <div>
-          hggh
+          {JSON.stringify(movie)}
+          
         </div>
       );
     }
 }
 
 function mapStateToProps(state) {
-  return{
-    todos:state
+  return {
+    movie: state.movie,
   };
 } 
 
-// const mapStateToProps = 
+function mapDispatchToProps (dispatch) {
+  return {
+    getFilms: () => dispatch(fetchFilms)
+  };
+}
 
-// const mapDispatchToProps = 
+Main.propTypes = {
+  getFilms: PropTypes.func.isRequired,
+  movie: PropTypes.objectOf(PropTypes.object),
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Main);
+Main.defaultProps = {
+  movie: {},
+};
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
