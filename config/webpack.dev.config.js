@@ -24,13 +24,20 @@ module.exports = merge(require('./webpack.global.config'), {
     module: {
         rules: [
           { 
-            test: /\.sass|scss$/,
+            test: /\.(css|sass|scss)$/,
             exclude: /node_modules/,
-            use: [ 'css-hot-loader','style-loader', 'css-loader','sass-loader' ]
+            loader: [ 'css-hot-loader','style-loader', 'css-loader','sass-loader']
           },
           {
-            test: /\.(png|svg|jpg|gif)$/,
-            use: ['file-loader']
+            test: /\.(png|jpg|gif)$/i,
+            use: [
+              {
+                loader: 'url-loader',
+                options: {
+                  limit: 8192
+                }
+              }
+            ]
           }
         ],
       },

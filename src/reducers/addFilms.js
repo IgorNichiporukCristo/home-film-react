@@ -3,7 +3,7 @@ import ADD_FILMS from '../constants';
 const initialState = {
   loading: false,
   error: false,
-  movie: {id: 1},
+  movie: [],
 };
 
 const filmReducer = (state = initialState, action) => {
@@ -11,9 +11,9 @@ const filmReducer = (state = initialState, action) => {
     case ADD_FILMS:
       return {
         ...state,
-        movie: {
-         ...action.movie,
-        }
+        movie: [
+          ...action.movie,
+        ]
       };
     default:
       return state;
