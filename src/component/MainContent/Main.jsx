@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-//import FilmItem from './filmItem';
-import { fetchFilms } from '../fetchFilms';
-import FilmList from './filmlist';
+import { fetchFilms } from '../action/fetchFilms';
+import FilmList from './FilmItem/Filmlist';
 
 class Main extends Component {
   componentDidMount() {
@@ -12,10 +11,10 @@ class Main extends Component {
   }
 
   render() {
-    const { movie } = this.props;
+    const { movies } = this.props;
     return (
       <div>
-        <FilmList items={movie} />
+        <FilmList items={movies} />
       </div>
     );
   }
@@ -23,7 +22,7 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
-    movie: state.movie,
+    movies: state.movies,
   };
 }
 
@@ -35,11 +34,11 @@ function mapDispatchToProps(dispatch) {
 
 Main.propTypes = {
   getFilms: PropTypes.func.isRequired,
-  movie: PropTypes.arrayOf(PropTypes.array),
+  movies: PropTypes.arrayOf(PropTypes.array),
 };
 
 Main.defaultProps = {
-  movie: [],
+  movies: [],
 };
 
 export default connect(

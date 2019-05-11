@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FilmItem from './filmItem';
-import './ListStyle.scss';
+import FilmItem from './FilmItem';
+import './listStyle.scss';
 
 const FilmList = ({ items }) => (
   <ul>
