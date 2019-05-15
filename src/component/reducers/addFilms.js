@@ -1,4 +1,4 @@
-import ADD_FILMS from '../constants';
+import { ADD_FILMS, ADD_DESCRIPTION_FILM } from '../constants';
 
 const initialState = {
   loading: false,
@@ -15,6 +15,12 @@ const filmReducer = (state = initialState, action) => {
           ...action.movies,
         ]
       };
+    case ADD_DESCRIPTION_FILM:
+      return {
+        movie:[
+          
+        ]
+      }; 
     default:
       return state;
   }

@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FilmItem from './FilmItem';
 import './listStyle.scss';
 
-const FilmList = ({ items }) => (
-  <ul>
-    {items.map(item => (
-      <FilmItem key={item.id} item={item} />
-    ))}
-  </ul>
-);
+class FilmList extends Component{
+  componentDidMount() {
+    
+  }
+
+  
+
+  render() {
+    const { items } = this.props;
+    return(
+      <div>
+        <ul>
+          {items.map(item => (
+            <FilmItem key={item.id} item={item} />
+          ))}
+        </ul>
+      </div>
+    );
+  }
+} 
+
+
 
 FilmList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.array),
