@@ -17,7 +17,7 @@ const fetchFilms = (dispatch) => {
 const getDescriptionFilm = (dispatch) => {
   fetch(FILM_URL)
   .then(res => res.json())
-  .then(({result}) => dispatch({ 
+  .then((result) => dispatch({ 
       type: ADD_DESCRIPTION_FILM,
       movie: result
     }))
