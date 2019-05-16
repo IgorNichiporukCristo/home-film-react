@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import FilmItem from './FilmItem';
 import './listStyle.scss';
 
@@ -24,7 +25,17 @@ class FilmList extends Component{
   }
 } 
 
+function mapStateToProps(state) {
+  return {
+    movies: state.movies,
+  };
+}
 
+function mapDispatchToProps(dispatch) {
+  return {
+    getDescription: () => dispatch(getDescriptionFilm),
+  };
+}
 
 FilmList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.array),
@@ -33,4 +44,7 @@ FilmList.defaultProps = {
   items: [],
 };
 
-export default FilmList;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(FilmList);
