@@ -16,13 +16,12 @@ const filmReducer = (state = initialState, action) => {
         ]
       };
     case ADD_DESCRIPTION_FILM:
-      return Object.assign({}, state, {
-       movies: state.movies[state.movies.findIndex((obj=> obj(state.movies.id)==550))].overview=state.movie.overview
-      });
-          //  
-          // objectId=state.movies.findIndex((obj=> obj(id)==550))
-          // state.movies[objectId].video=movie.video
-          // state.movies[objectId].overview=movie.overview
+    console.log(action.movie);  
+    return {
+        // movies: [
+        //   state.movies.find(x => x.id === '299534').overview=action.movie.overview,
+        // ]
+      };
     default:
       return state;
   }

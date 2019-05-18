@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getDescriptionFilm } from '../../action/fetchFilms';
 import FilmItem from './FilmItem';
 import './listStyle.scss';
 
 class FilmList extends Component{
   componentDidMount() {
-    
+    const { getDescription } = this.props;
+    getDescription();
   }
-
-  
 
   render() {
     const { items } = this.props;
+    console.log(items);
     return(
       <div>
         <ul>
@@ -27,7 +28,7 @@ class FilmList extends Component{
 
 function mapStateToProps(state) {
   return {
-    movies: state.movies,
+    items: state.items,
   };
 }
 
@@ -38,8 +39,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 FilmList.propTypes = {
+  getDescription: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.array),
 };
+
 FilmList.defaultProps = {
   items: [],
 };
