@@ -1,30 +1,28 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getDescriptionFilm } from '../../action/fetchFilms';
 import './listStyle.scss';
 
 
-class FilmItem extends Component{
+class FilmItem extends Component {
   componentDidMount() {
-    const { getDescription } = this.props;
-    getDescription();
+    const { getDescriptionFilm } = this.props;
+    getDescriptionFilm();
   }
 
   render() {
     const { item } = this.props;
-    return(
-      <div>
-        <li>
-          <img alt="" src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} /> 
-          <div className='stylename'> 
-            <h4 className='titlestyle'>{item.original_title}</h4> 
-            <h4 className='votestyle'>{item.vote_average}</h4>
-          </div> 
-          <h4 className='sometext'>{item.genres}</h4>
-        </li>
-      </div>
-    );
+    return (
+      <li>
+        <img alt="" src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} /> 
+        <div className='stylename'> 
+          <h4 className='titlestyle'>{item.original_title}</h4> 
+          <h4 className='votestyle'>{item.vote_average}</h4>
+        </div> 
+        <h4 className='sometext'>{item.genres}</h4>
+      </li>
+   );
   }
 } 
 
@@ -34,14 +32,14 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, { item: { id } = null }) {
   return {
-    getDescription: () => dispatch(getDescriptionFilm),
+    getDescriptionFilm: () => dispatch(getDescriptionFilm(id)),
   };
 }
 
 FilmItem.propTypes = {
-  getDescription: PropTypes.func.isRequired,
+  getDescriptionFilm: PropTypes.func.isRequired,
   item: PropTypes.objectOf(PropTypes.object),
 };
 FilmItem.defaultProps = {

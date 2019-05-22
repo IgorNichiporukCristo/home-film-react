@@ -3,22 +3,19 @@ import PropTypes from 'prop-types';
 import FilmItem from './FilmItem';
 import './listStyle.scss';
 
-class FilmList extends Component{
+class FilmList extends Component {
   componentDidMount() {
 
   }
 
   render() {
     const { items } = this.props;
-    console.log(items);
-    return(
-      <div>
-        <ul>
-          {items.map(item => (
-            <FilmItem key={item.id} item={item} />
-          ))}
-        </ul>
-      </div>
+    return (
+      <ul>
+        {items.map(item => (
+          <FilmItem key={item.id} item={item} />
+        ))}
+      </ul>
     );
   }
 } 

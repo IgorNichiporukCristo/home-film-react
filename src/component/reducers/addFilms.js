@@ -16,7 +16,7 @@ const filmReducer = (state = initialState, action) => {
         ]
       };
     case ADD_DESCRIPTION_FILM:
-    console.log(action.movie);  
+    // console.log(action.movie);  
     return {
       movies: [
         state.movies.find(x => x.id === '299534').ove=action.movie.overview,
