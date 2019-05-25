@@ -8,7 +8,7 @@ const createFilmURL = (id) => `https://api.themoviedb.org/3/movie/${id}?api_key=
 const fetchFilms = (dispatch) => {
   fetch(PAGE_URL)
   .then(res => res.json())
-  .then(({results}) => dispatch({ 
+  .then(({ results }) => dispatch({ 
       type: ADD_FILMS,
       movies: results
     }))
@@ -19,9 +19,9 @@ const getDescriptionFilm = (id) => (dispatch) => {
   const url = createFilmURL(id);
   fetch(url)
   .then(res => res.json())
-  .then((result) => dispatch({ 
+  .then(({ id, genres, videos: { results } }) => dispatch({ 
       type: ADD_DESCRIPTION_FILM,
-      movie: result
+      movie: { id, genres,results }
     }))
   .catch(error => error);
 };

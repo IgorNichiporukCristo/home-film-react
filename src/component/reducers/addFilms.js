@@ -15,12 +15,15 @@ const filmReducer = (state = initialState, action) => {
           ...action.movies,
         ]
       };
-    case ADD_DESCRIPTION_FILM:
-    // console.log(action.movie);  
+    case ADD_DESCRIPTION_FILM: 
+    console.log(action.movie);
     return {
-      movies: [
-        state.movies.find(x => x.id === '299534').ove=action.movie.overview,
-      ]
+      movies: state.movies.map(obj => obj.id === action.movie.id ?
+        { ...obj, 
+          genres: action.movie.genres,
+          video: action.movie.results
+        } : 
+        obj)
       };
     default:
       return state;
