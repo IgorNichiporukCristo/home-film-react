@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getDescriptionFilm } from '../../action/fetchFilms';
@@ -10,18 +10,23 @@ class FilmItem extends Component {
     const { getDescriptionFilm } = this.props;
     getDescriptionFilm();
   }
-
+  
   render() {
     const { item } = this.props;
+    // const genresSort = (array) => {
+    //    array.map(obj => obj.name).join(' '); 
+    //  };
     return (
-      <li>
-        <img alt="" src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} /> 
-        <div className='stylename'> 
-          <h4 className='titlestyle'>{item.original_title}</h4> 
-          <h4 className='votestyle'>{item.vote_average}</h4>
-        </div> 
-        <h4 className='sometext'>{item.genres}</h4>
-      </li>
+      <Fragment>
+        <li>
+          <img alt="" src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} /> 
+          <div className='stylename'> 
+            <h4 className='titlestyle'>{item.original_title}</h4> 
+            <h4 className='votestyle'>{item.vote_average}</h4>
+          </div> 
+          <h5 className='sometext'>{item.genres.map(obj => obj.name).join(', ')}</h5>
+        </li>
+      </Fragment>
    );
   }
 } 

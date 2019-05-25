@@ -21,11 +21,11 @@ class FilmList extends Component {
 } 
 
 FilmList.propTypes = {
-  items: PropTypes.objectOf(PropTypes.object),
+  items: PropTypes.arrayOf(PropTypes.array),
 };
 
 FilmList.defaultProps = {
-  items: {},
+  items: [],
 };
 
 export default FilmList;
