@@ -1,6 +1,11 @@
 body{
     padding: 0;
     margin: 0;
+    background-color: rgb(233, 233, 233);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 ul{
     padding: 0;

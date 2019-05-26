@@ -11,23 +11,33 @@ class FilmItem extends Component {
     getDescriptionFilm();
   }
   
-  render() {
-    const { item } = this.props;
-    // const genresSort = (array) => {
-    //    array.map(obj => obj.name).join(' '); 
-    //  };
-    return (
+  onHover(){
+    <iframe>
+      <video src="https://www.youtube.com/watch?v=AiiXLmqhndU"> 
+         <track /> 
+      </video>
+    </iframe>
+  }
+
+  itemConstruсtor(item){
+    return ( 
       <Fragment>
         <li>
-          <img alt="" src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} /> 
+          <img onMouseOver={this.onHover} onFocus="" alt="" src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} /> 
           <div className='stylename'> 
             <h4 className='titlestyle'>{item.original_title}</h4> 
             <h4 className='votestyle'>{item.vote_average}</h4>
           </div> 
-          <h5 className='sometext'>{item.genres.map(obj => obj.name).join(', ')}</h5>
+          <h5 className='genres'>
+            {(item.genres) ? item.genres.map(obj => obj.name).join(', ') : 'Loading...'}
+          </h5>
         </li>
-      </Fragment>
-   );
+      </Fragment>);
+  }
+
+  render() {
+    const { item } = this.props;
+    return this.itemConstruсtor(item);
   }
 } 
 
