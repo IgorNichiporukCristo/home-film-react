@@ -4,9 +4,7 @@ import FilmItem from './FilmItem';
 import './listStyle.scss';
 
 class FilmList extends Component {
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   render() {
     const { items } = this.props;
@@ -18,7 +16,7 @@ class FilmList extends Component {
       </ul>
     );
   }
-} 
+}
 
 FilmList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.array),

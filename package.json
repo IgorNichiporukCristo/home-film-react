@@ -23,6 +23,7 @@
     "react-hot-loader": "^4.7.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.4.0",
+    "react-youtube": "^7.9.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },

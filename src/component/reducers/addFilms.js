@@ -16,7 +16,6 @@ const filmReducer = (state = initialState, action) => {
         ]
       };
     case ADD_DESCRIPTION_FILM:
-    console.log(action.movie); 
     return {
       movies: state.movies.map(obj => obj.id === action.movie.id ?
         { ...obj, 
