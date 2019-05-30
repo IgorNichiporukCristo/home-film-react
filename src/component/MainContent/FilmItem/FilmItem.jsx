@@ -16,7 +16,13 @@ class FilmItem extends Component {
         <div className="ImageButton">
           <img alt="" src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} />
           <div className="children">
-            <button className='button' type="button" />
+            <button className='button-video' type="button">
+              <div className='triangle' />
+            </button>
+            <h4 className='text-video'>PLAY VIDEO</h4>
+            <button className='button-overview' type="button">
+              <h4>View Info</h4>
+            </button>
           </div>
         </div>
         <div className='info'>
