@@ -13,14 +13,51 @@ const ImageItem = ({ image }) => (
       </button>
       <h4 className='image-text'>play video</h4>
       <button className='image-overview' type="button">
-        <h4>View Info</h4>
+        <h4 className='image-overview-text'>View Info</h4>
       </button>
     </div>
   </div>
 );
 
+const InformationItem = ({title, vote, genres})=> (
+  <div className='information-countainer'>
+    <div className='information-title-vote'>
+      <h4 className='information-title'>{title}</h4>
+      <h4 className='information-vote'>{vote}</h4>
+    </div>
+    <h5 className='information-genres'>
+      {genres ? genres.map(obj => obj.name).join(', ') : 'Update page'}
+    </h5>
+  </div>
+    );
+
+const ViewInfoWindow = ({title, vote, genres}) => (
+  <div className='upwindow'>
+    <h4 className='titlewindow'>{title}</h4>
+    <h4>{genres ? genres.map(obj => obj.name).join(', ') : 'Update page'}</h4>
+    <h4>{vote}</h4>
+  </div>
+);
+  
+
 ImageItem.propTypes = {
   image: PropTypes.string.isRequired,
+};
+ViewInfoWindow.defaultProps = {
+  genres: [],
+};
+InformationItem.defaultProps = {
+  genres: [],
+};
+InformationItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  vote: PropTypes.number.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.object),
+};
+ViewInfoWindow.propTypes = {
+  title: PropTypes.string.isRequired,
+  vote: PropTypes.number.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.object),
 };
 
 class FilmItem extends Component {
@@ -29,56 +66,21 @@ class FilmItem extends Component {
     getDescriptionFilm();
   }
   
-
-  // UpWindow(props){
-  //   return(
-  //     <div className='upwindow'>
-  //       <h4 className='titlewindow'>{props.title}</h4>
-  //       <h4>{props.genres}</h4>
-  //       <h4>{props.vote}</h4>
-  //     </div>
-  //   );
-  // }
-
-  // InformationItem(props){
-  //   return(
-  //     <div className='info'>
-  //       <div className='titlevote'>
-  //         <h4 className='titlestyle'>{props.title}</h4>
-  //         <h4 className='votestyle'>{props.vote}</h4>
-  //       </div>
-  //       <h5 className='genres'>
-  //         {props.genres ? props.genres.map(obj => obj.name).join(', ') : 'Loading...'}
-  //       </h5>
-  //     </div>
-  //   );
-  // }
-
-  // itemConstruсtor(item) {
-  //   return (
-  //     <li>
-        
-  //       {/* <this.InformationItem
-  //         key={item.id}
-  //         title={item.original_title} 
-  //         vote={item.vote_average} 
-  //         genres={item.genres} 
-  //       />
-  //       <this.UpWindow 
-  //         key={item.id}
-  //         title={item.original_title} 
-  //         vote={item.vote_average} 
-  //         genres={item.genres}
-  //       /> */}
-  //     </li>
-  //   );
-  // }
-
   render () {
     const { item } = this.props;
     return (
       <li>
         <ImageItem image={item.poster_path} />
+        <InformationItem
+          title={item.original_title} 
+          vote={item.vote_average} 
+          genres={item.genres} 
+        />
+        <ViewInfoWindow 
+          title={item.original_title} 
+          vote={item.vote_average} 
+          genres={item.genres}
+        />
       </li>
     );
   }

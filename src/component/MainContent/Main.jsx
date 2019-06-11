@@ -34,7 +34,7 @@ function mapDispatchToProps(dispatch) {
 
 Main.propTypes = {
   getFilms: PropTypes.func.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.array),
+  movies: PropTypes.arrayOf(PropTypes.object),
 };
 
 Main.defaultProps = {
