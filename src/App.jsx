@@ -7,7 +7,7 @@ import './app.scss';
 
 function App() {
   return (
-    <div className="appborder">
+    <div className='appborder'>
       <Provider store={store}>
         <Main />
       </Provider>
