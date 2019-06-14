@@ -1,0 +1,12 @@
+.overview-container {
+    height: 400px;
+    width: 240px;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    border-radius: 10px 10px 0px 0px;
+    z-index: -1;
+    //top: 400px;
+    h4 {
+        color: white;
+    }
+}

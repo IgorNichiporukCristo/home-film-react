@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './constructorStyle.scss';
+import './informationItem.scss';
 
 const InformationItem = ({ title, vote, genres }) => (
   <div className="information-countainer">

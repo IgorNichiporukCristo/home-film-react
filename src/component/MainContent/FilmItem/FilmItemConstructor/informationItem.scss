@@ -1,0 +1,35 @@
+.information-countainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90px;
+    .information-title-vote {
+        display: flex;
+        justify-content: space-between;
+        font-family: Arial, Helvetica, sans-serif;
+            .information-title {
+                margin: 10px 0px 0px 10px;
+                width: 8em;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .information-vote {
+                margin: 10px 10px 0px 0px;
+                border:2px solid rgb(87, 96, 182);
+                border-radius: 5px;
+                width: 1.5em;
+                text-align: center;
+                color: rgb(87, 96, 182);
+            }
+                
+        }
+    .information-genres {
+            width: 17em;
+            margin: 0px 0px 10px 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: rgb(87, 96, 182);
+    }
+}

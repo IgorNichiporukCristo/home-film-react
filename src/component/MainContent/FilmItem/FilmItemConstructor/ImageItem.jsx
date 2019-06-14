@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './constructorStyle.scss';
+import './imageItem.scss';
+
+const Show = () => (
+  alert('sometext')
+);
 
 const ImageItem = ({ image }) => (
   <div className='image-container'>
@@ -10,7 +14,7 @@ const ImageItem = ({ image }) => (
         <div className='image-button-triangle' />
       </button>
       <h4 className='image-text'>play video</h4>
-      <button className='image-overview' type='button'>
+      <button onClick={Show} className='image-overview' type='button'>
         <h4 className='image-overview-text'>View Info</h4>
       </button>
     </div>

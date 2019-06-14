@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getDescriptionFilm } from '../../action/fetchFilms';
 import ImageItem from './FilmItemConstructor/ImageItem';
 import InformationItem from './FilmItemConstructor/InformationItem';
-import ViewInfoWindow from './FilmItemConstructor/ViewInfoWindow';
+import OverviewItem from './FilmItemConstructor/OverwiewItem';
 import './listStyle.scss';
 
 class FilmItem extends Component {
@@ -22,8 +22,13 @@ class FilmItem extends Component {
           title={item.original_title}
           vote={item.vote_average}
           genres={item.genres}
+        />  
+        <OverviewItem 
+          title={item.original_title} 
+          vote={item.vote_average} 
+          genres={item.genres} 
+          overview={item.overview}
         />
-        <ViewInfoWindow title={item.original_title} vote={item.vote_average} genres={item.genres} />
       </li>
     );
   }
