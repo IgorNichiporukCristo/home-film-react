@@ -17,18 +17,18 @@ class FilmItem extends Component {
     const { item } = this.props;
     return (
       <li>
-        <ImageItem image={item.poster_path} />
+        <ImageItem 
+          overview={item.overview}
+          image={item.poster_path} 
+          title={item.original_title}
+          vote={item.vote_average}
+          genres={item.genres}
+        />
         <InformationItem
           title={item.original_title}
           vote={item.vote_average}
           genres={item.genres}
         />  
-        <OverviewItem 
-          title={item.original_title} 
-          vote={item.vote_average} 
-          genres={item.genres} 
-          overview={item.overview}
-        />
       </li>
     );
   }
