@@ -17,8 +17,9 @@ class ImageItem extends Component {
   }
 
   render() {
-    const { image,overview,title,vote,genres } = this.props;
+    const { image, overview, title, vote, genres } = this.props;
     const { showItem } = this.state;
+    const { handleItemClick } = this.props;
     return (
       <div className="image-container">
         <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
@@ -28,11 +29,10 @@ class ImageItem extends Component {
           </button>
           <h4 className="image-text">play video</h4>
           <button onClick={this.handleItemClick} className="image-overview" type="button">
-            <h4 className="image-overview-text">
-              {showItem ? 'Hide' : 'Show'}
-            </h4>
+            <h4 className="image-overview-text">View Info</h4>
           </button>
           <OverviewItem
+            handleItemClick={handleItemClick}
             condition={showItem}
             overview={overview}
             title={title}
@@ -49,6 +49,7 @@ ImageItem.defaultProps = {
   genres: [],
 };
 ImageItem.propTypes = {
+  handleItemClick: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,

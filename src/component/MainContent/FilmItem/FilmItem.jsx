@@ -16,12 +16,12 @@ class FilmItem extends Component {
     const { item } = this.props;
     return (
       <li>
-        <ImageItem 
+        <ImageItem
           image={item.poster_path}
           title={item.original_title}
           vote={item.vote_average}
           genres={item.genres}
-          overview={item.overview} 
+          overview={item.overview}
         />
         <InformationItem
           title={item.original_title}
