@@ -4,11 +4,8 @@ import OverviewItem from './OverwiewItem';
 import './imageItem.scss';
 
 class ImageItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showItem: true };
-    this.handleItemClick = this.handleItemClick.bind(this);
-  }
+  state = { showItem: true };
+  handleItemClick = this.handleItemClick.bind(this);
 
   handleItemClick() {
     this.setState(state => ({
