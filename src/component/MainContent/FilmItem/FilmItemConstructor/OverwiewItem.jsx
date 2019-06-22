@@ -4,24 +4,26 @@ import './overwiewItem.scss';
 import InformationItem from './InformationItem';
 
 class OverwiewItem extends Component{
-  handleItemClick = this.props;
-  
   componentDidMount(){ 
+  }
+
+  handleClick = () => {
+    const { handleItemClick } = this.props;
+    handleItemClick();
   }
 
   render() {
     const { condition, title, vote, genres, overview } = this.props;
-    const { handleItemClick } =this.props;
     return (
       <div>
         {
-        condition ? (null) : (
+        condition ? (
           <div className="overview-container">
-            <button type="button" onClick={handleItemClick}>back</button>
+            <button type="button" onClick={this.handleClick}>back</button>
             <InformationItem title={title} genres={genres} vote={vote} />
-            <p className="title">{overview}</p>
+            <p className="overview">{overview}</p>
           </div>
-        )}
+        ) : (null) }
       </div>  
     );
   }

@@ -4,11 +4,11 @@ import OverviewItem from './OverwiewItem';
 import './imageItem.scss';
 
 class ImageItem extends Component {
-  state = { showItem: true };
+  state = { showItem: false };
 
-  handleItemClick = () =>( this.setState(state => ({
+  handleItemClick = () =>{ this.setState(state => ({
     showItem: !state.showItem,
-  })));
+  }));};
 
   
 
