@@ -5,18 +5,16 @@ import './imageItem.scss';
 
 class ImageItem extends Component {
   state = { showItem: true };
-  handleItemClick = this.handleItemClick.bind(this);
 
-  handleItemClick() {
-    this.setState(state => ({
-      showItem: !state.showItem,
-    }));
-  }
+  handleItemClick = () =>( this.setState(state => ({
+    showItem: !state.showItem,
+  })));
+
+  
 
   render() {
     const { image, overview, title, vote, genres } = this.props;
     const { showItem } = this.state;
-    const { handleItemClick } = this.props;
     return (
       <div className="image-container">
         <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
@@ -29,7 +27,7 @@ class ImageItem extends Component {
             <h4 className="image-overview-text">View Info</h4>
           </button>
           <OverviewItem
-            handleItemClick={handleItemClick}
+            handleItemClick={this.handleItemClick}
             condition={showItem}
             overview={overview}
             title={title}
@@ -46,7 +44,6 @@ ImageItem.defaultProps = {
   genres: [],
 };
 ImageItem.propTypes = {
-  handleItemClick: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
