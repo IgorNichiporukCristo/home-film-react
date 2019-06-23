@@ -4,21 +4,26 @@ import OverviewItem from './OverwiewItem';
 import './imageItem.scss';
 
 class ImageItem extends Component {
-  state = { showItem: false };
+  state = { showItem: false, /*hover: false*/ };
 
-  handleItemClick = () =>{ this.setState(state => ({
+  handleItemClick = () => { this.setState(state => ({
     showItem: !state.showItem,
   }));};
 
-  
+  // mouseHover = () => { this.setState(state => ({
+  //   hover: !state.hover,
+  // }));};
 
   render() {
     const { image, overview, title, vote, genres } = this.props;
     const { showItem } = this.state;
+    // let hoverStyle;
+    // (hover)? hoverStyle = { opacity : 1 }: hoverStyle ={ opacity : 0 };
+   
     return (
       <div className="image-container">
         <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
-        <div className="image-button-container">
+        <div className="image-button-container"/*onMouseEnter={this.mouseHover} onMouseLeave={this.mouseHover}*/>
           <button className="image-button-video" type="button">
             <div className="image-button-triangle" />
           </button>
@@ -26,15 +31,15 @@ class ImageItem extends Component {
           <button onClick={this.handleItemClick} className="image-overview" type="button">
             <h4 className="image-overview-text">View Info</h4>
           </button>
-          <OverviewItem
-            handleItemClick={this.handleItemClick}
-            condition={showItem}
-            overview={overview}
-            title={title}
-            vote={vote}
-            genres={genres}
-          />
         </div>
+        <OverviewItem
+          handleItemClick={this.handleItemClick}
+          condition={showItem}
+          overview={overview}
+          title={title}
+          vote={vote}
+          genres={genres}
+        />
       </div>
     );
   }

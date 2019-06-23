@@ -18,10 +18,13 @@ class OverwiewItem extends Component{
       <div>
         {
         condition ? (
-          <div className="overview-container">
-            <button type="button" onClick={this.handleClick}>back</button>
-            <InformationItem title={title} genres={genres} vote={vote} />
-            <p className="overview">{overview}</p>
+          <div className="view-countainer">
+            <div className="overview-countainer">
+              <button type="button" onClick={this.handleClick}>back</button>
+              <InformationItem title={title} genres={genres} vote={vote} />
+              <p className="overview">{overview}</p>
+            </div>
+            <div className="video-countainer" />
           </div>
         ) : (null) }
       </div>  

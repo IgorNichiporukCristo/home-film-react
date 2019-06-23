@@ -1,17 +1,27 @@
-.overview-container {
+.view-countainer {
     height: 400px;
     width: 240px;
-    background-color: rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
     position: absolute;
     border-radius: 10px 10px 0px 0px;
-    z-index: 5;
     top: 0px;
+    left: 0px;
+    .overview-countainer{
+        height: 310px;
+        .overview{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.8em;
+            margin: 0px 10px 0px 10px ;
+    }
     h4,p {
         color: white;
     }
-    .overview{
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8em;
-        margin: 0px 10px 0px 10px ;
+    }
+    .video-countainer{
+        height: 90px;
+        background-color: black;
+
     }
 }
