@@ -13,28 +13,20 @@ class FilmItem extends Component {
   }
 
   render() {
-    const {item: {
-      genres: genres, 
-      poster_path: image, 
-      original_title: title, 
-      vote_average: vote, 
-      overview: overview  
-      }
-    }  = this.props;
+    const {
+      item: {
+        genres,
+        poster_path: image,
+        original_title: title,
+        vote_average: vote,
+        overview,
+        video,
+      },
+    } = this.props;
     return (
       <li>
-        <ImageItem
-          image={image}
-          title={title}
-          vote={vote}
-          genres={genres}
-          overview={overview}
-        />
-        <InformationItem
-          title={title}
-          vote={vote}
-          genres={genres}
-        />
+        <ImageItem image={image} title={title} vote={vote} genres={genres} overview={overview} video={video} />
+        <InformationItem title={title} vote={vote} genres={genres} />
       </li>
     );
   }

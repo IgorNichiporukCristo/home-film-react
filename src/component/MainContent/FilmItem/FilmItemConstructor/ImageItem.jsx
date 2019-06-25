@@ -2,29 +2,34 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import OverviewItem from './OverwiewItem';
 import './imageItem.scss';
+import Video from '../Video';
 
 class ImageItem extends Component {
-  state = { showItem: false, /*hover: false*/ };
+  state = { 
+    showItemOwerwiew: false,
+    showItemVideo: false,
+  };
 
-  handleItemClick = () => { this.setState(state => ({
-    showItem: !state.showItem,
-  }));};
+  handleItemClick = () => {
+    this.setState(state => ({
+      showItemOwerwiew: !state.showItemOwerwiew,
+    }));
+  }
 
-  // mouseHover = () => { this.setState(state => ({
-  //   hover: !state.hover,
-  // }));};
+  handleVideoClick = () => {
+    this.setState(state => ({
+      showItemVideo: !state.showItemVideo,
+    }));
+  }
 
   render() {
-    const { image, overview, title, vote, genres } = this.props;
-    const { showItem } = this.state;
-    // let hoverStyle;
-    // (hover)? hoverStyle = { opacity : 1 }: hoverStyle ={ opacity : 0 };
-   
+    const { image, overview, title, vote, genres, video } = this.props;
+    const { showItemOwerwiew,showItemVideo } = this.state;
     return (
       <div className="image-container">
         <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
-        <div className="image-button-container"/*onMouseEnter={this.mouseHover} onMouseLeave={this.mouseHover}*/>
-          <button className="image-button-video" type="button">
+        <div className="image-button-container">
+          <button className="image-button-video" type="button" onClick={this.handleVideoClick}>
             <div className="image-button-triangle" />
           </button>
           <h4 className="image-text">play video</h4>
@@ -34,11 +39,16 @@ class ImageItem extends Component {
         </div>
         <OverviewItem
           handleItemClick={this.handleItemClick}
-          condition={showItem}
+          stateInference={showItemOwerwiew}
           overview={overview}
           title={title}
           vote={vote}
           genres={genres}
+        />
+        <Video 
+          handleVideoClick={this.handleVideoClick}
+          stateVideo={showItemVideo}
+          video={video} 
         />
       </div>
     );
@@ -47,12 +57,14 @@ class ImageItem extends Component {
 
 ImageItem.defaultProps = {
   genres: [],
+  video: []
 };
 ImageItem.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
   genres: PropTypes.arrayOf(PropTypes.object),
+  video: PropTypes.arrayOf(PropTypes.object),
   overview: PropTypes.string.isRequired,
 };
 

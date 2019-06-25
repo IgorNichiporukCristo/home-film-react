@@ -9,7 +9,7 @@ const InformationItem = ({ title, vote, genres }) => (
       <h4 className="information-vote">{vote}</h4>
     </div>
     <h5 className="information-genres">
-      {genres ? genres.slice(0, 3).map(obj => obj.name).join(', ') : 'Update page'}
+      {genres? genres.slice(0, 3).map(obj => obj.name).join(', '): 'Update page'}
     </h5>
   </div>
 );
