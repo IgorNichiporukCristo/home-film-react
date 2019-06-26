@@ -6,20 +6,23 @@ import './video.scss';
 
 class Video extends Component {
 
+  componentDidMount() {
+    this.root = document.createElement('div');
+    document.body.appendChild(this.root);
+}
+
+componentWillUnmount() {
+    document.body.removeChild(this.root);
+}
+
   handleClick = () => {
     const { handleVideoClick } = this.props;
     handleVideoClick();
   };
 
-  _onReady(event) {
-    event.target.pauseVideo();
-  }
-
   render() {
     const { stateVideo, video } = this.props;
     const opts = {
-      height: '390',
-      width: '640',
       playerVars: {
         autoplay: 1,
       },
@@ -30,9 +33,9 @@ class Video extends Component {
           stateVideo ? ReactDOM.createPortal(
             <div className="buttonVideo">
               <button type="button" onClick={this.handleClick}>back</button>
-              <YouTube videoId={video[0].key} opts={opts} onReady={this._onReady} />
+              <YouTube videoId={video[0].key} opts={opts} />
             </div>,
-            document.getElementById('app')) : null}
+            this.root) : null}
       </div>
     );
   }
