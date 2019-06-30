@@ -2,17 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './overwiewItem.scss';
 import InformationItem from './InformationItem';
+import Video from '../Video';
 
 class OverwiewItem extends Component {
-  componentDidMount() {}
+  state = { 
+    showItemVideo: false,
+  };
 
   handleClick = () => {
     const { handleItemClick } = this.props;
     handleItemClick();
   };
 
+  handleVideoClick = () => {
+    this.setState(state => ({
+      showItemVideo: !state.showItemVideo,
+    }));
+  }
+
   render() {
-    const { stateInference, title, vote, genres, overview } = this.props;
+    const { stateInference, title, vote, genres, overview, video } = this.props;
+    const { showItemVideo } = this.state;
     return (
       <div>
         {stateInference ? (
@@ -22,7 +32,16 @@ class OverwiewItem extends Component {
               <InformationItem title={title} genres={genres} vote={vote} />
               <p className="overview">{overview}</p>
             </div>
-            <div className="video-countainer" />
+            <div className="video-countainer">
+              <button className="overwiew-button-video" type="button" onClick={this.handleVideoClick}>
+                <div className="overwiew-button-triangle" />
+              </button>
+            </div>
+            <Video 
+              handleVideoClick={this.handleVideoClick}
+              stateVideo={showItemVideo}
+              video={video} 
+            /> 
           </div>
         ) : null}
       </div>
@@ -32,6 +51,7 @@ class OverwiewItem extends Component {
 
 OverwiewItem.defaultProps = {
   genres: [],
+  video: []
 };
 
 OverwiewItem.propTypes = {
@@ -41,6 +61,7 @@ OverwiewItem.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
   overview: PropTypes.string.isRequired,
   stateInference: PropTypes.bool.isRequired,
+  video: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default OverwiewItem;

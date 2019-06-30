@@ -44,6 +44,7 @@ class ImageItem extends Component {
           title={title}
           vote={vote}
           genres={genres}
+          video={video} 
         />
         <Video 
           handleVideoClick={this.handleVideoClick}
