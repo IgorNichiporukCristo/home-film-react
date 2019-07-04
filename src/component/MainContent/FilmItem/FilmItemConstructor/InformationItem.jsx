@@ -4,7 +4,7 @@ import './informationItem.scss';
 
 class InformationItem extends Component{
   componentDidMount(){
-    
+
   }
 
   handleClick = () => {
@@ -42,7 +42,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch, { item: { id } = null }) {
   return {
-    getDescriptionFilm: () => dispatch(getDescriptionFilm(id)),
+    getDescriptionFilm: () => dispatch(getFilm(id)),
   };
 }
 
