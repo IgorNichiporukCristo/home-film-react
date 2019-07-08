@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import broascastId from '../../../action/broadcastId';
+import { broadcastId } from '../../../action/fetchFilms';
 import './informationItem.scss';
 
 class InformationItem extends Component{
@@ -37,7 +37,7 @@ class InformationItem extends Component{
 
 function mapDispatchToProps(dispatch, { id }) {
   return {
-    putFilmId : () => dispatch(broascastId(id)),
+    putFilmId : () => dispatch(broadcastId(id)),
   };
 }
 

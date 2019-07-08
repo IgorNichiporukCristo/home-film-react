@@ -1,10 +1,10 @@
-import { ADD_FILMS, ADD_DESCRIPTION_FILM } from '../constants';
+import { ADD_FILMS, ADD_DESCRIPTION_FILM,  BROADCAST_ID  } from '../constants';
 
 const initialState = {
   loading: false,
   error: false,
   movies: [],
-  currId: null,
+  currentFilm: null,
 };
 
 const filmReducer = (state = initialState, action) => {
@@ -17,14 +17,19 @@ const filmReducer = (state = initialState, action) => {
         ]
       };
     case ADD_DESCRIPTION_FILM:
-    return {
-      currId: state.currId ? null: state.movies[0].id,
-      movies: state.movies.map(obj => obj.id === action.movie.id ?
-        { ...obj, 
-          genres: action.movie.genres,
-          video: action.movie.results
-        } : 
-        obj)
+      return {
+        currentFilm: state.movies.id ? null: state.movies[0],
+        movies: state.movies.map(obj => obj.id === action.movie.id ?
+          { ...obj, 
+            genres: action.movie.genres,
+            video: action.movie.results
+          } : 
+         obj)
+      };
+    case BROADCAST_ID:
+      return {
+        ...state,
+        currentFilm: state.movies.find(obj => obj.id === action.payload)
       };
     default:
       return state;

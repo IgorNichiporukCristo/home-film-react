@@ -1,4 +1,4 @@
-import { ADD_FILMS, ADD_DESCRIPTION_FILM  } from "../constants";
+import { ADD_FILMS, ADD_DESCRIPTION_FILM, BROADCAST_ID  } from "../constants";
 
 const API_KEY = "ac122731994c8a0edef1603c3016ac82";
 const PAGE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
@@ -26,6 +26,11 @@ const getDescriptionFilm = (id) => (dispatch) => {
   .catch(error => error);
 };
 
-export { fetchFilms, getDescriptionFilm };
+const broadcastId = (id) => ({
+  type: BROADCAST_ID,
+  payload: id
+});
+
+export { fetchFilms, getDescriptionFilm, broadcastId };
 
 

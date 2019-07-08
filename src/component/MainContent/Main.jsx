@@ -15,7 +15,7 @@ class Main extends Component {
     const { movies } = this.props;
     return (
       <div>
-        <Header items={movies} />
+        <Header /> 
         <FilmList items={movies} />
       </div>
     );
@@ -24,7 +24,7 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
-    movies: state.addFilms.movies,
+    movies: state.movies,
   };
 }
 
