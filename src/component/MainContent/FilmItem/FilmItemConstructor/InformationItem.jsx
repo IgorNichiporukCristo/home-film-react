@@ -1,19 +1,19 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import broascastId from '../../../action/broadcastId';
 import './informationItem.scss';
 
 class InformationItem extends Component{
-  componentDidMount(){
-
-  }
 
   handleClick = () => {
-    return console.log("sdgsdg");
+    const { putFilmId } = this.props;
+    putFilmId();
   }  
 
-  render(){
-    const {title, vote, genres} = this.props;
-    return(
+  render () {
+    const { title, vote, genres } = this.props;
+    return (
       <div 
         className="information-countainer" 
         onClick={this.handleClick} 
@@ -34,15 +34,10 @@ class InformationItem extends Component{
 
 }
 
-function mapStateToProps(state) {
-  return {
-    items: state.items,
-  };
-}
 
-function mapDispatchToProps(dispatch, { item: { id } = null }) {
+function mapDispatchToProps(dispatch, { id }) {
   return {
-    getDescriptionFilm: () => dispatch(getFilm(id)),
+    putFilmId : () => dispatch(broascastId(id)),
   };
 }
 
@@ -53,9 +48,10 @@ InformationItem.propTypes = {
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
   genres: PropTypes.arrayOf(PropTypes.object),
+  putFilmId: PropTypes.func.isRequired,
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(InformationItem);

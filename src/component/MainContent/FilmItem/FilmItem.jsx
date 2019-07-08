@@ -21,12 +21,25 @@ class FilmItem extends Component {
         vote_average: vote,
         overview,
         video,
+        id,
       },
     } = this.props;
     return (
       <li>
-        <ImageItem image={image} title={title} vote={vote} genres={genres} overview={overview} video={video} />
-        <InformationItem title={title} vote={vote} genres={genres} />
+        <ImageItem 
+          image={image} 
+          title={title} 
+          vote={vote} 
+          genres={genres} 
+          overview={overview}
+          video={video} 
+        />
+        <InformationItem 
+          title={title} 
+          vote={vote} 
+          genres={genres} 
+          id={id} 
+        />
       </li>
     );
   }

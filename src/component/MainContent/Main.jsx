@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchFilms } from '../action/fetchFilms';
 import FilmList from './FilmItem/Filmlist';
+import Header from './Header';
 
 class Main extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class Main extends Component {
     const { movies } = this.props;
     return (
       <div>
+        <Header items={movies} />
         <FilmList items={movies} />
       </div>
     );
@@ -22,7 +24,7 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
-    movies: state.movies,
+    movies: state.addFilms.movies,
   };
 }
 

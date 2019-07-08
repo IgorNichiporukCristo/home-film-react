@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   error: false,
   movies: [],
+  currId: null,
 };
 
 const filmReducer = (state = initialState, action) => {
@@ -17,6 +18,7 @@ const filmReducer = (state = initialState, action) => {
       };
     case ADD_DESCRIPTION_FILM:
     return {
+      currId: state.currId ? null: state.movies[0].id,
       movies: state.movies.map(obj => obj.id === action.movie.id ?
         { ...obj, 
           genres: action.movie.genres,

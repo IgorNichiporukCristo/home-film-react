@@ -43,8 +43,11 @@ componentWillUnmount() {
 
 Video.propTypes = {
   handleVideoClick: PropTypes.func.isRequired,
+  video: PropTypes.arrayOf(PropTypes.object),
   stateVideo: PropTypes.bool.isRequired,
-  video: PropTypes.string.isRequired,
+};
+Video.defaultProps = {
+  video: [],
 };
 
 export default Video;
