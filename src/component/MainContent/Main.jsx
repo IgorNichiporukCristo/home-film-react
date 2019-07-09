@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchFilms } from '../action/fetchFilms';
 import FilmList from './FilmItem/Filmlist';
-import Header from './Header';
+import Header from './Header/Header';
+import './index.scss';
 
 class Main extends Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class Main extends Component {
   render() {
     const { movies, movie } = this.props;
     return (
-      <div>
+      <div className="main-container">
         {movie ? <Header movie={movie} /> : null }
         <FilmList items={movies} />
       </div>

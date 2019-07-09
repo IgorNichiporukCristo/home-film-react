@@ -19,9 +19,9 @@ const getDescriptionFilm = (id) => (dispatch) => {
   const url = createFilmURL(id);
   fetch(url)
   .then(res => res.json())
-  .then(({ id, genres, videos: { results } }) => dispatch({ 
+  .then(({ id, genres, videos: { results }, images: { backdrops } }) => dispatch({ 
       type: ADD_DESCRIPTION_FILM,
-      movie: { id, genres,results }
+      movie: { id, genres,results, backdrops }
     }))
   .catch(error => error);
 };

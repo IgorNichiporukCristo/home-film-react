@@ -20,6 +20,7 @@
         background-color: rgba(0, 0, 0, 0.8);
         h4 {
             color: rgb(210, 211, 214);
+            cursor: default;
         }
         .image-button-video {
             position: relative;
@@ -34,7 +35,7 @@
             width: 45px;
             height: 45px;
             border-radius: 30%;
-            background: linear-gradient(rgb(63, 94, 177), #1f0e5e);
+            background: rgb(40, 78, 192);
             .image-button-triangle {
                 border: none;
                 display: flex;
@@ -63,11 +64,11 @@
            
         }
         .image-button-video:hover {
-            transform: scale(1.1);
+            background-color: rgb(65, 106, 230);
             transition: 0.3s;
         }
         .image-overview:hover {
-            transform: scale(1.1);
+            background-color: rgb(65, 106, 230);
             transition: 0.3s;
         }
     }  

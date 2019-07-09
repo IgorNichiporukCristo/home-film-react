@@ -1,0 +1,14 @@
+.header-style{
+    display: flex;
+    margin-bottom: 10px;
+    .poster {
+        width: 100%;
+    }
+    .header-information{
+        position: absolute;
+        .name-page{
+            color: white;
+            margin: 10px;
+        }
+    }
+}

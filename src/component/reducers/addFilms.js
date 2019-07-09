@@ -22,7 +22,8 @@ const filmReducer = (state = initialState, action) => {
         movies: state.movies.map(obj => obj.id === action.movie.id ?
           { ...obj, 
             genres: action.movie.genres,
-            video: action.movie.results
+            video: action.movie.results,
+            poster: action.movie.backdrops[0].file_path,
           } : 
          obj)
       };
