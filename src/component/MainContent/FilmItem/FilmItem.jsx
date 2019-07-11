@@ -25,21 +25,16 @@ class FilmItem extends Component {
       },
     } = this.props;
     return (
-      <li>
-        <ImageItem 
-          image={image} 
-          title={title} 
-          vote={vote} 
-          genres={genres} 
+      <li className="film-list-li">
+        <ImageItem
+          image={image}
+          title={title}
+          vote={vote}
+          genres={genres}
           overview={overview}
-          video={video} 
+          video={video}
         />
-        <InformationItem 
-          title={title} 
-          vote={vote} 
-          genres={genres} 
-          id={id} 
-        />
+        <InformationItem title={title} vote={vote} genres={genres} id={id} />
       </li>
     );
   }
@@ -59,7 +54,11 @@ function mapDispatchToProps(dispatch, { item: { id } = null }) {
 
 FilmItem.propTypes = {
   getDescriptionFilm: PropTypes.func.isRequired,
-  item: PropTypes.objectOf(PropTypes.object),
+  item: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.number, 
+    PropTypes.instanceOf(FilmItem)
+  ]),
 };
 FilmItem.defaultProps = {
   item: {},

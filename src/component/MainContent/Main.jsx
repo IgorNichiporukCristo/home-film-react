@@ -12,12 +12,11 @@ class Main extends Component {
     getFilms();
   }
 
-
   render() {
     const { movies, movie } = this.props;
     return (
       <div className="main-container">
-        {movie ? <Header movie={movie} /> : null }
+        {movie ? <Header movie={movie} /> : null}
         <FilmList items={movies} />
       </div>
     );
@@ -40,12 +39,17 @@ function mapDispatchToProps(dispatch) {
 Main.propTypes = {
   getFilms: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(PropTypes.object),
-  movie: PropTypes.arrayOf(PropTypes.object),
+  movie: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number, 
+    PropTypes.instanceOf(Main)
+  ]),
 };
 
 Main.defaultProps = {
   movies: [],
-  movie: [],
+  movie: {},
 };
 
 export default connect(

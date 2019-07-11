@@ -55,8 +55,11 @@
         .image-overview {
             position: absolute;
             background-color: transparent;
+            text-transform: uppercase;
+            height: 40px; 
+            width: 110px;
             top: 70%;
-            left: 33%;
+            left: 27%;
             outline:none;
             .image-overview-text {
                 margin: 10px;

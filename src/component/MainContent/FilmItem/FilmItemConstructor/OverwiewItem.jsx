@@ -5,7 +5,7 @@ import InformationItem from './InformationItem';
 import Video from '../Video';
 
 class OverwiewItem extends Component {
-  state = { 
+  state = {
     showItemVideo: false,
   };
 
@@ -18,10 +18,10 @@ class OverwiewItem extends Component {
     this.setState(state => ({
       showItemVideo: !state.showItemVideo,
     }));
-  }
+  };
 
   render() {
-    const { stateInference, title, vote, genres, overview, video } = this.props;
+    const { stateInference, title, vote, genres, overview, video, id } = this.props;
     const { showItemVideo } = this.state;
     return (
       <div>
@@ -29,19 +29,23 @@ class OverwiewItem extends Component {
           <div className="view-countainer">
             <div className="overview-countainer">
               <button type="button" onClick={this.handleClick}>back</button>
-              <InformationItem title={title} genres={genres} vote={vote} />
+              <InformationItem title={title} genres={genres} vote={vote} id={id} />
               <p className="overview">{overview}</p>
             </div>
             <div className="video-countainer">
-              <button className="overwiew-button-video" type="button" onClick={this.handleVideoClick}>
+              <button
+                className="overwiew-button-video"
+                type="button"
+                onClick={this.handleVideoClick}
+              >
                 <div className="overwiew-button-triangle" />
               </button>
             </div>
-            <Video 
+            <Video
               handleVideoClick={this.handleVideoClick}
               stateVideo={showItemVideo}
-              video={video} 
-            /> 
+              video={video}
+            />
           </div>
         ) : null}
       </div>
@@ -51,7 +55,8 @@ class OverwiewItem extends Component {
 
 OverwiewItem.defaultProps = {
   genres: [],
-  video: []
+  video: [],
+  id: "",
 };
 
 OverwiewItem.propTypes = {
@@ -61,7 +66,17 @@ OverwiewItem.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
   overview: PropTypes.string.isRequired,
   stateInference: PropTypes.bool.isRequired,
-  video: PropTypes.arrayOf(PropTypes.object),
+  video: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array, 
+    PropTypes.instanceOf(OverwiewItem)
+  ]),
+  id: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number, 
+    PropTypes.string,
+    PropTypes.instanceOf(OverwiewItem)
+  ]),
 };
 
 export default OverwiewItem;

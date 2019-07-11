@@ -24,6 +24,8 @@ const filmReducer = (state = initialState, action) => {
             genres: action.movie.genres,
             video: action.movie.results,
             poster: action.movie.backdrops[0].file_path,
+            time: action.movie.runtime,
+            release: action.movie.release_date,
           } : 
          obj)
       };

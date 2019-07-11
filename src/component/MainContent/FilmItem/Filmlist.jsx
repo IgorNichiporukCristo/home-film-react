@@ -9,7 +9,7 @@ class FilmList extends Component {
   render() {
     const { items } = this.props;
     return (
-      <ul>
+      <ul className="film-list-ul">
         {items.map(item => (
           <FilmItem key={item.id} item={item} />
         ))}

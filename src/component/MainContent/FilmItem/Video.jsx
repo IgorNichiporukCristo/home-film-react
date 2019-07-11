@@ -5,15 +5,14 @@ import YouTube from 'react-youtube';
 import './video.scss';
 
 class Video extends Component {
-
   componentDidMount() {
     this.root = document.createElement('div');
     document.body.appendChild(this.root);
-}
+  }
 
-componentWillUnmount() {
+  componentWillUnmount() {
     document.body.removeChild(this.root);
-}
+  }
 
   handleClick = () => {
     const { handleVideoClick } = this.props;
@@ -29,13 +28,15 @@ componentWillUnmount() {
     };
     return (
       <div>
-        {
-          stateVideo ? ReactDOM.createPortal(
+        {stateVideo
+          ? ReactDOM.createPortal(
             <div className="buttonVideo">
               <button type="button" onClick={this.handleClick}>back</button>
               <YouTube videoId={video[0].key} opts={opts} />
             </div>,
-            this.root) : null}
+            this.root,
+            )
+          : null}
       </div>
     );
   }
@@ -43,7 +44,11 @@ componentWillUnmount() {
 
 Video.propTypes = {
   handleVideoClick: PropTypes.func.isRequired,
-  video: PropTypes.arrayOf(PropTypes.object),
+  video: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array, 
+    PropTypes.instanceOf(Video)
+  ]),
   stateVideo: PropTypes.bool.isRequired,
 };
 Video.defaultProps = {

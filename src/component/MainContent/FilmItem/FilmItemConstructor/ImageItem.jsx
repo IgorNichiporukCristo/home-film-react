@@ -5,7 +5,7 @@ import './imageItem.scss';
 import Video from '../Video';
 
 class ImageItem extends Component {
-  state = { 
+  state = {
     showItemOwerwiew: false,
     showItemVideo: false,
   };
@@ -14,17 +14,17 @@ class ImageItem extends Component {
     this.setState(state => ({
       showItemOwerwiew: !state.showItemOwerwiew,
     }));
-  }
+  };
 
   handleVideoClick = () => {
     this.setState(state => ({
       showItemVideo: !state.showItemVideo,
     }));
-  }
+  };
 
   render() {
-    const { image, overview, title, vote, genres, video } = this.props;
-    const { showItemOwerwiew,showItemVideo } = this.state;
+    const { image, overview, title, vote, genres, video, id } = this.props;
+    const { showItemOwerwiew, showItemVideo } = this.state;
     return (
       <div className="image-container">
         <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
@@ -44,13 +44,10 @@ class ImageItem extends Component {
           title={title}
           vote={vote}
           genres={genres}
-          video={video} 
+          video={video}
+          id={id}
         />
-        <Video 
-          handleVideoClick={this.handleVideoClick}
-          stateVideo={showItemVideo}
-          video={video} 
-        />
+        <Video handleVideoClick={this.handleVideoClick} stateVideo={showItemVideo} video={video} />
       </div>
     );
   }
@@ -58,15 +55,26 @@ class ImageItem extends Component {
 
 ImageItem.defaultProps = {
   genres: [],
-  video: []
+  video: [],
+  id: "",
 };
 ImageItem.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
   genres: PropTypes.arrayOf(PropTypes.object),
-  video: PropTypes.arrayOf(PropTypes.object),
+  video: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array, 
+    PropTypes.instanceOf(ImageItem)
+  ]),
   overview: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number, 
+    PropTypes.string,
+    PropTypes.instanceOf(ImageItem)
+  ]), 
 };
 
 export default ImageItem;

@@ -1,14 +1,78 @@
 .header-style{
     display: flex;
-    margin-bottom: 10px;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    font: Times, serif;
     .poster {
         width: 100%;
+        height: 90vh;
+        position: absolute;
+        z-index: 0;
+        opacity: 0.5;
     }
     .header-information{
-        position: absolute;
-        .name-page{
-            color: white;
-            margin: 10px;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .header-name-search{
+            display: flex;
+            justify-content: space-between;
+            width: 95vw;
+            margin-bottom: 200px;
+            .header-name{
+                color: white;
+                margin: 10px;
+            }
+            .header-search{
+                margin: 10px;
+                background-color: transparent;
+                color: white;
+            }
+        }
+        .header-content{
+            width: 80vw;
+            display: flex;
+            justify-content: space-between;
+            .header-content-countainer{
+                display: flex;
+                flex-direction: column;
+                color: white;
+                .header-title{
+                    font-size: 40pt;
+                }
+                .header-genres-ul{
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    list-style-type: none; 
+                    font-size: 15pt;
+                    padding: 0px;
+                    margin: 0px;
+                    .header-genres-li{
+                        padding-right: 20px;
+                    }
+                }
+                .header-vote{
+                    font-size: 11pt;
+                }
+            }
+            .header-button-countainer{
+                display: flex;
+                .button-header{
+                    margin: 5px;
+                    height: 40px; 
+                    width: 100px;  
+                    outline:none;
+                    background-color: transparent;
+                    text-transform: uppercase;
+                    color: white;
+                }
+                .button-header:hover {
+                    background-color: rgb(65, 106, 230);
+                    transition: 0.3s;
+                }
+            }
         }
     }
 }
