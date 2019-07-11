@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HeaderSearch from './HeaderContent/HeaderSearch';
 import HeaderInformation from './HeaderContent/HeaderInformation';
+import HeaderButton from './HeaderContent/HeaderButton';
 import './header.scss';
 
 class Header extends Component {
@@ -24,10 +25,7 @@ class Header extends Component {
           <HeaderSearch />
           <div className="header-content">
             <HeaderInformation title={title} genres={genres} vote={vote_average} />
-            <div className="header-button-countainer">
-              <button className="button-header" type="button">view info</button>
-              <button className="button-header" type="button">watch now</button>
-            </div>
+            <HeaderButton />
           </div>
         </div>
       </div>

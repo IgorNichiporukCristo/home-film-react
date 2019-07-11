@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const HeaderInformation = ({title}, {genres}, {vote}) => {return(
+const HeaderInformation = ({title, genres, vote}) => {return(
   <div className="header-content-countainer">
     <span className="header-title">{title}</span>
     <div>
@@ -19,6 +19,12 @@ const HeaderInformation = ({title}, {genres}, {vote}) => {return(
 
 HeaderInformation.propTypes = {
   title: PropTypes.string.isRequired,
+  vote: PropTypes.number.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.object),
+};
+
+HeaderInformation.defaultProps = {
+  genres: [],
 };
 
 export default HeaderInformation;
