@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './HeaderInformation.scss';
 
 const HeaderInformation = ({title, genres, vote}) => {return(
   <div className="header-content-countainer">

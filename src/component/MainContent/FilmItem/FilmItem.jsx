@@ -33,6 +33,7 @@ class FilmItem extends Component {
           genres={genres}
           overview={overview}
           video={video}
+          id={id}
         />
         <InformationItem title={title} vote={vote} genres={genres} id={id} />
       </li>

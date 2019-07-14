@@ -15,6 +15,8 @@ class Header extends Component {
         title, 
         genres, 
         vote_average, 
+        overview,
+        video,
         // time 
       },
     } = this.props;
@@ -25,7 +27,7 @@ class Header extends Component {
           <HeaderSearch />
           <div className="header-content">
             <HeaderInformation title={title} genres={genres} vote={vote_average} />
-            <HeaderButton />
+            <HeaderButton overview={overview} video={video} />
           </div>
         </div>
       </div>

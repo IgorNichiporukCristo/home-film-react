@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import OverviewItem from './OverwiewItem';
 import './imageItem.scss';
-import Video from '../Video';
+import Video from '../../Video/Video';
 
 class ImageItem extends Component {
   state = {

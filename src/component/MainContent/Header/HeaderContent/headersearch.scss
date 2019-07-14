@@ -1,0 +1,15 @@
+.header-name-search{
+    display: flex;
+    justify-content: space-between;
+    width: 95vw;
+    margin-bottom: 200px;
+    .header-name{
+        color: white;
+        margin: 10px;
+    }
+    .header-search{
+        margin: 10px;
+        background-color: transparent;
+        color: white;
+    }
+}

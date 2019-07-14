@@ -1,4 +1,5 @@
 import React from 'react';
+import './headersearch.scss';
 
 const HeaderSearch = () => {return(
   <div className="header-name-search">
