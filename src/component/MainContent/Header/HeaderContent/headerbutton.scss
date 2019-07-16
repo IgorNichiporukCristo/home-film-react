@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    width: 46vw;
+    width: 50vw;
     height: 200px;
     .headerbutton-overview{
         background-color: rgba(0, 0, 0, 0.7);
@@ -12,12 +12,12 @@
         width: 450px;
         padding: 10px;
         font-size: 12pt;
+        margin-right: 10px;
     }
     .button-countainer-header{
-         right: 300px;
          display: flex;
         .button-header{
-            margin: 10px 0px 10px 10px;
+            margin: 10px;
             height: 40px; 
             width: 100px;  
             outline:none;
