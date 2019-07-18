@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 90px;
+    height: 70px;
     cursor: default;
     .information-title-vote {
         display: flex;
@@ -21,7 +21,7 @@
                 border-radius: 5px;
                 width: 1.5em;
                 text-align: center;
-                color: rgb(87, 96, 182);
+                color: rgb(238, 238, 238);
             }
                 
         }
@@ -31,6 +31,6 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: rgb(87, 96, 182);
+            color: rgb(255, 255, 255);
     }
 }

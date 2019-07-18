@@ -9,14 +9,11 @@ class Video extends Component {
     super(props);
     this.videoRef = React.createRef();
   }
-  
-  componentWillMount() {
-    document.addEventListener('click', this.handleClickOutside, false);
-  }
 
   componentDidMount() {
     this.root = document.createElement('div');
     document.body.appendChild(this.root);
+    document.addEventListener('click', this.handleClickOutside);
     
   }
 
@@ -25,12 +22,12 @@ class Video extends Component {
     document.removeEventListener('click', this.handleClickOutside, false);
   }
   
-  handleClickOutside() {
-    const VideoBlock = this.videoRef;
-    if ((!VideoBlock)) {
-      const { handleVideoClick } = this.props;
-      handleVideoClick();
+  handleClickOutside = (event) => {
+    const { handleVideoClick } = this.props;
+    if (this.node.contains(event.target)) { 
+      return  console.log('end game');
     }
+    handleVideoClick();
   }
 
   render() {
@@ -45,10 +42,9 @@ class Video extends Component {
         {stateVideo
           ? ReactDOM.createPortal(
             <div className="buttonVideo">
-              <div ref={this.videoRef}>
+              <div ref={node=> this.node = node}>
                 <YouTube videoId={video[0].key} opts={opts} />
               </div>
-              
             </div>,
             this.root,
             )
