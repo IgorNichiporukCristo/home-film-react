@@ -5,6 +5,10 @@ import YouTube from 'react-youtube';
 import './video.scss';
 
 class Video extends Component {
+  constructor(props) {
+    super(props);
+    this.videoRef = React.createRef();
+  }
   
   componentWillMount() {
     document.addEventListener('click', this.handleClickOutside, false);
@@ -13,16 +17,17 @@ class Video extends Component {
   componentDidMount() {
     this.root = document.createElement('div');
     document.body.appendChild(this.root);
+    
   }
 
   componentWillUnmount() {
     document.body.removeChild(this.root);
-    document.addEventListener('click', this.handleClickOutside, false);
+    document.removeEventListener('click', this.handleClickOutside, false);
   }
-
-  handleClickOutside(e) {
-    const VideoBlock = document.getElementsByClassName('VideoBlock')[0];
-    if (!e.path.includes(VideoBlock)) {
+  
+  handleClickOutside() {
+    const VideoBlock = this.videoRef;
+    if ((!VideoBlock)) {
       const { handleVideoClick } = this.props;
       handleVideoClick();
     }
@@ -40,7 +45,7 @@ class Video extends Component {
         {stateVideo
           ? ReactDOM.createPortal(
             <div className="buttonVideo">
-              <div className="VideoBlock">
+              <div ref={this.videoRef}>
                 <YouTube videoId={video[0].key} opts={opts} />
               </div>
               
