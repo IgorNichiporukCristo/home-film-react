@@ -16,10 +16,12 @@ class ImageItem extends Component {
     }));
   };
 
-  handleVideoClick = () => {
-    this.setState(state => ({
-      showItemVideo: !state.showItemVideo,
-    }));
+  handleVideoClick = (event) => {
+    if (event.type == "click"){
+      this.setState(state => ({
+        showItemVideo: !state.showItemVideo,
+      }));
+    }
   };
 
   render() {
@@ -29,7 +31,7 @@ class ImageItem extends Component {
       <div className="image-container">
         <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
         <div className="image-button-container">
-          <button className="image-button-video" type="button" onClick={this.handleVideoClick}>
+          <button className="image-button-video" type="button" onClick={(event) => this.handleVideoClick(event)}>
             <div className="image-button-triangle" />
           </button>
           <h4 className="image-text">play video</h4>

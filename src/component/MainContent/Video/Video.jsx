@@ -5,30 +5,29 @@ import YouTube from 'react-youtube';
 import './video.scss';
 
 class Video extends Component {
-  constructor(props) {
-    super(props);
-    this.videoRef = React.createRef();
-  }
-
   componentDidMount() {
     this.root = document.createElement('div');
     document.body.appendChild(this.root);
-    document.addEventListener('click', this.handleClickOutside);
-    
   }
 
   componentWillUnmount() {
     document.body.removeChild(this.root);
-    document.removeEventListener('click', this.handleClickOutside, false);
   }
-  
-  handleClickOutside = (event) => {
+
+  handleClick = (e) => {
     const { handleVideoClick } = this.props;
-    if (this.node.contains(event.target)) { 
-      return  console.log('end game');
+    if (e.type == 'click'){
+      handleVideoClick();
     }
-    handleVideoClick();
-  }
+    
+  };
+
+  handlePress = (e) => {
+    const { handleVideoClick } = this.props;
+    if(e.keyCode == '27'){
+      handleVideoClick();
+  } 
+  };
 
   render() {
     const { stateVideo, video } = this.props;
@@ -38,13 +37,18 @@ class Video extends Component {
       },
     };
     return (
-      <div> 
+      <div>
         {stateVideo
           ? ReactDOM.createPortal(
-            <div className="buttonVideo">
-              <div ref={node=> this.node = node}>
-                <YouTube videoId={video[0].key} opts={opts} />
-              </div>
+            <div 
+              className="buttonVideo"
+              onClick={(e) => this.handleClick(e)}
+              onKeyPress={(e) => this. handlePress(e)}
+              role="button"
+              tabIndex="0"
+            >
+              
+              <YouTube videoId={video[0].key} opts={opts} />
             </div>,
             this.root,
             )
@@ -52,8 +56,8 @@ class Video extends Component {
       </div>
     );
   }
-}
 
+}
 Video.propTypes = {
   handleVideoClick: PropTypes.func.isRequired,
   video: PropTypes.oneOfType([
@@ -66,5 +70,4 @@ Video.propTypes = {
 Video.defaultProps = {
   video: [],
 };
-
 export default Video;
