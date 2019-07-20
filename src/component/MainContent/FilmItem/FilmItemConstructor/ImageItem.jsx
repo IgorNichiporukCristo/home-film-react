@@ -17,10 +17,19 @@ class ImageItem extends Component {
   };
 
   handleVideoClick = (event) => {
-    if (event.type == "click"){
+    if (event.type === "click"){
+      if(event.keyCode == 32) {
+        console.log('не та вода');
+      }
       this.setState(state => ({
         showItemVideo: !state.showItemVideo,
       }));
+    }
+  };
+
+  handlePress = (event) => {
+    if(event.keyCode == 32) {
+      console.log('не та вода');
     }
   };
 
@@ -31,7 +40,7 @@ class ImageItem extends Component {
       <div className="image-container">
         <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
         <div className="image-button-container">
-          <button className="image-button-video" type="button" onClick={(event) => this.handleVideoClick(event)}>
+          <button className="image-button-video" type="submit" onClick={(event) => this.handleVideoClick(event)} onKeyPress={(event) => this. handlePress(event)}>
             <div className="image-button-triangle" />
           </button>
           <h4 className="image-text">play video</h4>

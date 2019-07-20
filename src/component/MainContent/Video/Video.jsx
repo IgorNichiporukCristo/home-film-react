@@ -5,15 +5,20 @@ import YouTube from 'react-youtube';
 import './video.scss';
 
 class Video extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
   componentDidMount() {
     this.root = document.createElement('div');
     document.body.appendChild(this.root);
+
   }
 
   componentWillUnmount() {
     document.body.removeChild(this.root);
   }
-
+ 
   handleClick = (e) => {
     const { handleVideoClick } = this.props;
     if (e.type == 'click'){
