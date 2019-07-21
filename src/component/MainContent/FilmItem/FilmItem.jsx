@@ -55,11 +55,7 @@ function mapDispatchToProps(dispatch, { item: { id } = null }) {
 
 FilmItem.propTypes = {
   getDescriptionFilm: PropTypes.func.isRequired,
-  item: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.number, 
-    PropTypes.instanceOf(FilmItem)
-  ]),
+  item: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.instanceOf(FilmItem)]),
 };
 FilmItem.defaultProps = {
   item: {},

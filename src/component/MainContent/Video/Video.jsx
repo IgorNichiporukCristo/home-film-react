@@ -5,33 +5,27 @@ import YouTube from 'react-youtube';
 import './video.scss';
 
 class Video extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
   componentDidMount() {
     this.root = document.createElement('div');
     document.body.appendChild(this.root);
-
   }
 
   componentWillUnmount() {
     document.body.removeChild(this.root);
   }
- 
-  handleClick = (e) => {
+
+  handleClick = e => {
     const { handleVideoClick } = this.props;
-    if (e.type == 'click'){
+    if (e.type == 'click') {
       handleVideoClick();
     }
-    
   };
 
-  handlePress = (e) => {
+  handlePress = e => {
     const { handleVideoClick } = this.props;
-    if(e.keyCode == '27'){
+    if (e.keyCode == 27) {
       handleVideoClick();
-  } 
+    }
   };
 
   render() {
@@ -45,31 +39,25 @@ class Video extends Component {
       <div>
         {stateVideo
           ? ReactDOM.createPortal(
-            <div 
+            <div
               className="buttonVideo"
-              onClick={(e) => this.handleClick(e)}
-              onKeyPress={(e) => this. handlePress(e)}
+              onClick={e => this.handleClick(e)}
+              onKeyPress={e => this.handlePress(e)}
               role="button"
               tabIndex="0"
             >
-              
-              <YouTube videoId={video[0].key} opts={opts} />
+              <YouTube onKeyPress={e => this.handlePress(e)} videoId={video[0].key} opts={opts} />
             </div>,
             this.root,
-            )
-          : null}
+          )
+        : null}
       </div>
     );
   }
-
 }
 Video.propTypes = {
   handleVideoClick: PropTypes.func.isRequired,
-  video: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.array, 
-    PropTypes.instanceOf(Video)
-  ]),
+  video: PropTypes.oneOfType([PropTypes.bool, PropTypes.array, PropTypes.instanceOf(Video)]),
   stateVideo: PropTypes.bool.isRequired,
 };
 Video.defaultProps = {

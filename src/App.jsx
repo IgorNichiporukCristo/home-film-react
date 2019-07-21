@@ -6,12 +6,14 @@ import store from './component/store';
 import './app.scss';
 //import Header from './component/MainContent/Header';
 
-const App = () => { return(
-  <div className="appborder">
-    <Provider store={store}>
-      <Main />
-    </Provider>
-  </div>);
+const App = () => {
+  return (
+    <div className="appborder">
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    </div>
+  );
 };
 
 export default hot(module)(App);

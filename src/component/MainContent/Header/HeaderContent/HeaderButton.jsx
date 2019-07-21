@@ -1,21 +1,25 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './headerbutton.scss';
 import Video from '../../Video/Video';
 
-class HeaderButton extends Component{
-  state={
+class HeaderButton extends Component {
+  state = {
     showOverview: false,
-    showItemVideo: false,  
-  }
+    showItemVideo: false,
+  };
 
-  HandleClick = () =>{
-    this.setState(state=>({
+  HandleClick = () => {
+    this.setState(state => ({
       showOverview: !state.showOverview,
     }));
   };
 
-  handleVideoClick = () => {
+  handleVideoClick = (e) => {
+    console.log(e);
+    if(e.keyCode == 32 ){
+      null;
+    }
     this.setState(state => ({
       showItemVideo: !state.showItemVideo,
     }));
@@ -24,31 +28,22 @@ class HeaderButton extends Component{
   render() {
     const { overview, video } = this.props;
     const { showOverview, showItemVideo } = this.state;
-    return(
+    return (
       <div className="header-button-countainer">
-        {showOverview? (
-          <div className="headerbutton-overview">
-            {overview}
-          </div>
-        ): null }
+        {showOverview ? <div className="headerbutton-overview">{overview}</div> : null}
         <div className="button-countainer-header">
-          <button onClick={this.handleVideoClick} className="button-header" type="button">watch now</button>
+          <button onClick={e => this.handleVideoClick(e)} className="button-header" type="button">watch now</button>
           <button onClick={this.HandleClick} className="button-header" type="button">view info</button>
         </div>
         <Video handleVideoClick={this.handleVideoClick} stateVideo={showItemVideo} video={video} />
       </div>
     );
   }
-
-} 
+}
 
 HeaderButton.propTypes = {
   overview: PropTypes.string.isRequired,
-  video: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.array, 
-    PropTypes.instanceOf(HeaderButton)
-  ]),
+  video: PropTypes.oneOfType([PropTypes.bool, PropTypes.array, PropTypes.instanceOf(HeaderButton)]),
 };
 
 HeaderButton.defaultProps = {

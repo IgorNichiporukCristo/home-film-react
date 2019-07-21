@@ -56,7 +56,7 @@ class OverwiewItem extends Component {
 OverwiewItem.defaultProps = {
   genres: [],
   video: [],
-  id: "",
+  id: '',
 };
 
 OverwiewItem.propTypes = {
@@ -66,16 +66,12 @@ OverwiewItem.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
   overview: PropTypes.string.isRequired,
   stateInference: PropTypes.bool.isRequired,
-  video: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.array, 
-    PropTypes.instanceOf(OverwiewItem)
-  ]),
+  video: PropTypes.oneOfType([PropTypes.bool, PropTypes.array, PropTypes.instanceOf(OverwiewItem)]),
   id: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.number, 
+    PropTypes.number,
     PropTypes.string,
-    PropTypes.instanceOf(OverwiewItem)
+    PropTypes.instanceOf(OverwiewItem),
   ]),
 };
 

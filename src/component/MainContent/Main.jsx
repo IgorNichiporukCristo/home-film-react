@@ -16,7 +16,9 @@ class Main extends Component {
     const { movies, movie } = this.props;
     return (
       <div className="main-container">
-        {movie ? <Header movie={movie} /> : null}
+        {movie ? 
+          <Header movie={movie} /> 
+          : <div className="header-error" />  }
         <FilmList items={movies} />
       </div>
     );
@@ -42,8 +44,8 @@ Main.propTypes = {
   movie: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,
-    PropTypes.number, 
-    PropTypes.instanceOf(Main)
+    PropTypes.number,
+    PropTypes.instanceOf(Main),
   ]),
 };
 

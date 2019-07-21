@@ -6,18 +6,19 @@ import HeaderButton from './HeaderContent/HeaderButton';
 import './header.scss';
 
 class Header extends Component {
-  componentDidMount() {}
+  componentDidMount(){}
+
 
   render() {
     const {
-      movie: { 
-        poster, 
-        title, 
-        genres, 
-        vote_average, 
+      movie: {
+        poster,
+        title,
+        genres,
+        vote_average,
         overview,
         video,
-        // time 
+        // time
       },
     } = this.props;
     return (
@@ -39,8 +40,8 @@ Header.propTypes = {
   movie: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,
-    PropTypes.number, 
-    PropTypes.instanceOf(Header)
+    PropTypes.number,
+    PropTypes.instanceOf(Header),
   ]),
 };
 
