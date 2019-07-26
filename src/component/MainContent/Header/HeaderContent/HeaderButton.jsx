@@ -9,17 +9,13 @@ class HeaderButton extends Component {
     showItemVideo: false,
   };
 
-  HandleClick = () => {
+  handleClick = () => {
     this.setState(state => ({
       showOverview: !state.showOverview,
-    }));
+    })); 
   };
 
-  handleVideoClick = (e) => {
-    console.log(e);
-    if(e.keyCode == 32 ){
-      null;
-    }
+  handleVideoClick = () => {
     this.setState(state => ({
       showItemVideo: !state.showItemVideo,
     }));

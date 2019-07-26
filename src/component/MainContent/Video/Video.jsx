@@ -8,22 +8,22 @@ class Video extends Component {
   componentDidMount() {
     this.root = document.createElement('div');
     document.body.appendChild(this.root);
+    document.addEventListener('keydown' ,this.handlePress, false); 
   }
 
   componentWillUnmount() {
     document.body.removeChild(this.root);
   }
 
-  handleClick = e => {
+  handleClick = () => {
     const { handleVideoClick } = this.props;
-    if (e.type == 'click') {
-      handleVideoClick();
-    }
+      handleVideoClick();  
   };
 
-  handlePress = e => {
+  handlePress = (e) => {
     const { handleVideoClick } = this.props;
-    if (e.keyCode == 27) {
+    const { stateVideo } = this.props;
+    if (e.keyCode == 27 && stateVideo ) {
       handleVideoClick();
     }
   };
