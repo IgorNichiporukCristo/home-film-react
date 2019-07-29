@@ -9,7 +9,7 @@ class HeaderButton extends Component {
     showItemVideo: false,
   };
 
-  handleClick = () => {
+  HandleClick = () => {
     this.setState(state => ({
       showOverview: !state.showOverview,
     })); 

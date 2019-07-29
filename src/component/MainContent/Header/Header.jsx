@@ -24,9 +24,11 @@ class Header extends Component {
     return (
       <div className="header-style">
         <img className="poster" alt="" src={`https://image.tmdb.org/t/p/original${poster}`} />
-        <div className="header-information">
-          <HeaderSearch />
-          <div className="header-content">
+        <div className="header-content">
+          <div className="header-information">
+            <HeaderSearch />
+          </div>  
+          <div className="header-owerview">
             <HeaderInformation title={title} genres={genres} vote={vote_average} />
             <HeaderButton overview={overview} video={video} />
           </div>

@@ -29,12 +29,11 @@ class ImageItem extends Component {
       <div className="image-container">
         <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
         <div className="image-button-container">
-          <button className="image-button-video" type="submit" onClick={this.handleVideoClick}>
-            <div className="image-button-triangle" />
-          </button>
-          <h4 className="image-text">play video</h4>
           <button onClick={this.handleItemClick} className="image-overview" type="button">
-            <h4 className="image-overview-text">View Info</h4>
+            <span className="image-overview-text">View Info</span>
+          </button>
+          <button className="image-button-video" type="button" onClick={this.handleVideoClick}>
+            <div className="image-button-triangle" />
           </button>
         </div>
         <OverviewItem
