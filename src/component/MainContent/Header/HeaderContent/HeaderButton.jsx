@@ -9,7 +9,7 @@ class HeaderButton extends Component {
     showItemVideo: false,
   };
 
-  HandleClick = () => {
+  handleClick = () => {
     this.setState(state => ({
       showOverview: !state.showOverview,
     })); 
@@ -29,7 +29,7 @@ class HeaderButton extends Component {
         {showOverview ? <div className="headerbutton-overview">{overview}</div> : null}
         <div className="button-countainer-header">
           <button onClick={e => this.handleVideoClick(e)} className="button-header" type="button">watch now</button>
-          <button onClick={this.HandleClick} className="button-header" type="button">view info</button>
+          <button onClick={this.handleClick} className="button-header" type="button">view info</button>
         </div>
         <Video handleVideoClick={this.handleVideoClick} stateVideo={showItemVideo} video={video} />
       </div>
