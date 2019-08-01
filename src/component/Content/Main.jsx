@@ -1,9 +1,11 @@
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchFilms } from '../action/fetchFilms';
 import FilmList from './FilmItem/Filmlist';
 import Header from './Header/Header';
+import Sidebar from './Sidebar/Sidebar';
 import './index.scss';
 
 class Main extends Component {
@@ -19,6 +21,7 @@ class Main extends Component {
         {movie ? 
           <Header movie={movie} /> 
           : <div className="header-error" />  }
+        <Sidebar />
         <FilmList items={movies} />
       </div>
     );
