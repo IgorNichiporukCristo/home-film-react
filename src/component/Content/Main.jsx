@@ -9,6 +9,9 @@ import Sidebar from './Sidebar/Sidebar';
 import './index.scss';
 
 class Main extends Component {
+  state = {
+    sort: 'popularity',
+  }
   componentDidMount() {
     const { getFilms } = this.props;
     getFilms();
@@ -35,9 +38,9 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, {state: {sort}}) {
   return {
-    getFilms: () => dispatch(fetchFilms),
+    getFilms: () => dispatch(fetchFilms(sort)),
   };
 }
 
