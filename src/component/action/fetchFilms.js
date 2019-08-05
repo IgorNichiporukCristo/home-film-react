@@ -1,12 +1,14 @@
 import { ADD_FILMS, ADD_DESCRIPTION_FILM, BROADCAST_ID  } from "../constants";
 
 const API_KEY = "ac122731994c8a0edef1603c3016ac82";
-const disciverUrl = (sort) => `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=${sort}.desc&include_adult=false&include_video=false&page=1`;
+const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
+// const disciverUrl = (sort) => `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=${sort}.desc&include_adult=false&include_video=false&page=1`;
 const createFilmURL = (id) => `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos,images`;
 
-const fetchFilms = (sort) => (dispatch) => {
-  const list = disciverUrl(sort);
-  fetch(list)
+const fetchFilms = (dispatch) => {
+  // let list = '';
+  // sort ? list = disciverUrl(sort) : list = initial;
+  fetch(URL)
   .then(res => res.json())
   .then(({ results }) => dispatch({ 
       type: ADD_FILMS,
