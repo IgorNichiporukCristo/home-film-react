@@ -9,9 +9,9 @@ class Sidebar extends Component {
   render(){
     return(
       <div className='sidebar-countainer'>
-        <button className="sidebar-button" type="button" onClick={this.PopularClick}>Popular</button>
-        <button className="sidebar-button" type="button" onClick={this.UpcomingClick}>Upcoming</button>
-        <button className="sidebar-button" type="button" onClick={this.TopRatedClick}>Top Rated</button>
+        <button className="sidebar-button" type="button" onClick={this.handleClickPopular}>Popular</button>
+        <button className="sidebar-button" type="button" onClick={this.handleClickUpcoming}>Upcoming</button>
+        <button className="sidebar-button" type="button" onClick={this.handleClickTopRated}>Top Rated</button>
       </div>
     );
   }

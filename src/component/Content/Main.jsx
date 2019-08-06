@@ -9,9 +9,24 @@ import Sidebar from './Sidebar/Sidebar';
 import './index.scss';
 
 class Main extends Component {
+  state = {
+    filter: 'release_date'
+  }
+
+  // handleClickPopular = () => {
+  //   this.setState({filter: "popularity" });
+  // }
+  // handleClickUpcoming = () => {
+  //   this.setState({filter: "popularity" });
+  // }
+  // handleClickTopRated = () => {
+  //   this.setState({filter: "popularity" });
+  // }
+  
   componentDidMount() {
+    const {filter} = this.state;
     const { getFilms } = this.props;
-    getFilms();
+    getFilms(filter);
   }
 
   render() {
@@ -37,7 +52,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getFilms: () => dispatch(fetchFilms),
+    getFilms: (filter) => dispatch(fetchFilms(filter)),
   };
 }
 
