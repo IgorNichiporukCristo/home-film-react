@@ -1,4 +1,4 @@
-import { ADD_FILMS, ADD_DESCRIPTION_FILM,  BROADCAST_ID  } from '../constants';
+import { ADD_POPULAR_FILMS, ADD_DESCRIPTION_FILM,  BROADCAST_ID  } from '../constants';
 
 const initialState = {
   loading: false,
@@ -9,7 +9,7 @@ const initialState = {
 
 const filmReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_FILMS:
+    case ADD_POPULAR_FILMS:
       return {
         ...state,
         movies: [

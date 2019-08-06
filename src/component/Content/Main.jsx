@@ -10,7 +10,7 @@ import './index.scss';
 
 class Main extends Component {
   state = {
-    filter: 'release_date'
+    filter: 'popular'
   }
 
   // handleClickPopular = () => {
