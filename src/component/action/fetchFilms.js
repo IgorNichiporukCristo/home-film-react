@@ -12,7 +12,7 @@ const fetchFilms = (filter) => (dispatch) => {
     if(filter == "popular"){
     dispatch({ 
       type: ADD_POPULAR_FILMS,
-      movies: results
+      popular: results
     });
     }else if(filter == "top_rated"){
       dispatch({ 

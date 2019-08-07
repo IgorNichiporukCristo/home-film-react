@@ -38,14 +38,16 @@ class Main extends Component {
   }
 
   render() {
-    const { movies, movie } = this.props;
+    const { popular, movie } = this.props;
+    const { filter } = this.state;
     return (
       <div className="main-container">
         {movie ? 
           <Header movie={movie} /> 
           : <div className="header-error" />  }
         <Sidebar />
-        <FilmList items={movies} />
+        {filter == 'popular' ? <FilmList items={popular} /> 
+        : null}
       </div>
     );
   }
@@ -53,7 +55,9 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
-    movies: state.movies,
+    popular: state.popular,
+    upcoming: state. upcoming,
+    top_rated: state. upcoming,
     movie: state.currentFilm,
   };
 }
@@ -66,7 +70,7 @@ function mapDispatchToProps(dispatch) {
 
 Main.propTypes = {
   getFilms: PropTypes.func.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.object),
+  popular: PropTypes.arrayOf(PropTypes.object),
   movie: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,
@@ -76,7 +80,7 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
-  movies: [],
+  popular: [],
   movie: {},
 };
 

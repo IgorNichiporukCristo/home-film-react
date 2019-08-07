@@ -3,7 +3,7 @@ import { ADD_POPULAR_FILMS, ADD_DESCRIPTION_FILM,  BROADCAST_ID  } from '../cons
 const initialState = {
   loading: false,
   error: false,
-  movies: [],
+  popular: [],
   currentFilm: null,
 };
 
@@ -12,14 +12,14 @@ const filmReducer = (state = initialState, action) => {
     case ADD_POPULAR_FILMS:
       return {
         ...state,
-        movies: [
-          ...action.movies,
+        popular: [
+          ...action.popular,
         ]
       };
     case ADD_DESCRIPTION_FILM:
       return {
-        currentFilm: state.movies.id ? null: state.movies[0],
-        movies: state.movies.map(obj => obj.id === action.movie.id ?
+        currentFilm: state.popular.id ? null: state.popular[0],
+        popular: state.popular.map(obj => obj.id === action.movie.id ?
           { ...obj, 
             genres: action.movie.genres,
             video: action.movie.results,
@@ -32,7 +32,7 @@ const filmReducer = (state = initialState, action) => {
     case BROADCAST_ID:
       return {
         ...state,
-        currentFilm: state.movies.find(obj => obj.id === action.payload)
+        currentFilm: state.popular.find(obj => obj.id === action.payload)
       };
     default:
       return state;
