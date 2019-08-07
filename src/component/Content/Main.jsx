@@ -13,17 +13,25 @@ class Main extends Component {
     filter: 'popular'
   }
 
-  // handleClickPopular = () => {
-  //   this.setState({filter: "popularity" });
-  // }
-  // handleClickUpcoming = () => {
-  //   this.setState({filter: "popularity" });
-  // }
-  // handleClickTopRated = () => {
-  //   this.setState({filter: "popularity" });
-  // }
-  
   componentDidMount() {
+    const {filter} = this.state;
+    const { getFilms } = this.props;
+    getFilms(filter);
+  }
+
+  handleClickPopular = () => {
+    this.setState({filter: "popularity" });
+  }
+
+  handleClickUpcoming = () => {
+    this.setState({filter: "upcoming" });
+    const {filter} = this.state;
+    const { getFilms } = this.props;
+    getFilms(filter);
+  }
+
+  handleClickTopRated = () => {
+    this.setState({filter: "top_rated" });
     const {filter} = this.state;
     const { getFilms } = this.props;
     getFilms(filter);
