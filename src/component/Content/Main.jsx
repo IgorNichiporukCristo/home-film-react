@@ -39,16 +39,18 @@ class Main extends Component {
 
   render() {
     const { popular, movie } = this.props;
-    const { filter } = this.state;
     return (
-      <div className="main-container">
-        {movie ? 
-          <Header movie={movie} /> 
-          : <div className="header-error" />  }
-        <Sidebar />
-        {filter == 'popular' ? <FilmList items={popular} /> 
-        : null}
-      </div>
+      <BrowserRouter>
+        <div className="main-container">
+          {movie ? 
+            <Header movie={movie} /> 
+            : <div className="header-error" />  }
+          <Sidebar />
+          <Route href="popular" component={<FilmList items={popular} />} />
+          <Route href="upcoming" component={<FilmList items={upcoming} />} />
+          <Route href="top_rated" component={<FilmList items={top_rated} />} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
@@ -57,7 +59,7 @@ function mapStateToProps(state) {
   return {
     popular: state.popular,
     upcoming: state. upcoming,
-    top_rated: state. upcoming,
+    top_rated: state. top_rated,
     movie: state.currentFilm,
   };
 }

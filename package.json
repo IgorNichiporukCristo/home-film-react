@@ -23,7 +23,7 @@
     "react-hot-loader": "^4.11.0",
     "react-onclickoutside": "^6.8.0",
     "react-redux": "^6.0.1",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^5.0.1",
     "react-sticky-header": "^0.2.0",
     "react-youtube": "^7.9.0",
     "redux": "^4.0.1",
