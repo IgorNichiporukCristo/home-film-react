@@ -1,9 +1,11 @@
-import { ADD_POPULAR_FILMS, ADD_DESCRIPTION_FILM,  BROADCAST_ID  } from '../constants';
+import { ADD_POPULAR_FILMS, ADD_TOPRATED_FILMS, ADD_UPCOMING_FILMS, ADD_DESCRIPTION_FILM,  BROADCAST_ID  } from '../constants';
 
 const initialState = {
   loading: false,
   error: false,
   popular: [],
+  toprated: [],
+  upcoming: [],
   currentFilm: null,
 };
 
@@ -16,6 +18,22 @@ const filmReducer = (state = initialState, action) => {
           ...action.popular,
         ]
       };
+    case ADD_TOPRATED_FILMS:
+      return {
+        ...state,
+        toprated: [
+          ...action.toprated,
+        ]
+      };
+    case ADD_UPCOMING_FILMS:
+      return {
+        ...state,
+        upcoming: [
+          ...action.upcoming,
+        ]
+      };
+       
+             
     case ADD_DESCRIPTION_FILM:
       return {
         currentFilm: state.popular.id ? null: state.popular[0],

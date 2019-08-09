@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { fetchFilms } from '../action/fetchFilms';
 import FilmList from './FilmItem/Filmlist';
 import Header from './Header/Header';
@@ -21,18 +21,18 @@ class Main extends Component {
   }
 
   handleClickPopular = () => {
-    this.setState({filter: "popularity" });
+    this.setState({ filter: "popular" });
   }
 
   handleClickUpcoming = () => {
-    this.setState({filter: "upcoming" });
+    this.setState({ filter: "upcoming" });
     const {filter} = this.state;
     const { getFilms } = this.props;
     getFilms(filter);
   }
 
   handleClickTopRated = () => {
-    this.setState({filter: "top_rated" });
+    this.setState({ filter: "top_rated" });
     const {filter} = this.state;
     const { getFilms } = this.props;
     getFilms(filter);
@@ -41,17 +41,35 @@ class Main extends Component {
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;
     return (
-      <Router>
+      <BrowserRouter>
         <div className="main-container">
           {movie ? 
             <Header movie={movie} /> 
             : <div className="header-error" />  }
-          <Sidebar />
-          <Route path="popular" component={<FilmList items={popular} />} />
-          <Route href="upcoming" component={<FilmList items={upcoming} />} />
-          <Route href="top_rated" component={<FilmList items={top_rated} />} />
+          <Sidebar 
+            handleClickPopular={this.handleClickPopular}
+            handleClickUpcoming={this.handleClickUpcoming}
+            handleClickTopRated={this.handleClickTopRated} 
+          />
+          <Route 
+            path="/" 
+            exact 
+            render={props=> <FilmList {...props} items={popular} />} 
+          />
+          {upcoming? (
+            <Route 
+              path="/upcoming" 
+              exact
+              render={props=> <FilmList {...props} items={upcoming} />} 
+            />
+            ):null}
+          <Route 
+            path="/top_rated" 
+            exact
+            render={props=> <FilmList {...props} items={top_rated} />} 
+          />
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
@@ -59,8 +77,8 @@ class Main extends Component {
 function mapStateToProps(state) {
   return {
     popular: state.popular,
-    upcoming: state. upcoming,
-    top_rated: state. top_rated,
+    upcoming: state.upcoming,
+    top_rated: state.top_rated,
     movie: state.currentFilm,
   };
 }
