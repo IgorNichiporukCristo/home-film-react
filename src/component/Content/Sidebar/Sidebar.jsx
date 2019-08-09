@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './sidebar.scss';
+import { Link } from 'react-router-dom';
 
 class Sidebar extends Component {
   componentDidMount() {
@@ -9,9 +10,9 @@ class Sidebar extends Component {
   render(){
     return(
       <div className='sidebar-countainer'>
-        <button className="sidebar-button" type="button" onClick={this.handleClickPopular}>Popular</button>
-        <button className="sidebar-button" type="button" onClick={this.handleClickUpcoming}>Upcoming</button>
-        <button className="sidebar-button" type="button" onClick={this.handleClickTopRated}>Top Rated</button>
+        <Link className="sidebar-button" href="popular" onClick={this.handleClickPopular}>Popular</Link>
+        <Link className="sidebar-button" href="upcoming" onClick={this.handleClickUpcoming}>Upcoming</Link>
+        <Link className="sidebar-button" href="top_rated" onClick={this.handleClickTopRated}>Top Rated</Link>
       </div>
     );
   }
