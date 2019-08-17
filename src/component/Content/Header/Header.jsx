@@ -11,6 +11,8 @@ class Header extends Component {
 
   render() {
     const {
+      handleVideoClick,
+      showItemVideo,
       movie: {
         poster,
         title,
@@ -30,7 +32,12 @@ class Header extends Component {
           </div>  
           <div className="header-owerview">
             <HeaderInformation title={title} genres={genres} vote={vote_average} />
-            <HeaderButton overview={overview} video={video} />
+            <HeaderButton 
+              overview={overview} 
+              video={video} 
+              showItemVideo={showItemVideo} 
+              handleVideoClick={handleVideoClick} 
+            />
           </div>
         </div>
       </div>
@@ -45,6 +52,8 @@ Header.propTypes = {
     PropTypes.number,
     PropTypes.instanceOf(Header),
   ]),
+  showItemVideo: PropTypes.bool.isRequired,
+  handleVideoClick: PropTypes.func.isRequired,
 };
 
 Header.defaultProps = {

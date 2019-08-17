@@ -6,7 +6,6 @@ import Video from '../../Video/Video';
 class HeaderButton extends Component {
   state = {
     showOverview: false,
-    showItemVideo: false,
   };
 
   handleClick = () => {
@@ -15,23 +14,22 @@ class HeaderButton extends Component {
     })); 
   };
 
-  handleVideoClick = () => {
-    this.setState(state => ({
-      showItemVideo: !state.showItemVideo,
-    }));
+  handleClickVideo = () => {
+    const { handleVideoClick } = this.props;
+      handleVideoClick();  
   };
 
   render() {
-    const { overview, video } = this.props;
-    const { showOverview, showItemVideo } = this.state;
+    const { overview, video,  showItemVideo, handleVideoClick } = this.props;
+    const { showOverview } = this.state;
     return (
       <div className="header-button-countainer">
         {showOverview ? <div className="headerbutton-overview">{overview}</div> : null}
         <div className="button-countainer-header">
-          <button onClick={e => this.handleVideoClick(e)} className="button-header" type="button">watch now</button>
+          <button onClick={this.handleClickVideo} className="button-header" type="button">watch now</button>
           <button onClick={this.handleClick} className="button-header" type="button">view info</button>
         </div>
-        <Video handleVideoClick={this.handleVideoClick} stateVideo={showItemVideo} video={video} />
+        <Video handleVideoClick={handleVideoClick} stateVideo={showItemVideo} video={video} />
       </div>
     );
   }
@@ -40,6 +38,8 @@ class HeaderButton extends Component {
 HeaderButton.propTypes = {
   overview: PropTypes.string.isRequired,
   video: PropTypes.oneOfType([PropTypes.bool, PropTypes.array, PropTypes.instanceOf(HeaderButton)]),
+  showItemVideo: PropTypes.bool.isRequired,
+  handleVideoClick: PropTypes.func.isRequired,
 };
 
 HeaderButton.defaultProps = {

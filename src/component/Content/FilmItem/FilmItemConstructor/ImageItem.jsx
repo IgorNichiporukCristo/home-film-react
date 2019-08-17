@@ -7,7 +7,6 @@ import Video from '../../Video/Video';
 class ImageItem extends Component {
   state = {
     showItemOwerwiew: false,
-    showItemVideo: false,
   };
 
   handleItemClick = () => {
@@ -16,15 +15,14 @@ class ImageItem extends Component {
     }));
   };
 
-  handleVideoClick = () => {
-    this.setState(state => ({
-      showItemVideo: !state.showItemVideo,
-    }));
+  handleClickVideo = () => {
+    const { handleVideoClick } = this.props;
+      handleVideoClick();  
   };
 
   render() {
-    const { image, overview, title, vote, genres, video, id } = this.props;
-    const { showItemOwerwiew, showItemVideo } = this.state;
+    const { image, overview, title, vote, genres, video, id, showItemVideo, handleVideoClick } = this.props;
+    const { showItemOwerwiew } = this.state;
     return (
       <div className="image-container">
         <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
@@ -32,7 +30,7 @@ class ImageItem extends Component {
           <button onClick={this.handleItemClick} className="image-overview" type="button">
             <span className="image-overview-text">View Info</span>
           </button>
-          <button className="image-button-video" type="button" onClick={this.handleVideoClick}>
+          <button className="image-button-video" type="button" onClick={this.handleClickVideo}>
             <div className="image-button-triangle" />
           </button>
         </div>
@@ -45,8 +43,10 @@ class ImageItem extends Component {
           genres={genres}
           video={video}
           id={id}
+          showItemVideo={showItemVideo}
+          handleVideoClick={handleVideoClick}
         />
-        <Video handleVideoClick={this.handleVideoClick} stateVideo={showItemVideo} video={video} />
+        <Video handleVideoClick={handleVideoClick} stateVideo={showItemVideo} video={video} />
       </div>
     );
   }
@@ -70,6 +70,8 @@ ImageItem.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(ImageItem),
   ]),
+  showItemVideo: PropTypes.bool.isRequired,
+  handleVideoClick: PropTypes.func.isRequired,
 };
 
 export default ImageItem;

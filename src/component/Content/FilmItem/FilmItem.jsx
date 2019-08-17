@@ -14,6 +14,8 @@ class FilmItem extends Component {
 
   render() {
     const {
+      handleVideoClick,
+      showItemVideo,
       item: {
         genres,
         poster_path: image,
@@ -34,6 +36,8 @@ class FilmItem extends Component {
           overview={overview}
           video={video}
           id={id}
+          showItemVideo={showItemVideo}
+          handleVideoClick={handleVideoClick}
         />
         <InformationItem title={title} vote={vote} genres={genres} id={id} />
       </li>
@@ -56,6 +60,8 @@ function mapDispatchToProps(dispatch, { item: { id } = null }) {
 FilmItem.propTypes = {
   getDescriptionFilm: PropTypes.func.isRequired,
   item: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.instanceOf(FilmItem)]),
+  showItemVideo: PropTypes.bool.isRequired,
+  handleVideoClick: PropTypes.func.isRequired,
 };
 FilmItem.defaultProps = {
   item: {},

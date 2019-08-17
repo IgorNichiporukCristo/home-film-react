@@ -5,24 +5,19 @@ import InformationItem from './InformationItem';
 import Video from '../../Video/Video';
 
 class OverwiewItem extends Component {
-  state = {
-    showItemVideo: false,
-  };
-
   handleClick = () => {
     const { handleItemClick } = this.props;
     handleItemClick();
   };
 
-  handleVideoClick = () => {
-    this.setState(state => ({
-      showItemVideo: !state.showItemVideo,
-    }));
+
+  handleClickVideo = () => {
+    const { handleVideoClick } = this.props;
+      handleVideoClick();  
   };
 
   render() {
-    const { stateInference, title, vote, genres, overview, video, id } = this.props;
-    const { showItemVideo } = this.state;
+    const { stateInference, title, vote, genres, overview, video, id, showItemVideo, handleVideoClick } = this.props;
     return (
       <div>
         {stateInference ? (
@@ -36,13 +31,13 @@ class OverwiewItem extends Component {
               <button
                 className="overwiew-button-video"
                 type="button"
-                onClick={this.handleVideoClick}
+                onClick={this.handleClickVideo}
               >
                 <div className="overwiew-button-triangle" />
               </button>
             </div>
             <Video
-              handleVideoClick={this.handleVideoClick}
+              handleVideoClick={handleVideoClick}
               stateVideo={showItemVideo}
               video={video}
             />
@@ -73,6 +68,8 @@ OverwiewItem.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(OverwiewItem),
   ]),
+  showItemVideo: PropTypes.bool.isRequired,
+  handleVideoClick: PropTypes.func.isRequired,
 };
 
 export default OverwiewItem;

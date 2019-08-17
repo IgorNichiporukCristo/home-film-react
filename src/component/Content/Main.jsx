@@ -11,7 +11,8 @@ import './index.scss';
 
 class Main extends Component {
   state = {
-    filter: 'popular'
+    filter: 'popular',
+    showItemVideo: false,
   }
 
   componentDidMount() {
@@ -19,6 +20,12 @@ class Main extends Component {
     const { getFilms } = this.props;
     getFilms(filter);
   }
+
+  handleVideoClick = () => {
+    this.setState(state => ({
+      showItemVideo: !state.showItemVideo,
+    }));
+  };
 
   handleClickPopular = () => {
     this.setState({ filter: "popular" });
@@ -40,12 +47,17 @@ class Main extends Component {
 
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;
+    const {  showItemVideo } = this.state;
     return (
       <BrowserRouter>
         <div className="main-container">
-          {movie ? 
-            <Header movie={movie} /> 
-            : <div className="header-error" />  }
+          {movie ? (
+            <Header 
+              movie={movie} 
+              showItemVideo={showItemVideo}
+              handleVideoClick={this.handleVideoClick}    
+            />)
+          : <div className="header-error" />  }
           <Sidebar 
             handleClickPopular={this.handleClickPopular}
             handleClickUpcoming={this.handleClickUpcoming}
@@ -54,19 +66,35 @@ class Main extends Component {
           <Route 
             path="/" 
             exact 
-            render={props=> <FilmList {...props} items={popular} />} 
+            render={(props)=> (
+              <FilmList 
+                {...props}
+                items={popular} 
+                showItemVideo={showItemVideo} 
+                handleVideoClick={this.handleVideoClick} 
+              />)} 
           />
-          {upcoming? (
-            <Route 
-              path="/upcoming" 
-              exact
-              render={props=> <FilmList {...props} items={upcoming} />} 
-            />
-            ):null}
+          <Route 
+            path="/upcoming" 
+            exact 
+            render={props=> ( 
+              <FilmList 
+                {...props} 
+                items={upcoming} 
+                showItemVideo={showItemVideo} 
+                handleVideoClick={this.handleVideoClick} 
+              />)} 
+          />
           <Route 
             path="/top_rated" 
-            exact
-            render={props=> <FilmList {...props} items={top_rated} />} 
+            exact 
+            render={props=> ( 
+              <FilmList 
+                {...props} 
+                items={top_rated} 
+                showItemVideo={showItemVideo} 
+                handleVideoClick={this.handleVideoClick} 
+              />)} 
           />
         </div>
       </BrowserRouter>
