@@ -12,7 +12,6 @@ class Header extends Component {
   render() {
     const {
       handleVideoClick,
-      showItemVideo,
       movie: {
         poster,
         title,
@@ -35,7 +34,6 @@ class Header extends Component {
             <HeaderButton 
               overview={overview} 
               video={video} 
-              showItemVideo={showItemVideo} 
               handleVideoClick={handleVideoClick} 
             />
           </div>
@@ -52,7 +50,6 @@ Header.propTypes = {
     PropTypes.number,
     PropTypes.instanceOf(Header),
   ]),
-  showItemVideo: PropTypes.bool.isRequired,
   handleVideoClick: PropTypes.func.isRequired,
 };
 

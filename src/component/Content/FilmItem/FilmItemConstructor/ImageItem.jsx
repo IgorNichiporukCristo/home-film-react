@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import OverviewItem from './OverwiewItem';
 import './imageItem.scss';
-import Video from '../../Video/Video';
 
 class ImageItem extends Component {
   state = {
@@ -16,12 +15,12 @@ class ImageItem extends Component {
   };
 
   handleClickVideo = () => {
-    const { handleVideoClick } = this.props;
-      handleVideoClick();  
+    const { handleVideoClick, video } = this.props;
+      handleVideoClick(video);  
   };
 
   render() {
-    const { image, overview, title, vote, genres, video, id, showItemVideo, handleVideoClick } = this.props;
+    const { image, overview, title, vote, genres, video, id, handleVideoClick } = this.props;
     const { showItemOwerwiew } = this.state;
     return (
       <div className="image-container">
@@ -43,10 +42,8 @@ class ImageItem extends Component {
           genres={genres}
           video={video}
           id={id}
-          showItemVideo={showItemVideo}
           handleVideoClick={handleVideoClick}
         />
-        <Video handleVideoClick={handleVideoClick} stateVideo={showItemVideo} video={video} />
       </div>
     );
   }
@@ -70,7 +67,6 @@ ImageItem.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(ImageItem),
   ]),
-  showItemVideo: PropTypes.bool.isRequired,
   handleVideoClick: PropTypes.func.isRequired,
 };
 

@@ -7,23 +7,26 @@ import { fetchFilms } from '../action/fetchFilms';
 import FilmList from './FilmItem/Filmlist';
 import Header from './Header/Header';
 import Sidebar from './Sidebar/Sidebar';
+import Video from './Video/Video';
 import './index.scss';
 
 class Main extends Component {
   state = {
     filter: 'popular',
     showItemVideo: false,
+    video: [],
   }
 
   componentDidMount() {
-    const {filter} = this.state;
+    const { filter } = this.state;
     const { getFilms } = this.props;
     getFilms(filter);
   }
 
-  handleVideoClick = () => {
+  handleVideoClick = (video) => {
     this.setState(state => ({
       showItemVideo: !state.showItemVideo,
+      video: video,
     }));
   };
 
@@ -47,14 +50,13 @@ class Main extends Component {
 
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;
-    const {  showItemVideo } = this.state;
+    const {  showItemVideo, video } = this.state;
     return (
       <BrowserRouter>
         <div className="main-container">
           {movie ? (
             <Header 
               movie={movie} 
-              showItemVideo={showItemVideo}
               handleVideoClick={this.handleVideoClick}    
             />)
           : <div className="header-error" />  }
@@ -95,6 +97,11 @@ class Main extends Component {
                 showItemVideo={showItemVideo} 
                 handleVideoClick={this.handleVideoClick} 
               />)} 
+          />
+          <Video 
+            handleVideoClick={this.handleVideoClick} 
+            stateVideo={showItemVideo} 
+            video={video} 
           />
         </div>
       </BrowserRouter>

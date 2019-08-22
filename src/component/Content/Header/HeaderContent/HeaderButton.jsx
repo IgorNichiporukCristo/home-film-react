@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './headerbutton.scss';
-import Video from '../../Video/Video';
 
 class HeaderButton extends Component {
   state = {
@@ -15,12 +14,12 @@ class HeaderButton extends Component {
   };
 
   handleClickVideo = () => {
-    const { handleVideoClick } = this.props;
-      handleVideoClick();  
+    const { handleVideoClick, video } = this.props;
+      handleVideoClick(video);  
   };
 
   render() {
-    const { overview, video,  showItemVideo, handleVideoClick } = this.props;
+    const { overview } = this.props;
     const { showOverview } = this.state;
     return (
       <div className="header-button-countainer">
@@ -29,7 +28,6 @@ class HeaderButton extends Component {
           <button onClick={this.handleClickVideo} className="button-header" type="button">watch now</button>
           <button onClick={this.handleClick} className="button-header" type="button">view info</button>
         </div>
-        <Video handleVideoClick={handleVideoClick} stateVideo={showItemVideo} video={video} />
       </div>
     );
   }
@@ -38,7 +36,6 @@ class HeaderButton extends Component {
 HeaderButton.propTypes = {
   overview: PropTypes.string.isRequired,
   video: PropTypes.oneOfType([PropTypes.bool, PropTypes.array, PropTypes.instanceOf(HeaderButton)]),
-  showItemVideo: PropTypes.bool.isRequired,
   handleVideoClick: PropTypes.func.isRequired,
 };
 

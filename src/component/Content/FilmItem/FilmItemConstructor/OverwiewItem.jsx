@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './overwiewItem.scss';
 import InformationItem from './InformationItem';
-import Video from '../../Video/Video';
 
 class OverwiewItem extends Component {
   handleClick = () => {
@@ -10,14 +9,13 @@ class OverwiewItem extends Component {
     handleItemClick();
   };
 
-
   handleClickVideo = () => {
-    const { handleVideoClick } = this.props;
-      handleVideoClick();  
+    const { handleVideoClick, video } = this.props;
+      handleVideoClick(video);  
   };
 
   render() {
-    const { stateInference, title, vote, genres, overview, video, id, showItemVideo, handleVideoClick } = this.props;
+    const { stateInference, title, vote, genres, overview, id } = this.props;
     return (
       <div>
         {stateInference ? (
@@ -36,11 +34,6 @@ class OverwiewItem extends Component {
                 <div className="overwiew-button-triangle" />
               </button>
             </div>
-            <Video
-              handleVideoClick={handleVideoClick}
-              stateVideo={showItemVideo}
-              video={video}
-            />
           </div>
         ) : null}
       </div>
@@ -68,7 +61,6 @@ OverwiewItem.propTypes = {
     PropTypes.string,
     PropTypes.instanceOf(OverwiewItem),
   ]),
-  showItemVideo: PropTypes.bool.isRequired,
   handleVideoClick: PropTypes.func.isRequired,
 };
 
