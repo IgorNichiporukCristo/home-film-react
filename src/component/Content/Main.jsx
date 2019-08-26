@@ -24,9 +24,7 @@ class Main extends Component {
   }
 
   componentDidUpdate(){
-    const {filter} = this.state;
-    const { getFilms } = this.props;
-    getFilms(filter); 
+
   }
 
   handleVideoClick = (video) => {
