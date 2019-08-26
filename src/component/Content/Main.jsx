@@ -23,6 +23,12 @@ class Main extends Component {
     getFilms(filter);
   }
 
+  componentDidUpdate(){
+    const {filter} = this.state;
+    const { getFilms } = this.props;
+    getFilms(filter); 
+  }
+
   handleVideoClick = (video) => {
     this.setState(state => ({
       showItemVideo: !state.showItemVideo,
@@ -36,16 +42,10 @@ class Main extends Component {
 
   handleClickUpcoming = () => {
     this.setState({ filter: "upcoming" });
-    const {filter} = this.state;
-    const { getFilms } = this.props;
-    getFilms(filter);
   }
 
   handleClickTopRated = () => {
     this.setState({ filter: "top_rated" });
-    const {filter} = this.state;
-    const { getFilms } = this.props;
-    getFilms(filter);
   }
 
   render() {
