@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { fetchFilms } from '../action/fetchFilms';
+import { fetchFilms } from '../../action/fetchFilms';
 import FilmList from './FilmItem/Filmlist';
 import Header from './Header/Header';
 import Sidebar from './Sidebar/Sidebar';
@@ -15,6 +15,8 @@ class Main extends Component {
     filter: 'popular',
     showItemVideo: false,
     video: [],
+    requestUpcoming: true,
+    requestTopRated: true,
   }
 
   componentDidMount() {
@@ -24,7 +26,23 @@ class Main extends Component {
   }
 
   componentDidUpdate(){
+    const { filter, requestUpcoming, requestTopRated } = this.state;
+    const { getFilms } = this.props;
+    if(filter == "upcoming" && requestUpcoming){
+      getFilms(filter);
+      this.changeRequestUpcoming();
+    } if (filter == "top_rated" && requestTopRated){
+      getFilms(filter);
+      this.changeRequestTopRated();
+    } 
+  }
 
+  changeRequestUpcoming = () => {
+    this.setState({ requestUpcoming: false });
+  }
+
+  changeRequestTopRated = () => {
+    this.setState({ requestTopRated: false });
   }
 
   handleVideoClick = (video) => {
@@ -48,7 +66,7 @@ class Main extends Component {
 
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;
-    const {  showItemVideo, video } = this.state;
+    const {  showItemVideo, video, filter } = this.state;
     return (
       <BrowserRouter>
         <div className="main-container">
@@ -66,10 +84,11 @@ class Main extends Component {
           <Route 
             path="/" 
             exact 
-            render={(props)=> (
+            render={(props) => (
               <FilmList 
                 {...props}
-                items={popular} 
+                items={popular}
+                filter={filter} 
                 showItemVideo={showItemVideo} 
                 handleVideoClick={this.handleVideoClick} 
               />)} 
@@ -77,10 +96,11 @@ class Main extends Component {
           <Route 
             path="/upcoming" 
             exact 
-            render={props=> ( 
+            render={(props) => ( 
               <FilmList 
                 {...props} 
                 items={upcoming} 
+                filter={filter} 
                 showItemVideo={showItemVideo} 
                 handleVideoClick={this.handleVideoClick} 
               />)} 
@@ -88,10 +108,11 @@ class Main extends Component {
           <Route 
             path="/top_rated" 
             exact 
-            render={props=> ( 
+            render={(props) => ( 
               <FilmList 
                 {...props} 
-                items={top_rated} 
+                items={top_rated}
+                filter={filter}  
                 showItemVideo={showItemVideo} 
                 handleVideoClick={this.handleVideoClick} 
               />)} 

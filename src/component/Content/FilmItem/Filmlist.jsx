@@ -7,11 +7,11 @@ class FilmList extends Component {
   componentDidMount() {}
 
   render() {
-    const { items, handleVideoClick } = this.props;
+    const { items, handleVideoClick, filter } = this.props;
     return (
       <ul className="film-list-ul">
         {items.map(item => (
-          <FilmItem key={item.id} item={item} handleVideoClick={handleVideoClick} />
+          <FilmItem key={item.id} item={item} handleVideoClick={handleVideoClick} filter={filter} />
         ))}
       </ul>
     );
@@ -21,10 +21,12 @@ class FilmList extends Component {
 FilmList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   handleVideoClick: PropTypes.func.isRequired,
+  filter: PropTypes.string,
 };
 
 FilmList.defaultProps = {
   items: [],
+  filter:"",
 };
 
 export default FilmList;

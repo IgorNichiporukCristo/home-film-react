@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getDescriptionFilm } from '../../action/fetchFilms';
+import { getDescriptionFilm } from '../../../action/fetchFilms';
 import ImageItem from './FilmItemConstructor/ImageItem';
 import InformationItem from './FilmItemConstructor/InformationItem';
 import './listStyle.scss';
 
 class FilmItem extends Component {
   componentDidMount() {
-    const { getDescriptionFilm } = this.props;
-    getDescriptionFilm();
+    const { getDescriptionFilm, filter } = this.props;
+    getDescriptionFilm(filter);
   }
 
   render() {
@@ -51,7 +51,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch, { item: { id } = null }) {
   return {
-    getDescriptionFilm: () => dispatch(getDescriptionFilm(id)),
+    getDescriptionFilm: (filter) => dispatch(getDescriptionFilm(id, filter)),
   };
 }
 
@@ -59,9 +59,11 @@ FilmItem.propTypes = {
   getDescriptionFilm: PropTypes.func.isRequired,
   item: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.instanceOf(FilmItem)]),
   handleVideoClick: PropTypes.func.isRequired,
+  filter: PropTypes.string,
 };
 FilmItem.defaultProps = {
   item: {},
+  filter:"",
 };
 
 export default connect(
