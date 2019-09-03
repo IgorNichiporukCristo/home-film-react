@@ -6,7 +6,6 @@ const initialState = {
   popular: [],
   toprated: [],
   upcoming: [],
-  currentFilm: null,
 };
 
 const filmReducer = (state = initialState, action) => {
@@ -35,10 +34,9 @@ const filmReducer = (state = initialState, action) => {
        
              
     case ADD_DESCRIPTION_FILM:
-      console.log(action.movie.filter);
       return {
         currentFilm: state.popular.id ? null: state.popular[0],
-        popular: state.popular.map(obj => obj.id === action.movie.id ?
+        [action.movie.filter]: state.([action.movie.filter]).map(obj => obj.id === action.movie.id ?
           { ...obj, 
             genres: action.movie.genres,
             video: action.movie.results,
