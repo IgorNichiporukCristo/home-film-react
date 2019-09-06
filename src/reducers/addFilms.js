@@ -35,10 +35,12 @@ const filmReducer = (state = initialState, action) => {
              
     case ADD_DESCRIPTION_FILM:
       return {
+        ...state,
         currentFilm: state.popular.id ? null: state.popular[0],
         [action.movie.filter]: ((action.movie.filter == 'popular')? state.popular 
           : (action.movie.filter == 'upcoming')? state.upcoming 
-            : null).map(obj => obj.id === action.movie.id ?
+            : (action.movie.filter == 'toprated') ? state.toprated 
+            : state.popular).map(obj => obj.id === action.movie.id ?
               { ...obj, 
                 genres: action.movie.genres,
                 video: action.movie.results,
