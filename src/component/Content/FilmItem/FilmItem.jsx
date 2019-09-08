@@ -15,6 +15,7 @@ class FilmItem extends Component {
   render() {
     const {
       handleVideoClick,
+      filter,
       item: {
         genres,
         poster_path: image,
@@ -37,7 +38,13 @@ class FilmItem extends Component {
           id={id}
           handleVideoClick={handleVideoClick}
         />
-        <InformationItem title={title} vote={vote} genres={genres} id={id} />
+        <InformationItem 
+          title={title} 
+          vote={vote} 
+          genres={genres} 
+          id={id} 
+          filter={filter} 
+        />
       </li>
     );
   }

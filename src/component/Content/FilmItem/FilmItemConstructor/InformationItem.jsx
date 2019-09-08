@@ -6,8 +6,8 @@ import './informationItem.scss';
 
 class InformationItem extends Component {
   handleClick = () => {
-    const { putFilmId } = this.props;
-    putFilmId();
+    const { putFilmId, filter } = this.props;
+    putFilmId(filter);
   };
 
   render() {
@@ -39,18 +39,20 @@ class InformationItem extends Component {
 
 function mapDispatchToProps(dispatch, { id }) {
   return {
-    putFilmId: () => dispatch(broadcastId(id)),
+    putFilmId: (filter) => dispatch(broadcastId(id, filter)),
   };
 }
 
 InformationItem.defaultProps = {
   genres: [],
+  filter:"",
 };
 InformationItem.propTypes = {
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
   genres: PropTypes.arrayOf(PropTypes.object),
   putFilmId: PropTypes.func.isRequired,
+  filter: PropTypes.string,
 };
 
 export default connect(

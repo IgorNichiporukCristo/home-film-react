@@ -17,7 +17,7 @@ const fetchFilms = (filter) => (dispatch) => {
     }else if(filter == "top_rated"){
       dispatch({ 
         type: ADD_TOPRATED_FILMS,
-        toprated: results
+        top_rated: results
       });
       } else if(filter == "upcoming"){
         dispatch({ 
@@ -40,9 +40,9 @@ const getDescriptionFilm = (id, filter) => (dispatch) => {
   .catch(error => error);
 };
 
-const broadcastId = (id) => ({
+const broadcastId = (id, filter) => ({
   type: BROADCAST_ID,
-  payload: id
+  payload: { id, filter }
 });
 
 export { fetchFilms, getDescriptionFilm, broadcastId };

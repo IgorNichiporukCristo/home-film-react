@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   error: false,
   popular: [],
-  toprated: [],
+  top_rated: [],
   upcoming: [],
 };
 
@@ -20,8 +20,8 @@ const filmReducer = (state = initialState, action) => {
     case ADD_TOPRATED_FILMS:
       return {
         ...state,
-        toprated: [
-          ...action.toprated,
+        top_rated: [
+          ...action.top_rated,
         ]
       };
     case ADD_UPCOMING_FILMS:
@@ -39,7 +39,7 @@ const filmReducer = (state = initialState, action) => {
         currentFilm: state.popular.id ? null: state.popular[0],
         [action.movie.filter]: ((action.movie.filter == 'popular')? state.popular 
           : (action.movie.filter == 'upcoming')? state.upcoming 
-            : (action.movie.filter == 'toprated') ? state.toprated 
+            : (action.movie.filter == 'top_rated') ? state.top_rated 
             : state.popular).map(obj => obj.id === action.movie.id ?
               { ...obj, 
                 genres: action.movie.genres,
@@ -53,7 +53,10 @@ const filmReducer = (state = initialState, action) => {
     case BROADCAST_ID:
       return {
         ...state,
-        currentFilm: state.popular.find(obj => obj.id === action.payload)
+        currentFilm: ((action.payload.filter == 'popular')? state.popular 
+        : (action.payload.filter == 'upcoming')? state.upcoming 
+          : (action.payload.filter == 'top_rated') ? state.top_rated 
+          : state.popular).find(obj => obj.id === action.payload.id)
       };
     default:
       return state;

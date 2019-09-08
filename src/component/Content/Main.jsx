@@ -73,7 +73,8 @@ class Main extends Component {
           {movie ? (
             <Header 
               movie={movie} 
-              handleVideoClick={this.handleVideoClick}    
+              handleVideoClick={this.handleVideoClick} 
+              filter={filter}   
             />)
           : <div className="header-error" />  }
           <Sidebar 
