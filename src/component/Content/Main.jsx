@@ -63,7 +63,7 @@ class Main extends Component {
   handleClickTopRated = () => {
     this.setState({ filter: "top_rated" });
   }
-
+  
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;
     const {  showItemVideo, video, filter } = this.state;

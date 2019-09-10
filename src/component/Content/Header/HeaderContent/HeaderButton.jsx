@@ -34,13 +34,14 @@ class HeaderButton extends Component {
 }
 
 HeaderButton.propTypes = {
-  overview: PropTypes.string.isRequired,
+  overview: PropTypes.string,
   video: PropTypes.oneOfType([PropTypes.bool, PropTypes.array, PropTypes.instanceOf(HeaderButton)]),
   handleVideoClick: PropTypes.func.isRequired,
 };
 
 HeaderButton.defaultProps = {
   video: [],
+  overview: '',
 };
 
 export default HeaderButton;

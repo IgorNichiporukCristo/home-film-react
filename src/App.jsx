@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import Main from './component/Content/Main';
 import store from './store';
 import './app.scss';
-//import Header from './component/MainContent/Header';
 
 const App = () => {
   return (

@@ -31,24 +31,26 @@ const filmReducer = (state = initialState, action) => {
           ...action.upcoming,
         ]
       };
-       
-             
+              
     case ADD_DESCRIPTION_FILM:
       return {
         ...state,
-        currentFilm: state.popular.id ? null: state.popular[0],
-        [action.movie.filter]: ((action.movie.filter == 'popular')? state.popular 
-          : (action.movie.filter == 'upcoming')? state.upcoming 
-            : (action.movie.filter == 'top_rated') ? state.top_rated 
-            : state.popular).map(obj => obj.id === action.movie.id ?
+        [action.payload.filter]: ((action.payload.filter == 'popular')? state.popular 
+          : (action.payload.filter == 'upcoming')? state.upcoming 
+            : (action.payload.filter == 'top_rated') ? state.top_rated 
+            : state.popular).map(obj => obj.id === action.payload.id ?
               { ...obj, 
-                genres: action.movie.genres,
-                video: action.movie.results,
-                poster: action.movie.backdrops[0].file_path,
-                time: action.movie.runtime,
-                release: action.movie.release_date,
+                genres: action.payload.genres,
+                video: action.payload.results,
+                poster: action.payload.backdrops[0].file_path,
+                time: action.payload.runtime,
+                release: action.payload.release_date,
               } : 
-            obj)
+            obj),
+            currentFilm: ((action.payload.filter == 'popular')? state.popular[0] 
+            : (action.payload.filter == 'upcoming')? state.upcoming[0] 
+              : (action.payload.filter == 'top_rated') ? state.top_rated[0] 
+              : state.popular[0])
       };
     case BROADCAST_ID:
       return {

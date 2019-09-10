@@ -30,13 +30,15 @@ class HeaderInformation extends Component {
 }
 
 HeaderInformation.propTypes = {
-  title: PropTypes.string.isRequired,
-  vote: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  vote: PropTypes.number,
   genres: PropTypes.arrayOf(PropTypes.object),
 };
 
 HeaderInformation.defaultProps = {
   genres: [],
+  title: '',
+  vote: 0,
 };
 
 export default HeaderInformation;
