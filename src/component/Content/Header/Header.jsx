@@ -19,7 +19,7 @@ class Header extends Component {
         vote_average,
         overview,
         video,
-        // time
+        time
       },
     } = this.props;
     return (
@@ -30,7 +30,12 @@ class Header extends Component {
             <HeaderSearch />
           </div>  
           <div className="header-owerview">
-            <HeaderInformation title={title} genres={genres} vote={vote_average} />
+            <HeaderInformation 
+              title={title} 
+              genres={genres} 
+              vote={vote_average} 
+              time={time} 
+            />
             <HeaderButton 
               overview={overview} 
               video={video} 
