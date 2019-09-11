@@ -21,7 +21,7 @@ class OverwiewItem extends Component {
         {stateInference ? (
           <div className="view-countainer">
             <div className="overview-countainer">
-              <button type="button" onClick={this.handleClick}>back</button>
+              <button className="buttom-back" type="button" onClick={this.handleClick}>X</button>
               <InformationItem title={title} genres={genres} vote={vote} id={id} />
               <p className="overview">{overview}</p>
             </div>

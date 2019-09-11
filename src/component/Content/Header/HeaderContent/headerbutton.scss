@@ -24,6 +24,8 @@
             background-color: transparent;
             text-transform: uppercase;
             color: white;
+            border-style: ridge;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
         }
         .button-header:hover {
             background-color: rgb(65, 106, 230);
