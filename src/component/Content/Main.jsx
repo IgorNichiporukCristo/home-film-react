@@ -23,6 +23,7 @@ class Main extends Component {
   componentDidMount() {
     const { filter,requestPopular } = this.state;
     const { getFilms } = this.props;
+    document.addEventListener('scroll', this.trackScrolling);
     if(filter == "popular" && requestPopular){
       getFilms(filter);
       this.changeRequestPopular();
@@ -71,20 +72,25 @@ class Main extends Component {
   handleClickTopRated = () => {
     this.setState({ filter: "top_rated" });
   }
-  
-  handleScroll = e => {
-    let element = e.target;
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-      this.setState({ filter: "upcoming" }); 
+
+  trackScrolling = () => {
+    const wrappedElement = document.getElementById('header');
+    if (this.isBottom(wrappedElement)) {
+      console.log('pidor pidorasina');
+      document.removeEventListener('scroll', this.trackScrolling);
     }
+  };
+
+  isBottom(el) {
+    return el.getBoundingClientRect().bottom <= window.innerHeight;
   }
 
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;
     const {  showItemVideo, video, filter } = this.state;
     return (
-      <BrowserRouter onScroll={this.handleScroll}>
-        <div className="main-container">
+      <BrowserRouter>
+        <div className="main-container" id='header'>
           {movie ? (
             <Header 
               movie={movie} 
