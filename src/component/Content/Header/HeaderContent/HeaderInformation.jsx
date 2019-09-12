@@ -60,14 +60,14 @@ HeaderInformation.propTypes = {
   title: PropTypes.string,
   vote: PropTypes.number,
   genres: PropTypes.arrayOf(PropTypes.object),
-  time: PropTypes.string,
+  time: PropTypes.number,
 };
 
 HeaderInformation.defaultProps = {
   genres: [],
   title: '',
   vote: 0,
-  time: '',
+  time: 0,
 };
 
 export default HeaderInformation;

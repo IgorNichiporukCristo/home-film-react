@@ -15,14 +15,18 @@ class Main extends Component {
     filter: 'popular',
     showItemVideo: false,
     video: [],
+    requestPopular: true,
     requestUpcoming: true,
     requestTopRated: true,
   }
 
   componentDidMount() {
-    const { filter } = this.state;
+    const { filter,requestPopular } = this.state;
     const { getFilms } = this.props;
-    getFilms(filter);
+    if(filter == "popular" && requestPopular){
+      getFilms(filter);
+      this.changeRequestPopular();
+    }  
   }
 
   componentDidUpdate(){
@@ -35,6 +39,10 @@ class Main extends Component {
       getFilms(filter);
       this.changeRequestTopRated();
     } 
+  }
+
+  changeRequestPopular = () => {
+    this.setState({ requestPopular: false });
   }
 
   changeRequestUpcoming = () => {
@@ -64,11 +72,18 @@ class Main extends Component {
     this.setState({ filter: "top_rated" });
   }
   
+  handleScroll = e => {
+    let element = e.target;
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      this.setState({ filter: "upcoming" }); 
+    }
+  }
+
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;
     const {  showItemVideo, video, filter } = this.state;
     return (
-      <BrowserRouter>
+      <BrowserRouter onScroll={this.handleScroll}>
         <div className="main-container">
           {movie ? (
             <Header 

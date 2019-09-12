@@ -6,10 +6,15 @@ import './listStyle.scss';
 class FilmList extends Component {
   componentDidMount() {}
 
+  handleScroll = (e) => {
+    const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (bottom) { return console.log('xnj nj'); }
+  }
+
   render() {
     const { items, handleVideoClick, filter } = this.props;
     return (
-      <ul className="film-list-ul">
+      <ul className="film-list-ul" onScroll={this.handleScroll}>
         {items.map(item => (
           <FilmItem key={item.id} item={item} handleVideoClick={handleVideoClick} filter={filter} />
         ))}
