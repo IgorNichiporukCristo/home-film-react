@@ -13,6 +13,7 @@ import './index.scss';
 class Main extends Component {
   state = {
     filter: 'popular',
+    page: 1,
     showItemVideo: false,
     video: [],
     requestPopular: true,
@@ -21,23 +22,23 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    const { filter,requestPopular } = this.state;
+    const { filter,requestPopular, page } = this.state;
     const { getFilms } = this.props;
     document.addEventListener('scroll', this.trackScrolling);
     if(filter == "popular" && requestPopular){
-      getFilms(filter);
+      getFilms(filter, page);
       this.changeRequestPopular();
     }  
   }
 
   componentDidUpdate(){
-    const { filter, requestUpcoming, requestTopRated } = this.state;
+    const { filter, requestUpcoming, requestTopRated, page } = this.state;
     const { getFilms } = this.props;
     if(filter == "upcoming" && requestUpcoming){
-      getFilms(filter);
+      getFilms(filter, page);
       this.changeRequestUpcoming();
     } if (filter == "top_rated" && requestTopRated){
-      getFilms(filter);
+      getFilms(filter, page);
       this.changeRequestTopRated();
     } 
   }
@@ -74,10 +75,17 @@ class Main extends Component {
   }
 
   trackScrolling = () => {
+    const { filter, page } = this.state;
+    const { getFilms } = this.props;
     const wrappedElement = document.getElementById('header');
+    let numberPage;
+    page == 1 ? numberPage = page + 1 : numberPage = page;
     if (this.isBottom(wrappedElement)) {
-      console.log('pidor pidorasina');
-      document.removeEventListener('scroll', this.trackScrolling);
+      getFilms(filter, numberPage);
+      this.setState(prevState => {
+        return {page: (page == 1 ? prevState.page + 2: prevState.page + 1)};
+     });
+      console.log(page);
     }
   };
 
@@ -161,7 +169,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getFilms: (filter) => dispatch(fetchFilms(filter)),
+    getFilms: (filter, page) => dispatch(fetchFilms(filter, page)),
   };
 }
 

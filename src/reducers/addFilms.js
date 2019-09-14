@@ -13,23 +13,17 @@ const filmReducer = (state = initialState, action) => {
     case ADD_POPULAR_FILMS:
       return {
         ...state,
-        popular: [
-          ...action.popular,
-        ]
+        popular: state.popular.concat(action.popular)
       };
     case ADD_TOPRATED_FILMS:
       return {
         ...state,
-        top_rated: [
-          ...action.top_rated,
-        ]
+        top_rated: state.top_rated.concat(action.top_rated)
       };
     case ADD_UPCOMING_FILMS:
       return {
         ...state,
-        upcoming: [
-          ...action.upcoming,
-        ]
+        upcoming: state.upcoming.concat(action.upcoming)
       };
               
     case ADD_DESCRIPTION_FILM:
