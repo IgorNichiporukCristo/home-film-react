@@ -85,7 +85,8 @@ class Main extends Component {
       this.setState(prevState => {
         return {page: (page == 1 ? prevState.page + 2: prevState.page + 1)};
      });
-      console.log(page);
+    } else {
+      null;
     }
   };
 
@@ -98,7 +99,7 @@ class Main extends Component {
     const {  showItemVideo, video, filter } = this.state;
     return (
       <BrowserRouter>
-        <div className="main-container" id='header'>
+        <div className="main-container" id="header">
           {movie ? (
             <Header 
               movie={movie} 
