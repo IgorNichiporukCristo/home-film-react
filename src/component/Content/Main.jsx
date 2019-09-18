@@ -78,13 +78,9 @@ class Main extends Component {
     const { filter, page } = this.state;
     const { getFilms } = this.props;
     const wrappedElement = document.getElementById('header');
-    let numberPage;
-    page == 1 ? numberPage = page + 1 : numberPage = page;
     if (this.isBottom(wrappedElement)) {
-      getFilms(filter, numberPage);
-      this.setState(prevState => {
-        return {page: (page == 1 ? prevState.page + 2: prevState.page + 1)};
-     });
+      getFilms(filter, page + 1);
+      this.setState({ page: page + 1});
     } else {
       null;
     }
