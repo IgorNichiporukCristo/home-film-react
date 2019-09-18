@@ -12,7 +12,7 @@ import './index.scss';
 
 class Main extends Component {
   state = {
-    filter: 'popular',
+    filter: this.myFunction(),
     page: 1,
     showItemVideo: false,
     video: [],
@@ -24,6 +24,8 @@ class Main extends Component {
   componentDidMount() {
     const { filter,requestPopular, page } = this.state;
     const { getFilms } = this.props;
+    let x = location.pathname;
+    console.log(document.querySelector('div').innerHTML = x.substring(1));
     document.addEventListener('scroll', this.trackScrolling);
     if(filter == "popular" && requestPopular){
       getFilms(filter, page);
@@ -77,7 +79,7 @@ class Main extends Component {
   trackScrolling = () => {
     const { filter, page } = this.state;
     const { getFilms } = this.props;
-    const wrappedElement = document.getElementById('header');
+    const wrappedElement = document.querySelector('div');
     if (this.isBottom(wrappedElement)) {
       getFilms(filter, page + 1);
       this.setState({ page: page + 1});
@@ -86,8 +88,14 @@ class Main extends Component {
     }
   };
 
+  myFunction() {
+    let x = location.pathname;
+    console.log(document.querySelector('div').innerHTML = x.substring(1));
+    this.setState({filter: document.querySelector('div').innerHTML = x.substring(1)});
+  }
+
   isBottom(el) {
-    return el.getBoundingClientRect().bottom <= window.innerHeight;
+    return el.getBoundingClientRect().bottom <= document.documentElement.clientWidth;
   }
 
   render() {
@@ -95,7 +103,7 @@ class Main extends Component {
     const {  showItemVideo, video, filter } = this.state;
     return (
       <BrowserRouter>
-        <div className="main-container" id="header">
+        <div className="main-container">
           {movie ? (
             <Header 
               movie={movie} 
