@@ -12,7 +12,7 @@ import './index.scss';
 
 class Main extends Component {
   state = {
-    filter: this.myFunction(),
+    filter: 'popular',
     page: 1,
     showItemVideo: false,
     video: [],
@@ -24,9 +24,8 @@ class Main extends Component {
   componentDidMount() {
     const { filter,requestPopular, page } = this.state;
     const { getFilms } = this.props;
-    let x = location.pathname;
-    console.log(document.querySelector('div').innerHTML = x.substring(1));
     document.addEventListener('scroll', this.trackScrolling);
+    //this.setState({filter: document.querySelector('div').innerHTML = location.pathname.substring(1)});
     if(filter == "popular" && requestPopular){
       getFilms(filter, page);
       this.changeRequestPopular();
@@ -88,12 +87,6 @@ class Main extends Component {
     }
   };
 
-  myFunction() {
-    let x = location.pathname;
-    console.log(document.querySelector('div').innerHTML = x.substring(1));
-    this.setState({filter: document.querySelector('div').innerHTML = x.substring(1)});
-  }
-
   isBottom(el) {
     return el.getBoundingClientRect().bottom <= document.documentElement.clientWidth;
   }
@@ -117,7 +110,7 @@ class Main extends Component {
             handleClickTopRated={this.handleClickTopRated} 
           />
           <Route 
-            path="/" 
+            path="/popular" 
             exact 
             render={(props) => (
               <FilmList 
