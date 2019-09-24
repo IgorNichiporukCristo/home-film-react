@@ -24,7 +24,7 @@ class Sidebar extends Component {
   render(){
     return(
       <div className='sidebar-countainer'>
-        <Link className="sidebar-button" to="/" onClick={this.handleClickPopularity}>Popular</Link>
+        <Link className="sidebar-button" to="/popular" onClick={this.handleClickPopularity}>Popular</Link>
         <Link className="sidebar-button" to="/upcoming" onClick={this.handleClickComing}>Upcoming</Link>
         <Link className="sidebar-button" to="/top_rated" onClick={this.handleClickRated}>Top Rated</Link>
       </div>

@@ -9,7 +9,7 @@ class FilmList extends Component {
   render() {
     const { items, handleVideoClick, filter } = this.props;
     return (
-      <ul className="film-list-ul" onScroll={this.handleScroll}>
+      <ul className="film-list-ul">
         {items.map(item => (
           <FilmItem key={item.id} item={item} handleVideoClick={handleVideoClick} filter={filter} />
         ))}

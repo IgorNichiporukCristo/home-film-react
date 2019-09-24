@@ -12,24 +12,20 @@ import './index.scss';
 
 class Main extends Component {
   state = {
-    filter: 'popular',
+    filter: this.getHistory,
     page: 1,
     showItemVideo: false,
     video: [],
-    requestPopular: true,
     requestUpcoming: true,
     requestTopRated: true,
   }
 
   componentDidMount() {
-    const { filter,requestPopular, page } = this.state;
+    const { filter, page } = this.state;
     const { getFilms } = this.props;
     document.addEventListener('scroll', this.trackScrolling);
     //this.setState({filter: document.querySelector('div').innerHTML = location.pathname.substring(1)});
-    if(filter == "popular" && requestPopular){
-      getFilms(filter, page);
-      this.changeRequestPopular();
-    }  
+    getFilms(filter, page);
   }
 
   componentDidUpdate(){
@@ -44,9 +40,6 @@ class Main extends Component {
     } 
   }
 
-  changeRequestPopular = () => {
-    this.setState({ requestPopular: false });
-  }
 
   changeRequestUpcoming = () => {
     this.setState({ requestUpcoming: false });
@@ -86,6 +79,10 @@ class Main extends Component {
       null;
     }
   };
+
+  getHistory = () => {
+    return document.querySelector('div').innerHTML = location.pathname.substring(1);
+  }
 
   isBottom(el) {
     return el.getBoundingClientRect().bottom <= document.documentElement.clientWidth;
