@@ -12,7 +12,7 @@ import './index.scss';
 
 class Main extends Component {
   state = {
-    filter: this.getHistory,
+    filter: "popular",
     page: 1,
     showItemVideo: false,
     video: [],
@@ -21,10 +21,11 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    const { filter, page } = this.state;
+    const { page } = this.state;
     const { getFilms } = this.props;
     document.addEventListener('scroll', this.trackScrolling);
-    //this.setState({filter: document.querySelector('div').innerHTML = location.pathname.substring(1)});
+    this.setState({filter: location.pathname.substring(1)});
+    let filter = location.pathname.substring(1);
     getFilms(filter, page);
   }
 
@@ -107,7 +108,7 @@ class Main extends Component {
             handleClickTopRated={this.handleClickTopRated} 
           />
           <Route 
-            path="/popular" 
+            path="/" 
             exact 
             render={(props) => (
               <FilmList 

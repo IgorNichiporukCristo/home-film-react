@@ -32,6 +32,6 @@ if (process.env.NODE_ENV === 'production') {
     });
   });
 }
-app.listen(process.env.PORT || 8080/popular, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log('Listening on port 8080!\n');
 });
