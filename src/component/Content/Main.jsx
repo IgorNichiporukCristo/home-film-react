@@ -6,7 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { fetchFilms } from '../../action/fetchFilms';
 import FilmList from './FilmItem/Filmlist';
 import Header from './Header/Header';
-import Sidebar from './Sidebar/Sidebar';
+import Sidebar from './Sidebar';
 import Video from './Video/Video';
 import './index.scss';
 
@@ -18,19 +18,28 @@ class Main extends Component {
     video: [],
     requestUpcoming: true,
     requestTopRated: true,
+    requestPopular: true,
   }
 
   componentDidMount() {
     const { page } = this.state;
     const { getFilms } = this.props;
     document.addEventListener('scroll', this.trackScrolling);
-    this.setState({filter: location.pathname.substring(1)});
-    let filter = location.pathname.substring(1);
-    getFilms(filter, page);
+    if (location.pathname == "/") {
+      this.setState({filter: "popular"});
+      let filter = "popular";
+      getFilms(filter, page);
+      this.changeRequestPopular();
+    } else {
+      this.setState({ filter: location.pathname.substring(1) });
+      let filter = location.pathname.substring(1);
+      getFilms(filter, page);
+      location.pathname == "/upcoming" ? this.changeRequestUpcoming() : this.changeRequestTopRated();
+    }
   }
 
   componentDidUpdate(){
-    const { filter, requestUpcoming, requestTopRated, page } = this.state;
+    const { filter, requestUpcoming, requestTopRated, requestPopular, page } = this.state;
     const { getFilms } = this.props;
     if(filter == "upcoming" && requestUpcoming){
       getFilms(filter, page);
@@ -38,9 +47,15 @@ class Main extends Component {
     } if (filter == "top_rated" && requestTopRated){
       getFilms(filter, page);
       this.changeRequestTopRated();
-    } 
+    } if(filter == "popular" && requestPopular){
+      getFilms(filter, page);
+      this.changeRequestPopular();
+    }
   }
-
+  
+  changeRequestPopular = () => {
+    this.setState({ requestPopular: false });
+  }
 
   changeRequestUpcoming = () => {
     this.setState({ requestUpcoming: false });
@@ -57,16 +72,8 @@ class Main extends Component {
     }));
   };
 
-  handleClickPopular = () => {
-    this.setState({ filter: "popular" });
-  }
-
-  handleClickUpcoming = () => {
-    this.setState({ filter: "upcoming" });
-  }
-
-  handleClickTopRated = () => {
-    this.setState({ filter: "top_rated" });
+  handleFilterState = (filter) => {
+    this.setState({ filter });
   }
 
   trackScrolling = () => {
@@ -76,14 +83,8 @@ class Main extends Component {
     if (this.isBottom(wrappedElement)) {
       getFilms(filter, page + 1);
       this.setState({ page: page + 1});
-    } else {
-      null;
     }
   };
-
-  getHistory = () => {
-    return document.querySelector('div').innerHTML = location.pathname.substring(1);
-  }
 
   isBottom(el) {
     return el.getBoundingClientRect().bottom <= document.documentElement.clientWidth;
@@ -103,9 +104,7 @@ class Main extends Component {
             />)
           : <div className="header-error" />  }
           <Sidebar 
-            handleClickPopular={this.handleClickPopular}
-            handleClickUpcoming={this.handleClickUpcoming}
-            handleClickTopRated={this.handleClickTopRated} 
+            handleClick={this.handleFilterState}
           />
           <Route 
             path="/" 
