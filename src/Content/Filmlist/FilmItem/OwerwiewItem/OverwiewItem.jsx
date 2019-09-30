@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './overwiewItem.scss';
-import InformationItem from './InformationItem';
+import InformationItem from '../InfonationItem/InformationItem';
 
 class OverwiewItem extends Component {
   handleClick = () => {

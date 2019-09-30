@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FilmItem from './FilmItem';
-import './listStyle.scss';
+import FilmItem from './FilmItem/FilmItem';
+import './filmlist.scss';
 
 class FilmList extends Component {
   componentDidMount() {}

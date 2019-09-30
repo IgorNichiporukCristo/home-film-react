@@ -1,18 +1,18 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { fetchFilms } from '../../action/fetchFilms';
-import FilmList from './FilmItem/Filmlist';
-import Header from './Header/Header';
+import { fetchFilms } from '../action/fetchFilms';
+import FilmList from './Filmlist';
+import Header from './Header';
 import Sidebar from './Sidebar';
-import Video from './Video/Video';
+import Video from './Video';
 import './index.scss';
+import { POPULAR, UPCOMING, TOP_RATED } from '../constants';
 
 class Main extends Component {
   state = {
-    filter: "popular",
+    filter: POPULAR,
     page: 1,
     showItemVideo: false,
     video: [],
@@ -22,47 +22,23 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    document.addEventListener('scroll', this.trackScrolling);
+    this.definitionPathnamePage();
+  }
+
+  definitionPathnamePage = () => {
     const { page } = this.state;
     const { getFilms } = this.props;
-    document.addEventListener('scroll', this.trackScrolling);
     if (location.pathname == "/") {
-      this.setState({filter: "popular"});
-      let filter = "popular";
-      getFilms(filter, page);
-      this.changeRequestPopular();
+      this.setState({filter: POPULAR});
+      getFilms(POPULAR, page);
+      this.setState({ requestPopular: false });
     } else {
       this.setState({ filter: location.pathname.substring(1) });
       let filter = location.pathname.substring(1);
       getFilms(filter, page);
-      location.pathname == "/upcoming" ? this.changeRequestUpcoming() : this.changeRequestTopRated();
+      location.pathname == "/upcoming" ? this.setState({ requestUpcoming: false }) : this.setState({ requestTopRated: false });
     }
-  }
-
-  componentDidUpdate(){
-    const { filter, requestUpcoming, requestTopRated, requestPopular, page } = this.state;
-    const { getFilms } = this.props;
-    if(filter == "upcoming" && requestUpcoming){
-      getFilms(filter, page);
-      this.changeRequestUpcoming();
-    } if (filter == "top_rated" && requestTopRated){
-      getFilms(filter, page);
-      this.changeRequestTopRated();
-    } if(filter == "popular" && requestPopular){
-      getFilms(filter, page);
-      this.changeRequestPopular();
-    }
-  }
-  
-  changeRequestPopular = () => {
-    this.setState({ requestPopular: false });
-  }
-
-  changeRequestUpcoming = () => {
-    this.setState({ requestUpcoming: false });
-  }
-
-  changeRequestTopRated = () => {
-    this.setState({ requestTopRated: false });
   }
 
   handleVideoClick = (video) => {
@@ -74,6 +50,18 @@ class Main extends Component {
 
   handleFilterState = (filter) => {
     this.setState({ filter });
+    const {  requestUpcoming, requestTopRated, requestPopular, page } = this.state;
+    const { getFilms } = this.props;
+    if(filter == UPCOMING && requestUpcoming){
+      getFilms(filter, page);
+      this.setState({ requestUpcoming: false });
+    } if (filter == TOP_RATED && requestTopRated){
+      getFilms(filter, page);
+      this.setState({ requestTopRated: false });
+    } if(filter == POPULAR && requestPopular){
+      getFilms(filter, page);
+      this.setState({ requestPopular: false });
+    }
   }
 
   trackScrolling = () => {

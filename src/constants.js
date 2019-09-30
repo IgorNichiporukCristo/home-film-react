@@ -6,3 +6,6 @@ export const ADD_DESCRIPTION_FILM = "ADD_DESCRIPTION_FILM";
 export const BROADCAST_ID = "BROADCAST_ID";
 
 /* Filter types */
+export const POPULAR = "popular";
+export const TOP_RATED = "top_rated";
+export const UPCOMING = "upcoming";
