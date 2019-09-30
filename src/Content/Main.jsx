@@ -13,7 +13,9 @@ import { POPULAR, UPCOMING, TOP_RATED } from '../constants';
 class Main extends Component {
   state = {
     filter: POPULAR,
-    page: 1,
+    pagePopular: 1,
+    pageUpcoming: 1,
+    pageTop_Rated: 1,
     showItemVideo: false,
     video: [],
     requestUpcoming: true,
@@ -27,16 +29,15 @@ class Main extends Component {
   }
 
   definitionPathnamePage = () => {
-    const { page } = this.state;
     const { getFilms } = this.props;
     if (location.pathname == "/") {
       this.setState({filter: POPULAR});
-      getFilms(POPULAR, page);
+      getFilms(POPULAR, 1);
       this.setState({ requestPopular: false });
     } else {
       this.setState({ filter: location.pathname.substring(1) });
       let filter = location.pathname.substring(1);
-      getFilms(filter, page);
+      getFilms(filter, 1);
       location.pathname == "/upcoming" ? this.setState({ requestUpcoming: false }) : this.setState({ requestTopRated: false });
     }
   }
@@ -50,27 +51,35 @@ class Main extends Component {
 
   handleFilterState = (filter) => {
     this.setState({ filter });
-    const {  requestUpcoming, requestTopRated, requestPopular, page } = this.state;
+    const {  requestUpcoming, requestTopRated, requestPopular, pagePopular, pageUpcoming, pageTop_Rated  } = this.state;
     const { getFilms } = this.props;
     if(filter == UPCOMING && requestUpcoming){
-      getFilms(filter, page);
+      getFilms(filter, pageUpcoming);
       this.setState({ requestUpcoming: false });
     } if (filter == TOP_RATED && requestTopRated){
-      getFilms(filter, page);
+      getFilms(filter, pageTop_Rated);
       this.setState({ requestTopRated: false });
     } if(filter == POPULAR && requestPopular){
-      getFilms(filter, page);
+      getFilms(filter, pagePopular);
       this.setState({ requestPopular: false });
     }
   }
 
   trackScrolling = () => {
-    const { filter, page } = this.state;
+    const { filter, pagePopular, pageUpcoming, pageTop_Rated } = this.state;
     const { getFilms } = this.props;
     const wrappedElement = document.querySelector('div');
     if (this.isBottom(wrappedElement)) {
-      getFilms(filter, page + 1);
-      this.setState({ page: page + 1});
+      if (filter == POPULAR){
+        getFilms(filter, pagePopular + 1);
+        this.setState({ pagePopular: pagePopular + 1});
+      } if (filter == UPCOMING){
+        getFilms(filter, pageUpcoming + 1);
+        this.setState({ pageUpcoming: pageUpcoming + 1});
+      } else {
+        getFilms(filter, pageTop_Rated + 1);
+        this.setState({ pageTop_Rated: pageTop_Rated + 1});
+      }
     }
   };
 
