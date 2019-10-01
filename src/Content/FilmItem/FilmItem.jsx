@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getDescriptionFilm } from '../../../action/fetchFilms';
-import ImageItem from './ImageItem/ImageItem';
-import InformationItem from './InfonationItem/InformationItem';
+import { getDescriptionFilm } from '../../action/fetchFilms';
+import ImageItem from './ImageItem';
+import InformationItem from './InfonationItem';
 import './filmitem.scss';
 
 class FilmItem extends Component {

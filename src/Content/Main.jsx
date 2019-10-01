@@ -24,7 +24,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('scroll', this.trackScrolling);
+    window.addEventListener('scroll', this.trackScrolling);
     this.definitionPathnamePage();
   }
 
@@ -68,24 +68,19 @@ class Main extends Component {
   trackScrolling = () => {
     const { filter, pagePopular, pageUpcoming, pageTop_Rated } = this.state;
     const { getFilms } = this.props;
-    const wrappedElement = document.querySelector('div');
-    if (this.isBottom(wrappedElement)) {
+    if (document.documentElement.getBoundingClientRect().bottom < document.documentElement.clientHeight) {
       if (filter == POPULAR){
         getFilms(filter, pagePopular + 1);
         this.setState({ pagePopular: pagePopular + 1});
       } if (filter == UPCOMING){
         getFilms(filter, pageUpcoming + 1);
         this.setState({ pageUpcoming: pageUpcoming + 1});
-      } else {
+      } if (filter == TOP_RATED) {
         getFilms(filter, pageTop_Rated + 1);
         this.setState({ pageTop_Rated: pageTop_Rated + 1});
       }
     }
   };
-
-  isBottom(el) {
-    return el.getBoundingClientRect().bottom <= document.documentElement.clientWidth;
-  }
 
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;

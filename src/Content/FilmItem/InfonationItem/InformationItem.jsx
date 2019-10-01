@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { broadcastId } from '../../../../action/fetchFilms';
+import { broadcastId } from '../../../action/fetchFilms';
 import './informationItem.scss';
 
 class InformationItem extends Component {

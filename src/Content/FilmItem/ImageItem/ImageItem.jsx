@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import OverviewItem from '../OwerwiewItem/OverwiewItem';
+import OverviewItem from '../OwerwiewItem';
 import './imageItem.scss';
 
 class ImageItem extends Component {

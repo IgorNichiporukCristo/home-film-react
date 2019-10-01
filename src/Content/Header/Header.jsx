@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import HeaderSearch from './HeaderContent/HeaderSearch';
-import HeaderInformation from './HeaderContent/HeaderInformation';
-import HeaderButton from './HeaderContent/HeaderButton';
+import HeaderSearch from './HeaderSearch';
+import HeaderInformation from './HeaderInformatiom';
+import HeaderButton from './HeaderButton';
 import './header.scss';
 
 class Header extends Component {
