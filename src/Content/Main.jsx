@@ -24,7 +24,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.trackScrolling);
+    document.addEventListener('scroll', this.trackScrolling);
     this.definitionPathnamePage();
   }
 
@@ -68,7 +68,7 @@ class Main extends Component {
   trackScrolling = () => {
     const { filter, pagePopular, pageUpcoming, pageTop_Rated } = this.state;
     const { getFilms } = this.props;
-    if (document.documentElement.getBoundingClientRect().bottom < document.documentElement.clientHeight) {
+    if (document.documentElement.getBoundingClientRect().bottom -100 < document.documentElement.clientHeight) {
       if (filter == POPULAR){
         getFilms(filter, pagePopular + 1);
         this.setState({ pagePopular: pagePopular + 1});

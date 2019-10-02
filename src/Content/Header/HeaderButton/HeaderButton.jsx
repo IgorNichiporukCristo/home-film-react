@@ -19,9 +19,8 @@ class HeaderButton extends Component {
   };
 
   render() {
-    const { overview, video } = this.props;
+    const { overview } = this.props;
     const { showOverview } = this.state;
-    console.log(video.lenght);
     return (
       <div className="header-button-countainer">
         {showOverview ? <div className="headerbutton-overview">{overview}</div> : null}
