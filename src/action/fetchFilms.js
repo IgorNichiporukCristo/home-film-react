@@ -3,6 +3,7 @@ import { ADD_POPULAR_FILMS, ADD_TOPRATED_FILMS, ADD_UPCOMING_FILMS, ADD_DESCRIPT
 const API_KEY = "ac122731994c8a0edef1603c3016ac82";
 const discoverUrl = (filter, page) => `https://api.themoviedb.org/3/movie/${filter}?api_key=${API_KEY}&language=en-US&page=${page}`;
 const createFilmURL = (id) => `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos,images`;
+const searchFilm = (name) => `https://api.themoviedb.org/3/search/keyword?api_key=<<api_key>>&page=1&query=${name}`;
 
 const fetchFilms = (filter, page) => (dispatch) => {
   const list = discoverUrl(filter, page);
@@ -40,11 +41,21 @@ const getDescriptionFilm = (id, filter) => (dispatch) => {
   .catch(error => error);
 };
 
+const fetchSearchFilm = (name) => (dispatch) => {
+  const url = searchFilm(name);
+  fetch(url)
+  .then(res=>res.json())
+  .then(({result}) => {dispatch({
+    type: searchFilm,
+    payload: result 
+  });});
+};
+
 const broadcastId = (id, filter) => ({
   type: BROADCAST_ID,
   payload: { id, filter }
 });
 
-export { fetchFilms, getDescriptionFilm, broadcastId };
+export { fetchFilms, getDescriptionFilm, broadcastId,fetchSearchFilm };
 
 
