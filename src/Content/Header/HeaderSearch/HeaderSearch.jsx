@@ -11,6 +11,7 @@ class HeaderSearch extends Component  {
     const { query } = this.state;
     if (event.key === 'Enter'){
       console.log(query);
+      history.pushState({}, '', '/search');
     }
   }
 

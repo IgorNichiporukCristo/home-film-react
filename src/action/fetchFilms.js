@@ -34,9 +34,9 @@ const getDescriptionFilm = (id, filter) => (dispatch) => {
   const url = createFilmURL(id);
   fetch(url)
   .then(res => res.json())
-  .then(({ id, genres, videos: { results }, images: { backdrops }, runtime, release_date }) => dispatch({ 
+  .then(({ id, genres, videos: { results }, images: { backdrops }, runtime, release_date, overview }) => dispatch({ 
       type: ADD_DESCRIPTION_FILM,
-      payload: { id, genres, results, backdrops, runtime, release_date, filter }
+      payload: { id, genres, results, backdrops, runtime, release_date, filter, overview }
     }))
   .catch(error => error);
 };
@@ -45,10 +45,11 @@ const fetchSearchFilm = (name) => (dispatch) => {
   const url = searchFilm(name);
   fetch(url)
   .then(res=>res.json())
-  .then(({result}) => {dispatch({
+  .then(({result}) => dispatch({
     type: searchFilm,
     payload: result 
-  });});
+  }))
+  .catch(error => error);
 };
 
 const broadcastId = (id, filter) => ({

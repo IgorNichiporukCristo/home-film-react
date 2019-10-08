@@ -1,4 +1,4 @@
-import { ADD_POPULAR_FILMS, ADD_TOPRATED_FILMS, ADD_UPCOMING_FILMS, ADD_DESCRIPTION_FILM,  BROADCAST_ID  } from '../constants';
+import { ADD_POPULAR_FILMS, ADD_TOPRATED_FILMS, ADD_UPCOMING_FILMS, ADD_SEARCH_FILMS, ADD_DESCRIPTION_FILM,  BROADCAST_ID  } from '../constants';
 
 const initialState = {
   loading: false,
@@ -6,6 +6,7 @@ const initialState = {
   popular: [],
   top_rated: [],
   upcoming: [],
+  search: [],
 };
 
 const filmReducer = (state = initialState, action) => {
@@ -25,6 +26,12 @@ const filmReducer = (state = initialState, action) => {
         ...state,
         upcoming: state.upcoming.concat(action.upcoming)
       };
+
+    case ADD_SEARCH_FILMS:  
+      return {
+        ...state,
+        search: action.payload
+      };
               
     case ADD_DESCRIPTION_FILM:
       return {
@@ -34,6 +41,7 @@ const filmReducer = (state = initialState, action) => {
             : (action.payload.filter == 'top_rated') ? state.top_rated 
             : state.popular).map(obj => obj.id === action.payload.id ?
               { ...obj, 
+                overview: action.payload.overview,
                 genres: action.payload.genres,
                 video: action.payload.results,
                 poster: action.payload.backdrops[0].file_path,
@@ -46,6 +54,7 @@ const filmReducer = (state = initialState, action) => {
               : (action.payload.filter == 'top_rated') ? state.top_rated[0] 
               : state.popular[0])
       };
+
     case BROADCAST_ID:
       return {
         ...state,

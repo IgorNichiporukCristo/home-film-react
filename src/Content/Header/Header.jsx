@@ -27,7 +27,9 @@ class Header extends Component {
         <img className="poster" alt="" src={`https://image.tmdb.org/t/p/original${poster}`} />
         <div className="header-content">
           <div className="header-information">
-            <HeaderSearch />
+            <HeaderSearch 
+              handleFilterState={this.handleFilterState}  
+            />
           </div>  
           <div className="header-owerview">
             <HeaderInformation 

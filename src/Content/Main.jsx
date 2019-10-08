@@ -50,18 +50,19 @@ class Main extends Component {
   };
 
   handleFilterState = (filter) => {
-    this.setState({ filter });
     const {  requestUpcoming, requestTopRated, requestPopular, pagePopular, pageUpcoming, pageTop_Rated  } = this.state;
     const { getFilms } = this.props;
     if(filter == UPCOMING && requestUpcoming){
       getFilms(filter, pageUpcoming);
-      this.setState({ requestUpcoming: false });
+      this.setState({ requestUpcoming: false, filter });
     } if (filter == TOP_RATED && requestTopRated){
       getFilms(filter, pageTop_Rated);
-      this.setState({ requestTopRated: false });
+      this.setState({ requestTopRated: false, filter });
     } if(filter == POPULAR && requestPopular){
       getFilms(filter, pagePopular);
-      this.setState({ requestPopular: false });
+      this.setState({ requestPopular: false, filter });
+    }else{
+      this.setState({ filter });
     }
   }
 
@@ -92,7 +93,8 @@ class Main extends Component {
             <Header 
               movie={movie} 
               handleVideoClick={this.handleVideoClick} 
-              filter={filter}   
+              filter={filter}  
+              handleFilterState={this.handleFilterState} 
             />)
           : <div className="header-error" />  }
           <Sidebar 
@@ -134,6 +136,18 @@ class Main extends Component {
                 handleVideoClick={this.handleVideoClick} 
               />)} 
           />
+          <Route 
+            path="/search" 
+            exact 
+            render={(props) => ( 
+              <FilmList 
+                {...props} 
+                items={top_rated}
+                filter={filter}  
+                showItemVideo={showItemVideo} 
+                handleVideoClick={this.handleVideoClick} 
+              />)} 
+          />
           <Video 
             handleVideoClick={this.handleVideoClick} 
             stateVideo={showItemVideo} 
@@ -151,6 +165,7 @@ function mapStateToProps(state) {
     upcoming: state.upcoming,
     top_rated: state.top_rated,
     movie: state.currentFilm,
+    search: state.search,
   };
 }
 
