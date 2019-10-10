@@ -94,7 +94,6 @@ class Main extends Component {
               movie={movie} 
               handleVideoClick={this.handleVideoClick} 
               filter={filter}  
-              handleFilterState={this.handleFilterState} 
             />)
           : <div className="header-error" />  }
           <Sidebar 
