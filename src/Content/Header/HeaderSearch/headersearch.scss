@@ -6,9 +6,21 @@
         color: white;
         margin: 10px;
     }
-    .header-search{
-        margin: 10px;
-        background-color: transparent;
-        color: white;
+    .search-block{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        .header-search{
+            margin: 10px 0 10px 0;
+            background-color: transparent;
+            color: white;
+            justify-content: flex-end;
+        }
+        .show-search{
+            background-color: aqua;
+            height: 250px;
+            width: 500px;
+        }
     }
 }
