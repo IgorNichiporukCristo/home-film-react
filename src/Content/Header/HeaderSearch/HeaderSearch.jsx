@@ -4,14 +4,19 @@ import './headersearch.scss';
 class HeaderSearch extends Component  {
  state = {
    showsearch: false,
+   query: "",
  }
 
-  handleClick = () => {
+ handleKeyDown = (event) => {
+  const { query } = this.state;y
+  if (event.key === 'Enter'){
     this.setState({showsearch: true});
+
   }
+}
 
   render() {
-    const { showsearch } = this.state;
+    const { showsearch, query } = this.state;
     return (
       <div className="header-name-search">
         <h1 className="header-name">Igor_ZBS_PACAN</h1>
@@ -19,7 +24,8 @@ class HeaderSearch extends Component  {
           <input 
             className="header-search" 
             placeholder="Search movies by name..." 
-            onClick={this.handleClick}
+            onChange={event => {this.setState({query: event.target.value});}}
+            onKeyDown={this.handleKeyDown} 
           />
           {showsearch ?(
             <div className="show-search">
