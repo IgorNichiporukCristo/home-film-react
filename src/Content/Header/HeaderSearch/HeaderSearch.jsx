@@ -23,7 +23,7 @@ class HeaderSearch extends Component  {
           />
           {showsearch ?(
             <div className="show-search">
-              <span>fsedwfe</span>
+              
             </div>
           ): null
           }
