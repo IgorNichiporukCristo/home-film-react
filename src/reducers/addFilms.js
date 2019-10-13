@@ -26,7 +26,6 @@ const filmReducer = (state = initialState, action) => {
         ...state,
         upcoming: state.upcoming.concat(action.upcoming)
       };
-
     case ADD_SEARCH_FILMS:  
       return {
         ...state,
@@ -39,7 +38,7 @@ const filmReducer = (state = initialState, action) => {
         [action.payload.filter]: ((action.payload.filter == 'popular')? state.popular 
           : (action.payload.filter == 'upcoming')? state.upcoming 
             : (action.payload.filter == 'top_rated') ? state.top_rated 
-            : state.popular).map(obj => obj.id === action.payload.id ?
+            : state.search).map(obj => obj.id === action.payload.id ?
               { ...obj, 
                 overview: action.payload.overview,
                 genres: action.payload.genres,

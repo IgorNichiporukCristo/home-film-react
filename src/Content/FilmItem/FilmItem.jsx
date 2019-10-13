@@ -24,7 +24,7 @@ class FilmItem extends Component {
         overview,
         video,
         id,
-      },
+      }
     } = this.props;
     return (
       <li className="film-list-li">
