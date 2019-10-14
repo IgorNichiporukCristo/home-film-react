@@ -57,7 +57,7 @@ function mapDispatchToProps(dispatch) {
 
 HeaderSearch.propTypes = {
   fetchSearchFilm: PropTypes.func.isRequired,
-  search: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.instanceOf(HeaderSearch)]),
+  search: PropTypes.arrayOf(PropTypes.object),
 };  
 
 HeaderSearch.defaultProps = {

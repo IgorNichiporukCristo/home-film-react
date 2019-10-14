@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import SearchItem from '../SearchItem';
+//import SearchItem from '../SearchItem';
 
 class SearchList extends Component {
   componentDidMount () {
@@ -10,21 +10,25 @@ class SearchList extends Component {
   render(){
     const { search } = this.props;
     return(
-      <ul className="search-films">
-        {search.map(item => (
-          <SearchItem key={item.id} item={item} />
-        ))}
-      </ul>
+      <div>
+        {console.log(search)}
+      </div>
+      
+      // <ul className="search-films">
+      //   {search.map(item => (
+      //     <SearchItem key={item.id} item={item} />
+      //   ))}
+      // </ul>
     );
   }
 }
 
 SearchList.propTypes = {
-  search: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.instanceOf(SearchList)]),
+  search: PropTypes.arrayOf(PropTypes.object),
 };  
 
 SearchList.defaultProps = {
-  search: {},
+  search: [],
 };
 
 export default SearchList;

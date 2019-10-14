@@ -164,7 +164,6 @@ function mapStateToProps(state) {
     upcoming: state.upcoming,
     top_rated: state.top_rated,
     movie: state.currentFilm,
-    search: state.search,
   };
 }
 
