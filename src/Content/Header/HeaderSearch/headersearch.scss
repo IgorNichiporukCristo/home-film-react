@@ -17,5 +17,11 @@
             color: white;
             justify-content: flex-end;
         }
+        .search-list{
+            height: 140px;
+            width: 600px;
+            font-size: 0.8em;
+            overflow: auto;
+        }
     }
 }

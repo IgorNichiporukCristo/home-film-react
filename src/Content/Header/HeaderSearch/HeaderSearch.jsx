@@ -34,7 +34,9 @@ class HeaderSearch extends Component  {
             onKeyDown={this.handleKeyDown} 
           />
           {showsearch ?(
-            <SearchList search={search} />
+            <div className="search-list">
+              <SearchList search={search} />
+            </div>
           ): null
           }
         </div>

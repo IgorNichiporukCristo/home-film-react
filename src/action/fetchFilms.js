@@ -47,7 +47,7 @@ const fetchSearchFilm = (name) => (dispatch) => {
   .then(res=>res.json())
   .then(({ results }) => dispatch({
     type: ADD_SEARCH_FILMS,
-    payload: { results }
+    payload: results 
   }))
   .catch(error => error);
 };
