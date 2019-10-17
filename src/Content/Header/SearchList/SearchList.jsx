@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import SearchItem from '../SearchItem';
+import "./searchlist.scss";
 
 class SearchList extends Component {
   componentDidMount () {
@@ -10,7 +11,7 @@ class SearchList extends Component {
   render(){
     const { search } = this.props;
     return(
-      <ul className="search-films">
+      <ul className="search-list">
         {search.map(item => (
           <SearchItem key={item.id} item={item} />
         ))}
