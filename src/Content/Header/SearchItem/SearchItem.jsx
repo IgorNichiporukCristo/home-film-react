@@ -14,12 +14,14 @@ class SearchItem extends Component {
     const { item : {
       original_title: title,
       overview,
+      image,
     }} = this.props;
     return(
       <li>
         <SearchBlock 
           title={title}
           overview={overview}
+          image={image}
         />
       </li>
     );

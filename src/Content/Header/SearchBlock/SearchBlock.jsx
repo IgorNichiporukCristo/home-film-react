@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import "./searchblock.scss";
 
 class SearchBlock extends Component {
   componentDidMount() {}
 
   render() {
-    const { title, overview} = this.props;
+    const { image, title, overview} = this.props;
     return(
       <div>
-        <h1>{title}</h1>
-        <h1>{overview}</h1>
+        <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
+        <span>{title}</span>
+        <span>{overview}</span>
       </div>
     );
   }
 }
 
 SearchBlock.propTypes = {
+    image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     overview: PropTypes.string.isRequired,
   };

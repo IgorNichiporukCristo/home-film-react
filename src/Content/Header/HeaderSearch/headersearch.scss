@@ -18,10 +18,11 @@
             background-color: transparent;
             color: white;
         }
-        .search-list{
+        .search-list-block{
             height: 140px;
             width: 500px;
-            font-size: 0.8em;
+            overflow: scroll;
+            overflow-x: hidden; 
         }
     }
 }
