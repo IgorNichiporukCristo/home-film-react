@@ -1,0 +1,18 @@
+.search-item{
+    display: flex;
+    margin: 10px;
+    background-color: rgba(89, 99, 107, 0.164);
+    .search-image{
+        width: 100px;
+        height: 150px;
+        }
+    .search-info{
+        display: flex;
+        flex-direction: column;
+        color: aliceblue;
+        .title-search{
+            font-size: 15pt;
+            color: rgb(178, 217, 248);
+        }
+    }  
+}

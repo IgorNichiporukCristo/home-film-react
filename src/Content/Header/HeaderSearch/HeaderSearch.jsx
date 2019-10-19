@@ -26,7 +26,7 @@ class HeaderSearch extends Component  {
     return (
       <div className="header-name-search">
         <h1 className="header-name">Igor_ZBS_PACAN</h1>
-        <div className="search-block">
+        <div className="header-search-block">
           <input 
             className="header-search" 
             placeholder="Search movies by name..." 

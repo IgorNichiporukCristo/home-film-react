@@ -47,6 +47,7 @@ const filmReducer = (state = initialState, action) => {
                 time: action.payload.runtime,
                 release: action.payload.release_date,
                 image: action.payload.poster_path,
+                title: action.payload.original_title
               } : 
             obj),
             currentFilm: ((action.payload.filter == 'popular')? state.popular[0] 

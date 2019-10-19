@@ -2,15 +2,16 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 350px;
+    height: 32vh;
     .header-name{
         color: white;
         margin: 10px;
     }
-    .search-block{
+    .header-search-block{
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        height: 100%;
         .header-search{
             margin: 10px 0 10px 0;
             height: 20px;
@@ -19,8 +20,8 @@
             color: white;
         }
         .search-list-block{
-            height: 140px;
-            width: 500px;
+            height: 100vh;
+            width: 40vw;
             overflow: scroll;
             overflow-x: hidden; 
         }

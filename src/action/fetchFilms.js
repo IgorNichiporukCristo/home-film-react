@@ -3,7 +3,7 @@ import { ADD_POPULAR_FILMS, ADD_TOPRATED_FILMS, ADD_UPCOMING_FILMS, ADD_DESCRIPT
 const API_KEY = "ac122731994c8a0edef1603c3016ac82";
 const discoverUrl = (filter, page) => `https://api.themoviedb.org/3/movie/${filter}?api_key=${API_KEY}&language=en-US&page=${page}`;
 const createFilmURL = (id) => `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos,images`;
-const searchFilm = () => `https://api.themoviedb.org/3/search/keyword?api_key=${API_KEY}&page=1&query=lion`;
+const searchFilm = (query) => `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`;
 
 const fetchFilms = (filter, page) => (dispatch) => {
   const list = discoverUrl(filter, page);
@@ -34,15 +34,15 @@ const getDescriptionFilm = (id, filter) => (dispatch) => {
   const url = createFilmURL(id);
   fetch(url)
   .then(res => res.json())
-  .then(({ id, genres, videos: { results }, images: { backdrops }, runtime, release_date, overview,  poster_path }) => dispatch({ 
+  .then(({ id, genres, videos: { results }, images: { backdrops }, runtime, release_date, overview,  poster_path, original_title }) => dispatch({ 
       type: ADD_DESCRIPTION_FILM,
-      payload: { id, genres, results, backdrops, runtime, release_date, filter, overview, poster_path }
+      payload: { id, genres, results, backdrops, runtime, release_date, filter, overview, poster_path, original_title }
     }))
   .catch(error => error);
 };
 
-const fetchSearchFilm = () => (dispatch) => {
-  const url = searchFilm();
+const fetchSearchFilm = (query) => (dispatch) => {
+  const url = searchFilm(query);
   fetch(url)
   .then(res=>res.json())
   .then(({ results }) => dispatch({
