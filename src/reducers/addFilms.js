@@ -40,14 +40,10 @@ const filmReducer = (state = initialState, action) => {
             : (action.payload.filter == 'top_rated') ? state.top_rated 
             : state.search).map(obj => obj.id === action.payload.id ?
               { ...obj, 
-                overview: action.payload.overview,
                 genres: action.payload.genres,
                 video: action.payload.results,
                 poster: action.payload.backdrops[0].file_path,
                 time: action.payload.runtime,
-                release: action.payload.release_date,
-                image: action.payload.poster_path,
-                title: action.payload.original_title
               } : 
             obj),
             currentFilm: ((action.payload.filter == 'popular')? state.popular[0] 

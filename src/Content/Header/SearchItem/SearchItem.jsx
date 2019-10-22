@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-//import { connect } from 'react-redux';
-//import { getDescriptionFilm } from '../../../action/fetchFilms';
+import { connect } from 'react-redux';
+import { getDescriptionFilm } from '../../../action/fetchFilms';
 import "./searchitem.scss";
 
 class SearchItem extends Component {
   componentDidMount () {
-   // const { getDescriptionFilm } = this.props;
-   // getDescriptionFilm("search"); 
+   const { getDescriptionFilm } = this.props;
+   getDescriptionFilm("search"); 
   }
 
   render(){
@@ -28,20 +28,20 @@ class SearchItem extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//     return {
-//       items: state.items,
-//     };
-//   }
+function mapStateToProps(state) {
+    return {
+      items: state.items,
+    };
+  }
   
-//   function mapDispatchToProps(dispatch, { item: { id } = null }) {
-//     return {
-//       getDescriptionFilm: (filter) => dispatch(getDescriptionFilm(id, filter)),
-//     };
-//   }
+  function mapDispatchToProps(dispatch, { item: { id } = null }) {
+    return {
+      getDescriptionFilm: (filter) => dispatch(getDescriptionFilm(id, filter)),
+    };
+  }
 
   SearchItem.propTypes = {
-    // getDescriptionFilm: PropTypes.func.isRequired,
+    getDescriptionFilm: PropTypes.func.isRequired,
     item: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.instanceOf(SearchItem)]),
   };
   
@@ -49,4 +49,7 @@ class SearchItem extends Component {
     item: [],
   };
 
-export default SearchItem;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  )(SearchItem);
