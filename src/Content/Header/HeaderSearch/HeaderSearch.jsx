@@ -17,16 +17,23 @@ class HeaderSearch extends Component  {
   if (event.key === 'Enter'){
     this.setState({showsearch: true});
     fetchSearchFilm(query);
+    document.addEventListener('click', this.handleOutsideClick, false);
+  }
+}
+
+handleOutsideClick = (event) => {
+  if (!this.node.contains(event.target)) {
+    this.setState({showsearch: false});
   }
 }
 
   render() {
     const { showsearch } = this.state;
-    const { search } = this.props;
+    const { search, handleVideoClick } = this.props;
     return (
       <div className="header-name-search">
         <h1 className="header-name">Igor_ZBS_PACAN</h1>
-        <div className="header-search-block">
+        <div className="header-search-block" ref={node => { this.node = node; }}>
           <input 
             className="header-search" 
             placeholder="Search movies by name..." 
@@ -35,7 +42,7 @@ class HeaderSearch extends Component  {
           />
           {showsearch ?(
             <div className="search-list-block">
-              <SearchList search={search} />
+              <SearchList search={search} handleVideoClick={handleVideoClick} />
             </div>
           ): null
           }
@@ -60,6 +67,7 @@ function mapDispatchToProps(dispatch) {
 HeaderSearch.propTypes = {
   fetchSearchFilm: PropTypes.func.isRequired,
   search: PropTypes.arrayOf(PropTypes.object),
+  handleVideoClick: PropTypes.func.isRequired,
 };  
 
 HeaderSearch.defaultProps = {

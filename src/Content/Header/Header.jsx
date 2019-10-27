@@ -28,7 +28,8 @@ class Header extends Component {
         <div className="header-content">
           <div className="header-information">
             <HeaderSearch 
-              handleFilterState={this.handleFilterState}  
+              handleFilterState={this.handleFilterState} 
+              handleVideoClick={handleVideoClick}  
             />
           </div>  
           <div className="header-owerview">

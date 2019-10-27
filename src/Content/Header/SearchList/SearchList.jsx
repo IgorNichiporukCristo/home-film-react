@@ -9,11 +9,11 @@ class SearchList extends Component {
   }
 
   render(){
-    const { search } = this.props;
+    const { search, handleVideoClick } = this.props;
     return(
       <ul className="search-list">
         {search.map(item => (
-          <SearchItem key={item.id} item={item} />
+          <SearchItem key={item.id} item={item} handleVideoClick={handleVideoClick} />
         ))}
       </ul>
     );
@@ -22,6 +22,7 @@ class SearchList extends Component {
 
 SearchList.propTypes = {
   search: PropTypes.arrayOf(PropTypes.object),
+  handleVideoClick: PropTypes.func.isRequired,
 };  
 
 SearchList.defaultProps = {

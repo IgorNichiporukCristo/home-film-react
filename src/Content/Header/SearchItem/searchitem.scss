@@ -10,9 +10,20 @@
         display: flex;
         flex-direction: column;
         color: aliceblue;
+        .search-item-button{
+            background-color: transparent;
+        }
         .title-search{
             font-size: 15pt;
             color: rgb(178, 217, 248);
+            padding-right: 20px;
+        }
+        .search-text{
+            margin: 2px;
+        }
+        .search-genres{
+            font-size: 10pt;
+            color:rgb(132, 159, 182);
         }
     }  
 }

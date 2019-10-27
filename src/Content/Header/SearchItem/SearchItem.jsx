@@ -10,30 +10,49 @@ class SearchItem extends Component {
    getDescriptionFilm("search"); 
   }
 
+  handleClickVideo = () => {
+    const { handleVideoClick, item: { video }} = this.props;
+      handleVideoClick(video);  
+  };
+
   render(){
     const { item : {
       original_title: title,
       overview,
       poster_path: image,
+      genres
     }} = this.props;
     return(
       <li className="search-item">
         <img className="search-image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
         <div className="search-info">
-          <span className="title-search">{title}</span>
-          <span>{overview}</span>
+          <div>
+            <div>
+              <span className="title-search search-text">{title}</span>
+              <button 
+                className="search-item-button"
+                type="button"
+                onClick={this.handleClickVideo}
+              >
+                <span className="search-item-button-text">Play Trailer</span>
+              </button>
+            </div>
+          </div>
+          <span className="search-text search-genres">          
+            {genres
+              ? genres
+              .slice(0, 3)
+              .map(obj => obj.name)
+              .join(', ')
+              : 'Update page'}
+          </span>
+          <span className="search-text">{overview}</span>
         </div>
       </li>
     );
   }
 }
 
-function mapStateToProps(state) {
-    return {
-      items: state.items,
-    };
-  }
-  
   function mapDispatchToProps(dispatch, { item: { id } = null }) {
     return {
       getDescriptionFilm: (filter) => dispatch(getDescriptionFilm(id, filter)),
@@ -43,6 +62,7 @@ function mapStateToProps(state) {
   SearchItem.propTypes = {
     getDescriptionFilm: PropTypes.func.isRequired,
     item: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.instanceOf(SearchItem)]),
+    handleVideoClick: PropTypes.func.isRequired,
   };
   
   SearchItem.defaultProps = {
@@ -50,6 +70,6 @@ function mapStateToProps(state) {
   };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
   )(SearchItem);
