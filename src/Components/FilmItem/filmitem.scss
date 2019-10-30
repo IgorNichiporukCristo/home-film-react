@@ -4,7 +4,13 @@
     position: relative;
     margin: 0px 10px 30px 10px;
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    height: 380px;
-    width: 240px;
     list-style-type: none; 
 } 
+.mosaic{
+    height: 380px;
+    width: 240px;
+}
+.block{
+    height: 380px;
+    width: 100%;
+}

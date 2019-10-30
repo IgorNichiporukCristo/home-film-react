@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { getDescriptionFilm } from '../../action/fetchFilms';
 import ImageItem from './ImageItem';
 import InformationItem from './InfonationItem';
@@ -26,8 +27,9 @@ class FilmItem extends Component {
         id,
       }
     } = this.props;
+    const filmlistli = classNames("film-list-li", {block : true});
     return (
-      <li className="film-list-li">
+      <li className={filmlistli}>
         <ImageItem
           image={image}
           title={title}
