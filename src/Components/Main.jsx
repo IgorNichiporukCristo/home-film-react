@@ -21,6 +21,8 @@ class Main extends Component {
     requestUpcoming: true,
     requestTopRated: true,
     requestPopular: true,
+    gritStateBlock: true,
+    gritStateMosaic: false,
   }
 
   componentDidMount() {
@@ -83,9 +85,16 @@ class Main extends Component {
     }
   };
 
+  stateListGrid = () => {
+    const { gritStateBlock } = this.state;
+    this.setState({ gritStateBlock: !gritStateBlock });
+    const { gritStateMosaic } = this.state;
+    this.setState({ gritStateMosaic: !gritStateMosaic });
+  }
+
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;
-    const {  showItemVideo, video, filter } = this.state;
+    const {  showItemVideo, video, filter, gritStateBlock, gritStateMosaic } = this.state;
     return (
       <BrowserRouter>
         <div className="main-container">
@@ -97,7 +106,10 @@ class Main extends Component {
             />)
           : <div className="header-error" />  }
           <Sidebar 
+            handleClickStateGrid={this.stateListGrid}
             handleClick={this.handleFilterState}
+            gritStateBlock={gritStateBlock}
+            gritStateMosaic={gritStateMosaic}
           />
           <Route 
             path="/" 
@@ -109,6 +121,8 @@ class Main extends Component {
                 filter={filter} 
                 showItemVideo={showItemVideo} 
                 handleVideoClick={this.handleVideoClick} 
+                gritStateBlock={gritStateBlock}
+                gritStateMosaic={gritStateMosaic}
               />)} 
           />
           <Route 
@@ -120,7 +134,9 @@ class Main extends Component {
                 items={upcoming} 
                 filter={filter} 
                 showItemVideo={showItemVideo} 
-                handleVideoClick={this.handleVideoClick} 
+                handleVideoClick={this.handleVideoClick}
+                gritStateBlock={gritStateBlock}
+                gritStateMosaic={gritStateMosaic} 
               />)} 
           />
           <Route 
@@ -132,19 +148,9 @@ class Main extends Component {
                 items={top_rated}
                 filter={filter}  
                 showItemVideo={showItemVideo} 
-                handleVideoClick={this.handleVideoClick} 
-              />)} 
-          />
-          <Route 
-            path="/search" 
-            exact 
-            render={(props) => ( 
-              <FilmList 
-                {...props} 
-                items={top_rated}
-                filter={filter}  
-                showItemVideo={showItemVideo} 
-                handleVideoClick={this.handleVideoClick} 
+                handleVideoClick={this.handleVideoClick}
+                gritStateBlock={gritStateBlock}
+                gritStateMosaic={gritStateMosaic} 
               />)} 
           />
           <Video 

@@ -5,17 +5,10 @@ import './sidebar.scss';
 import { POPULAR, UPCOMING, TOP_RATED } from '../../constants';
 
 class Sidebar extends Component  {
-  state = {
-    listState: false,
-  }
   componentDidMount() { }
 
-  handleClickStateList () {
-    const { listState } = this.state;
-    this.setState({ listState: !listState });
-  }
-
   render() {
+    const { handleClick, handleClickStateGrid } = this.props;
     return(
       <div className='sidebar-countainer'>
         <div>
@@ -24,16 +17,17 @@ class Sidebar extends Component  {
           <Link className="sidebar-button" to="/top_rated" onClick={() => handleClick(TOP_RATED)}>Top Rated</Link>
         </div>
         <div>
-          <button onClick={this.handleClickStateList} className="button-sudebar-mosaic" type="button">view info</button>
-          <button onClick={this.handleClickStateList} className="button-sudebar-block" type="button">view info</button>
+          <button onClick={handleClickStateGrid} className="button-sudebar-mosaic" type="button">view info</button>
+          <button onClick={handleClickStateGrid} className="button-sudebar-block" type="button">view info</button>
         </div>
       </div>
     );
-  };
-};
+  }
+}
 
 Sidebar.propTypes = {
   handleClick: PropTypes.func.isRequired,
+  handleClickStateGrid: PropTypes.func.isRequired,
 };
 
 export default Sidebar;
