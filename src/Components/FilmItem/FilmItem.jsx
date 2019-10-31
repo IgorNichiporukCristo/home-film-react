@@ -31,12 +31,10 @@ class FilmItem extends Component {
       }
     } = this.props;
     const filmlistli = classNames("film-list-li", {mosaic: gritStateMosaic}, {block : gritStateBlock});
-    let picture;
-    gritStateMosaic ? picture = image : picture = poster;
     return (
       <li className={filmlistli}>
         <ImageItem
-          image={picture}
+          image={image}
           title={title}
           vote={vote}
           genres={genres}
@@ -44,6 +42,8 @@ class FilmItem extends Component {
           video={video}
           id={id}
           handleVideoClick={handleVideoClick}
+          gritStateMosaic={gritStateMosaic}
+          poster={poster}
         />
         <InformationItem 
           title={title} 

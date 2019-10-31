@@ -105,54 +105,56 @@ class Main extends Component {
               filter={filter}  
             />)
           : <div className="header-error" />  }
-          <Sidebar 
-            handleClickStateGrid={this.stateListGrid}
-            handleClick={this.handleFilterState}
-            gritStateBlock={gritStateBlock}
-            gritStateMosaic={gritStateMosaic}
-          />
-          <Route 
-            path="/" 
-            exact 
-            render={(props) => (
-              <FilmList 
-                {...props}
-                items={popular}
-                filter={filter} 
-                showItemVideo={showItemVideo} 
-                handleVideoClick={this.handleVideoClick} 
-                gritStateBlock={gritStateBlock}
-                gritStateMosaic={gritStateMosaic}
-              />)} 
-          />
-          <Route 
-            path="/upcoming" 
-            exact 
-            render={(props) => ( 
-              <FilmList 
-                {...props} 
-                items={upcoming} 
-                filter={filter} 
-                showItemVideo={showItemVideo} 
-                handleVideoClick={this.handleVideoClick}
-                gritStateBlock={gritStateBlock}
-                gritStateMosaic={gritStateMosaic} 
-              />)} 
-          />
-          <Route 
-            path="/top_rated" 
-            exact 
-            render={(props) => ( 
-              <FilmList 
-                {...props} 
-                items={top_rated}
-                filter={filter}  
-                showItemVideo={showItemVideo} 
-                handleVideoClick={this.handleVideoClick}
-                gritStateBlock={gritStateBlock}
-                gritStateMosaic={gritStateMosaic} 
-              />)} 
-          />
+          <div className="header-sidebar-list">
+            <Sidebar 
+              handleClickStateGrid={this.stateListGrid}
+              handleClick={this.handleFilterState}
+              gritStateBlock={gritStateBlock}
+              gritStateMosaic={gritStateMosaic}
+            />
+            <Route 
+              path="/" 
+              exact 
+              render={(props) => (
+                <FilmList 
+                  {...props}
+                  items={popular}
+                  filter={filter} 
+                  showItemVideo={showItemVideo} 
+                  handleVideoClick={this.handleVideoClick} 
+                  gritStateBlock={gritStateBlock}
+                  gritStateMosaic={gritStateMosaic}
+                />)} 
+            />
+            <Route 
+              path="/upcoming" 
+              exact 
+              render={(props) => ( 
+                <FilmList 
+                  {...props} 
+                  items={upcoming} 
+                  filter={filter} 
+                  showItemVideo={showItemVideo} 
+                  handleVideoClick={this.handleVideoClick}
+                  gritStateBlock={gritStateBlock}
+                  gritStateMosaic={gritStateMosaic} 
+                />)} 
+            />
+            <Route 
+              path="/top_rated" 
+              exact 
+              render={(props) => ( 
+                <FilmList 
+                  {...props} 
+                  items={top_rated}
+                  filter={filter}  
+                  showItemVideo={showItemVideo} 
+                  handleVideoClick={this.handleVideoClick}
+                  gritStateBlock={gritStateBlock}
+                  gritStateMosaic={gritStateMosaic} 
+                />)} 
+            />
+          </div>
           <Video 
             handleVideoClick={this.handleVideoClick} 
             stateVideo={showItemVideo} 

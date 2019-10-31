@@ -20,11 +20,12 @@ class ImageItem extends Component {
   };
 
   render() {
-    const { image, overview, title, vote, genres, video, id, handleVideoClick } = this.props;
+    const { image, overview, title, vote, genres, video, id, handleVideoClick, gritStateMosaic, poster } = this.props;
     const { showItemOwerwiew } = this.state;
     return (
       <div className="image-container">
-        <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
+        {gritStateMosaic ? <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
+         : <img className="image" alt="" src={`https://image.tmdb.org/t/p/original${poster}`} />}
         <div className="image-button-container">
           <button onClick={this.handleItemClick} className="image-overview" type="button">
             <span className="image-overview-text">View Info</span>
@@ -53,9 +54,11 @@ ImageItem.defaultProps = {
   genres: [],
   video: [],
   id: '',
+  gritStateMosaic: false,
 };
 ImageItem.propTypes = {
   image: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
   genres: PropTypes.arrayOf(PropTypes.object),
@@ -68,6 +71,7 @@ ImageItem.propTypes = {
     PropTypes.instanceOf(ImageItem),
   ]),
   handleVideoClick: PropTypes.func.isRequired,
+  gritStateMosaic: PropTypes.bool,
 };
 
 export default ImageItem;
