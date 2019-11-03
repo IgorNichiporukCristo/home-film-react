@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import './overwiewItem.scss';
 import InformationItem from '../InfonationItem/InformationItem';
 
@@ -15,17 +16,21 @@ class OverwiewItem extends Component {
   };
 
   render() {
-    const { stateInference, title, vote, genres, overview, id } = this.props;
+    const { stateInference, title, vote, genres, overview, id, filter, gritState, time } = this.props;
+    const overviewCountainer = classNames("overview-countainer", {"overview-size-mosaic": !gritState}, {"overview-size-block" : gritState});
+    const overviewCountainerInformation= classNames("overview-countainer-information", {"overview-countainer-information-sizeblock": gritState});
     return (
       <div>
-        {stateInference ? (
-          <div className="view-countainer">
-            <div className="overview-countainer">
-              <button className="buttom-back" type="button" onClick={this.handleClick}>X</button>
-              <InformationItem title={title} genres={genres} vote={vote} id={id} />
+        {stateInference || gritState ? (
+          <div className={overviewCountainer}>
+            <div className={overviewCountainerInformation}>
+              {!gritState ? (
+                <button className="overview-buttom-back" type="button" onClick={this.handleClick}>X</button>
+              ) : null}
+              <InformationItem title={title} genres={genres} vote={vote} id={id} filter={filter} gritState={gritState} time={time} />
               <p className="overview">{overview}</p>
             </div>
-            <div className="video-countainer">
+            <div className="overview-video-countainer">
               <button
                 className="overwiew-button-video"
                 type="button"
@@ -45,10 +50,12 @@ OverwiewItem.defaultProps = {
   genres: [],
   video: [],
   id: '',
+  gritState: false,
 };
 
 OverwiewItem.propTypes = {
   handleItemClick: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
   genres: PropTypes.arrayOf(PropTypes.object),
@@ -62,6 +69,8 @@ OverwiewItem.propTypes = {
     PropTypes.instanceOf(OverwiewItem),
   ]),
   handleVideoClick: PropTypes.func.isRequired,
+  gritState: PropTypes.bool,
+  time: PropTypes.number.isRequired,
 };
 
 export default OverwiewItem;

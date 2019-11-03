@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { broadcastId } from '../../../action/fetchFilms';
+import HeaderInformation from '../../Header/HeaderInformatiom';
 import './informationItem.scss';
 
 class InformationItem extends Component {
@@ -11,27 +12,32 @@ class InformationItem extends Component {
   };
 
   render() {
-    const { title, vote, genres } = this.props;
+    const { title, vote, genres, gritState, time } = this.props;
     return (
       <div
-        className="information-countainer"
+        className="informationitem-countainer"
         onClick={this.handleClick}
         onKeyPress={this.handleClick}
         role="button"
         tabIndex="0"
       >
-        <div className="information-title-vote">
-          <h4 className="information-title">{title}</h4>
-          <h4 className="information-vote">{vote}</h4>
-        </div>
-        <h5 className="information-genres">
+        {gritState ? 
+          <HeaderInformation title={title} genres={genres} vote={vote} time={time} /> 
+           : (
+             <div className="informationitem-title-vote">
+               <span className="informationitem-title">{title}</span>
+               <span className="informationitem-vote">{vote}</span>
+             </div>
+          )
+        }
+        <span className="informationitem-genres">
           {genres
             ? genres
                 .slice(0, 3)
                 .map(obj => obj.name)
                 .join(', ')
             : 'Update page'}
-        </h5>
+        </span>
       </div>
     );
   }
@@ -53,6 +59,8 @@ InformationItem.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
   putFilmId: PropTypes.func.isRequired,
   filter: PropTypes.string,
+  gritState: PropTypes.bool.isRequired,
+  time: PropTypes.number.isRequired,
 };
 
 export default connect(

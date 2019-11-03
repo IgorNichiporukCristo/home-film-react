@@ -17,8 +17,7 @@ class FilmItem extends Component {
     const {
       handleVideoClick,
       filter,
-      gritStateBlock,
-      gritStateMosaic,
+      gritState,
       item: {
         genres,
         poster_path: image,
@@ -28,9 +27,10 @@ class FilmItem extends Component {
         video,
         id,
         poster,
+        time,
       }
     } = this.props;
-    const filmlistli = classNames("film-list-li", {mosaic: gritStateMosaic}, {block : gritStateBlock});
+    const filmlistli = classNames("film-list-li", {mosaic: !gritState}, {block : gritState});
     return (
       <li className={filmlistli}>
         <ImageItem
@@ -42,16 +42,20 @@ class FilmItem extends Component {
           video={video}
           id={id}
           handleVideoClick={handleVideoClick}
-          gritStateMosaic={gritStateMosaic}
+          gritState={gritState}
           poster={poster}
+          filter={filter}
+          time={time}
         />
-        <InformationItem 
-          title={title} 
-          vote={vote} 
-          genres={genres} 
-          id={id} 
-          filter={filter} 
-        />
+        {!gritState ? (
+          <InformationItem 
+            title={title} 
+            vote={vote} 
+            genres={genres} 
+            id={id} 
+            filter={filter} 
+          />
+        ) : null}
       </li>
     );
   }
@@ -74,14 +78,12 @@ FilmItem.propTypes = {
   item: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.instanceOf(FilmItem)]),
   handleVideoClick: PropTypes.func.isRequired,
   filter: PropTypes.string,
-  gritStateBlock: PropTypes.bool,
-  gritStateMosaic: PropTypes.bool,
+  gritState: PropTypes.bool,
 };
 FilmItem.defaultProps = {
   item: {},
   filter:"",
-  gritStateBlock: true,
-  gritStateMosaic: false,
+  gritState: true,
 };
 
 export default connect(

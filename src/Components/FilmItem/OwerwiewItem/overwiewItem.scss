@@ -1,15 +1,13 @@
-.view-countainer {
-    height: 380px;
-    width: 240px;
+.overview-countainer {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.7);
     position: absolute;
     top: 0px;
     left: 0px;
-    .overview-countainer{
-        height: 310px;
-        .buttom-back{
+    .overview-countainer-information{
+        .overview-buttom-back{
             margin: 2px;
             background-color: rgb(189, 98, 63);
             border-radius: 20px;
@@ -23,11 +21,8 @@
             font-size: 0.8em;
             margin: 0px 10px 0px 10px ;
         }
-        h4,p {
-            color: white;
-        }
     }
-    .video-countainer{
+    .overview-video-countainer{
         height: 90px;
         background-color: black;
         .overwiew-button-video {
@@ -55,4 +50,15 @@
             }
         }
     }
+    .overview-countainer-information-sizeblock{
+        width: 40%;
+    }
+}
+.overview-size-mosaic{
+    height: 380px;
+    width: 240px; 
+}
+.overview-size-block{
+    height: 100%;
+    width: 100%; 
 }

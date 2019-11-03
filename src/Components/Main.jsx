@@ -21,8 +21,7 @@ class Main extends Component {
     requestUpcoming: true,
     requestTopRated: true,
     requestPopular: true,
-    gritStateBlock: true,
-    gritStateMosaic: false,
+    gritState: false,
   }
 
   componentDidMount() {
@@ -86,15 +85,13 @@ class Main extends Component {
   };
 
   stateListGrid = () => {
-    const { gritStateBlock } = this.state;
-    this.setState({ gritStateBlock: !gritStateBlock });
-    const { gritStateMosaic } = this.state;
-    this.setState({ gritStateMosaic: !gritStateMosaic });
+    const { gritState } = this.state;
+    this.setState({ gritState: !gritState });
   }
 
   render() {
     const { popular, upcoming, top_rated, movie } = this.props;
-    const {  showItemVideo, video, filter, gritStateBlock, gritStateMosaic } = this.state;
+    const {  showItemVideo, video, filter, gritState } = this.state;
     return (
       <BrowserRouter>
         <div className="main-container">
@@ -109,8 +106,7 @@ class Main extends Component {
             <Sidebar 
               handleClickStateGrid={this.stateListGrid}
               handleClick={this.handleFilterState}
-              gritStateBlock={gritStateBlock}
-              gritStateMosaic={gritStateMosaic}
+              gritState={gritState}
             />
             <Route 
               path="/" 
@@ -122,8 +118,7 @@ class Main extends Component {
                   filter={filter} 
                   showItemVideo={showItemVideo} 
                   handleVideoClick={this.handleVideoClick} 
-                  gritStateBlock={gritStateBlock}
-                  gritStateMosaic={gritStateMosaic}
+                  gritState={gritState}
                 />)} 
             />
             <Route 
@@ -136,8 +131,7 @@ class Main extends Component {
                   filter={filter} 
                   showItemVideo={showItemVideo} 
                   handleVideoClick={this.handleVideoClick}
-                  gritStateBlock={gritStateBlock}
-                  gritStateMosaic={gritStateMosaic} 
+                  gritState={gritState}
                 />)} 
             />
             <Route 
@@ -150,8 +144,7 @@ class Main extends Component {
                   filter={filter}  
                   showItemVideo={showItemVideo} 
                   handleVideoClick={this.handleVideoClick}
-                  gritStateBlock={gritStateBlock}
-                  gritStateMosaic={gritStateMosaic} 
+                  gritState={gritState}
                 />)} 
             />
           </div>

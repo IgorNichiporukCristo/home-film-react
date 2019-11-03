@@ -7,7 +7,7 @@ class FilmList extends Component {
   componentDidMount() {}
   
   render() {
-    const { items, handleVideoClick, filter, gritStateBlock, gritStateMosaic } = this.props;
+    const { items, handleVideoClick, filter, gritState } = this.props;
     return (
       <ul className="film-list-ul">
         {items.map(item => (
@@ -16,8 +16,7 @@ class FilmList extends Component {
             item={item} 
             handleVideoClick={handleVideoClick} 
             filter={filter} 
-            gritStateBlock={gritStateBlock} 
-            gritStateMosaic={gritStateMosaic}
+            gritState={gritState} 
           />
         ))}
       </ul>
@@ -29,15 +28,13 @@ FilmList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   handleVideoClick: PropTypes.func.isRequired,
   filter: PropTypes.string,
-  gritStateBlock: PropTypes.bool,
-  gritStateMosaic: PropTypes.bool,
+  gritState: PropTypes.bool,
 };
 
 FilmList.defaultProps = {
   items: [],
   filter:"",
-  gritStateBlock: true,
-  gritStateMosaic: false,
+  gritState: true,
 };
 
 export default FilmList;

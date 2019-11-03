@@ -1,38 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import VoteStar from '../../VoteStar';
 import './HeaderInformation.scss';
 
 class HeaderInformation extends Component {
   componentDidMount(){}
-  
-  VoteStar = (vote,time) => {
-    let min = time % 60;
-    let hours = (time - min) / 60;
-    let rezult = `${hours}h ${min}m`;
-    return(
-      <div className="header-vote">
-        <div>
-          <div className="header-vote-grey">
-            {Array.apply(null, { length: 10 }).map((e) => 
-              (
-                <div className="star" key={e} />
-              ))
-            }
-          </div>
-          <div className="header-vote-yellow">
-            {Array.apply(null, { length: vote }).map((e) => 
-                (
-                  <div className="star star-yellow" key={e} />
-                ))
-            }
-          </div>
-        </div>
-        <div className="vote-number">{vote}</div>
-        <div className="time">{rezult}</div>
-      </div>
-    );
-  }
-  
 
   render(){
     const {title, genres, vote, time} = this.props;
@@ -50,7 +22,7 @@ class HeaderInformation extends Component {
               : 'Update page'}
           </ul>
         </div>
-        {this.VoteStar(vote,time)}
+        <VoteStar vote={vote} time={time} />
       </div>
     );
   }

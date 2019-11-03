@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import OverviewItem from '../OwerwiewItem';
 import './imageItem.scss';
 
@@ -20,13 +21,14 @@ class ImageItem extends Component {
   };
 
   render() {
-    const { image, overview, title, vote, genres, video, id, handleVideoClick, gritStateMosaic, poster } = this.props;
+    const { image, overview, title, vote, genres, video, id, handleVideoClick, gritState, poster, filter, time } = this.props;
     const { showItemOwerwiew } = this.state;
+    const ImageInformationItem = classNames("image-button-container", {showItem: !gritState} );
     return (
       <div className="image-container">
-        {gritStateMosaic ? <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />
-         : <img className="image" alt="" src={`https://image.tmdb.org/t/p/original${poster}`} />}
-        <div className="image-button-container">
+        {gritState ? <img className="image" alt="" src={`https://image.tmdb.org/t/p/original${poster}`} />
+        : <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />}
+        <div className={ImageInformationItem}>
           <button onClick={this.handleItemClick} className="image-overview" type="button">
             <span className="image-overview-text">View Info</span>
           </button>
@@ -44,6 +46,9 @@ class ImageItem extends Component {
           video={video}
           id={id}
           handleVideoClick={handleVideoClick}
+          gritState={gritState}
+          filter={filter}
+          time={time}
         />
       </div>
     );
@@ -54,10 +59,12 @@ ImageItem.defaultProps = {
   genres: [],
   video: [],
   id: '',
-  gritStateMosaic: false,
+  gritState: false,
+  filter: "",
 };
 ImageItem.propTypes = {
   image: PropTypes.string.isRequired,
+  filter: PropTypes.string,
   poster: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
@@ -71,7 +78,8 @@ ImageItem.propTypes = {
     PropTypes.instanceOf(ImageItem),
   ]),
   handleVideoClick: PropTypes.func.isRequired,
-  gritStateMosaic: PropTypes.bool,
+  gritState: PropTypes.bool,
+  time: PropTypes.number.isRequired,
 };
 
 export default ImageItem;
