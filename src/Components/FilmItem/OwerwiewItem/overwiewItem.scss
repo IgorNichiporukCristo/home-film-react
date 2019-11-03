@@ -18,8 +18,19 @@
         }
         .overview{
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 0.8em;
-            margin: 0px 10px 0px 10px ;
+            
+        }
+        .overview-grid{
+            font-size: 0.7em;
+            max-height: 200px;
+            width: 220px;
+            margin: 5px 10px 5px 10px ;
+            overflow: hidden;
+            color: white;
+        }
+        .overview-block{
+            margin: 20px 10px 0px 10px ;
+            color: white;
         }
     }
     .overview-video-countainer{
@@ -50,7 +61,7 @@
             }
         }
     }
-    .overview-countainer-information-sizeblock{
+    .overview-countainer-information.sizeblock{
         width: 40%;
     }
 }

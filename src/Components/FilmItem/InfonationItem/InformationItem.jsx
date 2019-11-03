@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { broadcastId } from '../../../action/fetchFilms';
 import HeaderInformation from '../../Header/HeaderInformatiom';
@@ -12,7 +13,8 @@ class InformationItem extends Component {
   };
 
   render() {
-    const { title, vote, genres, gritState, time } = this.props;
+    const { title, vote, genres, gritState, time, stateInference } = this.props;
+    const informationItem = classNames("informationitem-title", {"active": stateInference });
     return (
       <div
         className="informationitem-countainer"
@@ -25,19 +27,22 @@ class InformationItem extends Component {
           <HeaderInformation title={title} genres={genres} vote={vote} time={time} /> 
            : (
              <div className="informationitem-title-vote">
-               <span className="informationitem-title">{title}</span>
+               <span className={informationItem}>{title}</span>
                <span className="informationitem-vote">{vote}</span>
              </div>
           )
         }
-        <span className="informationitem-genres">
-          {genres
-            ? genres
-                .slice(0, 3)
-                .map(obj => obj.name)
-                .join(', ')
-            : 'Update page'}
-        </span>
+        {gritState ? null : (
+          <span className="informationitem-genres">
+            {genres
+              ? genres
+                  .slice(0, 3)
+                  .map(obj => obj.name)
+                  .join(', ')
+              : 'Update page'}
+          </span>
+          )
+        }
       </div>
     );
   }
@@ -61,6 +66,7 @@ InformationItem.propTypes = {
   filter: PropTypes.string,
   gritState: PropTypes.bool.isRequired,
   time: PropTypes.number.isRequired,
+  stateInference: PropTypes.func.isRequired,
 };
 
 export default connect(

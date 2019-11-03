@@ -13,6 +13,10 @@
                 font-size: 1.1em;
                 white-space: nowrap;
                 text-overflow: ellipsis;
+                overflow: hidden;
+            }
+            .informationitem-title.active{
+                color: white;
             }
             .informationitem-vote {
                 margin: 10px 10px 0px 0px;
@@ -23,19 +27,6 @@
                 text-align: center;
             }
                 
-        }
-        .informationitem-mosaic{
-            color: aliceblue; 
-            .informationitem-title {
-            overflow: hidden;
-            }
-        }
-        .informationitem-block{
-            color: aliceblue;
-            .informationitem-title {
-                font-size: 1.9em;
-                margin-bottom: 20px;
-            }
         }
     .informationitem-genres {
             width: 17em;

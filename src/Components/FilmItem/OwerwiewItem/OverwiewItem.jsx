@@ -18,7 +18,8 @@ class OverwiewItem extends Component {
   render() {
     const { stateInference, title, vote, genres, overview, id, filter, gritState, time } = this.props;
     const overviewCountainer = classNames("overview-countainer", {"overview-size-mosaic": !gritState}, {"overview-size-block" : gritState});
-    const overviewCountainerInformation= classNames("overview-countainer-information", {"overview-countainer-information-sizeblock": gritState});
+    const overviewCountainerInformation= classNames("overview-countainer-information", {"sizeblock": gritState});
+    const overviewText=classNames("overview",{ "overview-grid": !gritState}, {"overview-block": gritState});
     return (
       <div>
         {stateInference || gritState ? (
@@ -27,8 +28,8 @@ class OverwiewItem extends Component {
               {!gritState ? (
                 <button className="overview-buttom-back" type="button" onClick={this.handleClick}>X</button>
               ) : null}
-              <InformationItem title={title} genres={genres} vote={vote} id={id} filter={filter} gritState={gritState} time={time} />
-              <p className="overview">{overview}</p>
+              <InformationItem title={title} genres={genres} vote={vote} id={id} filter={filter} gritState={gritState} time={time} stateInference={stateInference} />
+              <p className={overviewText}>{overview}</p>
             </div>
             <div className="overview-video-countainer">
               <button
