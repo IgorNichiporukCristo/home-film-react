@@ -20,6 +20,8 @@ class OverwiewItem extends Component {
     const overviewCountainer = classNames("overview-countainer", {"overview-size-mosaic": !gritState}, {"overview-size-block" : gritState});
     const overviewCountainerInformation= classNames("overview-countainer-information", {"sizeblock": gritState});
     const overviewText=classNames("overview",{ "overview-grid": !gritState}, {"overview-block": gritState});
+    const overviewVideoCountainer=classNames("overview-video-countainer",{"black": !gritState});
+    const overviewButtonVideo=classNames("overwiew-button-video",{"grid": !gritState},{"block": gritState});
     return (
       <div>
         {stateInference || gritState ? (
@@ -31,9 +33,9 @@ class OverwiewItem extends Component {
               <InformationItem title={title} genres={genres} vote={vote} id={id} filter={filter} gritState={gritState} time={time} stateInference={stateInference} />
               <p className={overviewText}>{overview}</p>
             </div>
-            <div className="overview-video-countainer">
+            <div className={overviewVideoCountainer}>
               <button
-                className="overwiew-button-video"
+                className={overviewButtonVideo}
                 type="button"
                 onClick={this.handleClickVideo}
               >

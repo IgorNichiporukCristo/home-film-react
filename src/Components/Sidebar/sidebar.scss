@@ -4,6 +4,7 @@
     border-bottom: solid 3px #9EC1D4;
     display: flex;
     align-items: flex-end;
+    justify-content: space-between;
     .sidebar-button{
         margin: 0 20px 0px 0;
         padding: 0px;
@@ -18,4 +19,19 @@
     .sidebar-button:hover{
         background-color:  rgb(255, 250, 250);  
     }
+    .button-sudebar-mosaic{
+        outline: none;
+        border: 0;
+        margin: 0px;
+        padding: 0px;
+
+        .button-list-grid{
+            height: 20px;
+            width: 30px;
+            margin: 0px;
+            padding: 0px;
+            outline: none;
+        }
+    }
+
 }

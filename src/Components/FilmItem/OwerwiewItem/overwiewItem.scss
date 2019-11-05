@@ -35,7 +35,6 @@
     }
     .overview-video-countainer{
         height: 90px;
-        background-color: black;
         .overwiew-button-video {
             position: relative;
             margin: 0px;
@@ -44,8 +43,6 @@
             align-items: center;
             justify-content: center;
             outline:none;
-            top: 20%;
-            left: 40%;
             width: 45px;
             height: 45px;
             border-radius: 30%;
@@ -60,6 +57,17 @@
                 clip-path: polygon(0 0, 100% 50%, 0 100%);
             }
         }
+        .overwiew-button-video.grid{
+            top: 20%;
+            left: 40%;
+        }
+        .overwiew-button-video.block{
+            top: 20%;
+            left: 10%;
+        }
+    }
+    .overview-video-countainer.black{
+        background-color: black;
     }
     .overview-countainer-information.sizeblock{
         width: 40%;
