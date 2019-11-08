@@ -31,7 +31,7 @@ class OverwiewItem extends Component {
                 <button className="overview-buttom-back" type="button" onClick={this.handleClick}>X</button>
               ) : null}
               <InformationItem title={title} genres={genres} vote={vote} id={id} filter={filter} gritState={gritState} time={time} stateInference={stateInference} />
-              <p className={overviewText}>{overview}</p>
+              <p className={overviewText}><div className="deleteScroll">{overview}</div></p>
             </div>
             <div className={overviewVideoCountainer}>
               <button

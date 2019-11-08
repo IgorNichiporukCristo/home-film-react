@@ -23,7 +23,7 @@ class HeaderButton extends Component {
     const { showOverview } = this.state;
     return (
       <div className="header-button-countainer">
-        {showOverview ? <div className="headerbutton-overview">{overview}</div> : null}
+        {showOverview ? <div className="header-overview"><div className="header-overview-scroll">{overview}</div></div> : null}
         <div className="button-countainer-header">
           <button onClick={this.handleClickVideo} className="button-header" type="button">watch now</button>
           <button onClick={this.handleClick} className="button-header" type="button">view info</button>
