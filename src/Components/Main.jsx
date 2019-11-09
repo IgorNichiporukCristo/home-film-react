@@ -100,6 +100,7 @@ class Main extends Component {
               movie={movie} 
               handleVideoClick={this.handleVideoClick} 
               filter={filter}  
+              gritState={gritState}
             />)
           : <div className="header-error" />  }
           <div className="header-sidebar-list">

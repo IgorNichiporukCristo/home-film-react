@@ -23,8 +23,7 @@ class Header extends Component {
       },
     } = this.props;
     return (
-      <div className="header-style">
-        <img className="poster" alt="" src={`https://image.tmdb.org/t/p/original${poster}`} />
+      <div className="header-style" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280${poster})` }}>
         <div className="header-content">
           <div className="header-information">
             <HeaderSearch 

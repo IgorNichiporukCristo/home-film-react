@@ -1,8 +1,7 @@
 .film-list-ul{
     display: flex;
-    
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    min-width: 500px;
     width: 100%;
     padding: 0px;
     
