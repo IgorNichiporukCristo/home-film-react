@@ -1,8 +1,11 @@
 .film-list-ul{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: stretch;
     min-width: 500px;
     width: 100%;
-    padding: 0px;
+    padding: 0;
     
 }

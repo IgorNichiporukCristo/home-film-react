@@ -84,9 +84,12 @@ class Main extends Component {
     }
   };
 
-  stateListGrid = () => {
-    const { gritState } = this.state;
-    this.setState({ gritState: !gritState });
+  stateListMosaik = () => {
+    this.setState({ gritState: false });
+  }
+
+  stateListBlock = () => {
+    this.setState({ gritState: true });
   }
 
   render() {
@@ -105,9 +108,11 @@ class Main extends Component {
           : <div className="header-error" />  }
           <div className="header-sidebar-list">
             <Sidebar 
-              handleClickStateGrid={this.stateListGrid}
+              handleClickStateGrid={this.stateListMosaik}
+              handleClickStateBlock={this.stateListBlock}
               handleClick={this.handleFilterState}
               gritState={gritState}
+              filter={filter}
             />
             <Route 
               path="/" 
