@@ -1,25 +1,45 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import Loading from '../Loading/Loading';
 import FilmItem from '../FilmItem';
 import './filmlist.scss';
 
 class FilmList extends Component {
-  componentDidMount() {}
-  
+  state = {
+    isLoading: false,
+  }
+
+  componentDidMount() {
+  }
+
+  isLoading = () => {
+    this.setState({isLoading: true});
+  }
+
   render() {
     const { items, handleVideoClick, filter, gritState } = this.props;
+    const { isLoading } = this.state;
+    const filmList = classNames("film-list-ul", {"show": isLoading}, {"invisible": !isLoading});
+    const loading = classNames("loading", {"show": !isLoading}, {"invisible": isLoading});
     return (
-      <ul className="film-list-ul">
-        {items.map(item => (
-          <FilmItem 
-            key={item.id} 
-            item={item} 
-            handleVideoClick={handleVideoClick} 
-            filter={filter} 
-            gritState={gritState} 
-          />
-        ))}
-      </ul>
+      <div className="film-list-ul">
+        <ul className={filmList}>
+          {items.map(item => (
+            <FilmItem 
+              key={item.id} 
+              item={item} 
+              handleVideoClick={handleVideoClick} 
+              filter={filter} 
+              gritState={gritState}
+              isLoading={this.isLoading} 
+            />
+            ))}
+        </ul>
+        <div className={loading}>
+          <Loading />
+        </div>
+      </div>
     );
   }
 }

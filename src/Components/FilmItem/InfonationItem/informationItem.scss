@@ -39,3 +39,18 @@
 }.informationitem-countainer:focus {
     outline: none;
   }
+  @media screen and (max-width: 1000px){
+    .informationitem-countainer {
+        .informationitem-title-vote {
+                .informationitem-title {
+                    font-size: 35pt;
+                }
+                .informationitem-vote{
+                    font-size: 30pt;
+                }
+        }
+    }
+    .informationitem-genres{
+        font-size: 30pt;
+    }
+  }

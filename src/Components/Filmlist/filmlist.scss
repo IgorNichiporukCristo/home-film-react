@@ -2,10 +2,24 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
     align-content: stretch;
-    min-width: 500px;
-    width: 100%;
-    padding: 0;
-    
+    width: 80vw;
+    max-width: 100%;
+    padding: 0;   
+}
+.film-list-ul.show{
+    opacity: 1;
+}
+.film-list-ul.invisible{
+    opacity: 0;
+}
+.loading{
+    position: absolute;
+}
+.loading.show{
+    opacity: 1;
+}
+.loading.invisible{
+    opacity: 0;
 }

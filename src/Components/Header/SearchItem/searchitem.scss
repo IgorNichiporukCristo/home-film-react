@@ -1,7 +1,7 @@
 .search-item{
     display: flex;
     margin: 10px;
-    background-color: rgba(89, 99, 107, 0.164);
+    background-color: rgba(66, 79, 90, 0.623);
     .search-image{
         width: 100px;
         height: 150px;
@@ -23,7 +23,20 @@
         }
         .search-genres{
             font-size: 10pt;
-            color:rgb(132, 159, 182);
+            color:rgb(177, 199, 219);
         }
     }  
+}
+@media screen and (max-width: 1000px){
+    .search-item{
+        .search-image{
+            width: 200px;
+            height: 300px;
+        }
+        .search-info{
+            .title-search{
+                font-size: 55pt;
+            }    
+        }   
+    }   
 }

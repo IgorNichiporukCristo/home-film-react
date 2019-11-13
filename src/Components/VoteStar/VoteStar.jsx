@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './votestar.scss';
 
 const VoteStar = ({vote,time}) => {
     let min = time % 60;

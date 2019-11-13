@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import HeaderSearch from './HeaderSearch';
 import HeaderInformation from './HeaderInformatiom';
 import HeaderButton from './HeaderButton';
+import Loading from '../Loading/Loading';
 import './header.scss';
 
 class Header extends Component {
@@ -23,29 +24,39 @@ class Header extends Component {
       },
     } = this.props;
     return (
-      <div className="header-style" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280${poster})` }}>
-        <div className="header-content">
-          <div className="header-information">
-            <HeaderSearch 
-              handleFilterState={this.handleFilterState} 
-              handleVideoClick={handleVideoClick}  
-            />
-          </div>  
-          <div className="header-owerview">
-            <HeaderInformation 
-              title={title} 
-              genres={genres} 
-              vote={vote_average} 
-              time={time} 
-            />
-            <HeaderButton 
-              overview={overview} 
-              video={video} 
-              handleVideoClick={handleVideoClick} 
-            />
+      <div className="header-style">
+        {poster ? (
+          <div className="header-background" style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280${poster})`}}>
+            <div className="header-content">
+              <div className="header-information">
+                <HeaderSearch 
+                  handleFilterState={this.handleFilterState} 
+                  handleVideoClick={handleVideoClick}  
+                />
+              </div>  
+              <div className="header-owerview">
+                <HeaderInformation 
+                  title={title} 
+                  genres={genres} 
+                  vote={vote_average} 
+                  time={time} 
+                />
+                <HeaderButton 
+                  overview={overview} 
+                  video={video} 
+                  handleVideoClick={handleVideoClick} 
+                />
+              </div>
+            </div>
+          </div>     
+        ) :(
+          <div className="loading-header"> 
+            <Loading />
           </div>
-        </div>
+        ) 
+        }
       </div>
+      
     );
   }
 }

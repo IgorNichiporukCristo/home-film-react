@@ -9,8 +9,9 @@ import './filmitem.scss';
 
 class FilmItem extends Component {
   componentDidMount() {
-    const { getDescriptionFilm, filter } = this.props;
+    const { getDescriptionFilm, filter, isLoading } = this.props;
     getDescriptionFilm(filter);
+    isLoading();
   }
 
   render() {
@@ -79,6 +80,7 @@ FilmItem.propTypes = {
   handleVideoClick: PropTypes.func.isRequired,
   filter: PropTypes.string,
   gritState: PropTypes.bool,
+  isLoading: PropTypes.func.isRequired,
 };
 FilmItem.defaultProps = {
   item: {},
