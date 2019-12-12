@@ -22,11 +22,11 @@ class HeaderButton extends Component {
     const { overview } = this.props;
     const { showOverview } = this.state;
     return (
-      <div className="header-button-countainer">
+      <div className="header-button-overview-countainer">
         {showOverview ? <div className="header-overview"><div className="header-overview-scroll">{overview}</div></div> : null}
-        <div className="button-countainer-header">
-          <button onClick={this.handleClickVideo} className="button-header" type="button">watch now</button>
-          <button onClick={this.handleClick} className="button-header" type="button">view info</button>
+        <div className="header-button-countainer">
+          <button onClick={this.handleClickVideo} className="header-button" type="button">watch now</button>
+          <button onClick={this.handleClick} className="header-button" type="button">view info</button>
         </div>
       </div>
     );

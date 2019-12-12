@@ -9,7 +9,7 @@ class HeaderInformation extends Component {
   render(){
     const {title, genres, vote, time} = this.props;
     return (
-      <div className="header-content-countainer">
+      <div className="header-information-countainer">
         <span className="header-title">{title}</span>
         <div>
           <ul className="header-genres-ul">

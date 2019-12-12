@@ -7,7 +7,7 @@ import FilmList from './Filmlist';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Video from './Video';
-import './index.scss';
+import './main.scss';
 import { POPULAR, UPCOMING, TOP_RATED } from '../constants';
 
 class Main extends Component {
@@ -39,7 +39,8 @@ class Main extends Component {
       this.setState({ filter: location.pathname.substring(1) });
       let filter = location.pathname.substring(1);
       getFilms(filter, 1);
-      location.pathname == "/upcoming" ? this.setState({ requestUpcoming: false }) : this.setState({ requestTopRated: false });
+      location.pathname == "/upcoming" ? this.setState({ requestUpcoming: false }) 
+      : this.setState({ requestTopRated: false });
     }
   }
 
@@ -51,7 +52,14 @@ class Main extends Component {
   };
 
   handleFilterState = (filter) => {
-    const {  requestUpcoming, requestTopRated, requestPopular, pagePopular, pageUpcoming, pageTop_Rated  } = this.state;
+    const { 
+      requestUpcoming, 
+      requestTopRated, 
+      requestPopular, 
+      pagePopular, 
+      pageUpcoming, 
+      pageTop_Rated 
+    } = this.state;
     const { getFilms } = this.props;
     if(filter == UPCOMING && requestUpcoming){
       getFilms(filter, pageUpcoming);
@@ -105,8 +113,8 @@ class Main extends Component {
               filter={filter}  
               gritState={gritState}
             />)
-          : <div className="header-error" />  }
-          <div className="header-sidebar-list">
+          : <div className="header-backgroung-download" />  }
+          <div className="film-list-container">
             <Sidebar 
               handleClickStateGrid={this.stateListMosaik}
               handleClickStateBlock={this.stateListBlock}

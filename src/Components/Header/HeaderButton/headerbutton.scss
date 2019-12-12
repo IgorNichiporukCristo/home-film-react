@@ -1,4 +1,4 @@
-.header-button-countainer{
+.header-button-overview-countainer{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -19,9 +19,9 @@
             padding-right: 45px;
         }
     }
-    .button-countainer-header{
+    .header-button-countainer{
          display: flex;
-        .button-header{
+        .header-button{
             margin: 10px;
             padding: 10px;
             outline:none;
@@ -31,16 +31,16 @@
             border-style: ridge;
             box-shadow: 0 0 5px rgba(0,0,0,0.3);
         }
-        .button-header:hover {
+        .header-button:hover {
             background-color: rgb(65, 106, 230);
             transition: 0.3s;
         }
     }
 }
 @media screen and (max-width: 1000px){
-    .header-button-countainer{
+    .header-button-overview-countainer{
         width: 100%;
-        .button-header{
+        .header-button{
             font-size: 25pt;
         }
     }

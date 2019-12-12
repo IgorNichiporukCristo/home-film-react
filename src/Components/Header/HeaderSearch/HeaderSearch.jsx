@@ -32,7 +32,7 @@ handleOutsideClick = (event) => {
     const { search, handleVideoClick } = this.props;
     return (
       <div className="header-name-search">
-        <h1 className="header-name">Igor_ZBS_PACAN</h1>
+        <h1 className="header-name">Igor</h1>
         <div className="header-search-block" ref={node => { this.node = node; }}>
           <input 
             className="header-search" 
