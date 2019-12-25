@@ -22,12 +22,16 @@ class Main extends Component {
     requestTopRated: true,
     requestPopular: true,
     gritState: false,
+    stateLoading: false,
   }
 
   componentDidMount() {
     document.addEventListener('scroll', this.trackScrolling);
     this.definitionPathnamePage();
   }
+  // componentDidUpdate() {
+  //   document.addEventListener('scroll', this.trackScrolling2);
+  // }
 
   definitionPathnamePage = () => {
     const { getFilms } = this.props;
@@ -42,6 +46,12 @@ class Main extends Component {
       location.pathname == "/upcoming" ? this.setState({ requestUpcoming: false }) 
       : this.setState({ requestTopRated: false });
     }
+  }
+
+  changeStateLoading = () => {
+    this.setState(state => ({
+      stateLoading: !state.stateLoading,
+    }));
   }
 
   handleVideoClick = (video) => {
@@ -76,21 +86,34 @@ class Main extends Component {
   }
 
   trackScrolling = () => {
-    const { filter, pagePopular, pageUpcoming, pageTop_Rated } = this.state;
+    const { filter, pagePopular, pageUpcoming, pageTop_Rated, stateLoading } = this.state;
     const { getFilms } = this.props;
-    if (document.documentElement.getBoundingClientRect().bottom -100 < document.documentElement.clientHeight) {
-      if (filter == POPULAR){
-        getFilms(filter, pagePopular + 1);
-        this.setState({ pagePopular: pagePopular + 1});
-      } if (filter == UPCOMING){
-        getFilms(filter, pageUpcoming + 1);
-        this.setState({ pageUpcoming: pageUpcoming + 1});
-      } if (filter == TOP_RATED) {
-        getFilms(filter, pageTop_Rated + 1);
-        this.setState({ pageTop_Rated: pageTop_Rated + 1});
-      }
+    if (document.documentElement.getBoundingClientRect().bottom -1 < document.documentElement.clientHeight) {
+      if (!stateLoading){ 
+        this.changeStateLoading();
+        if (filter == POPULAR ){
+          getFilms(filter, pagePopular + 1);
+          this.changeStateLoading();
+          this.setState({ pagePopular: pagePopular + 1});
+        } if (filter == UPCOMING){
+          getFilms(filter, pageUpcoming + 1);
+          this.setState({ pageUpcoming: pageUpcoming + 1});
+        } if (filter == TOP_RATED) {
+          getFilms(filter, pageTop_Rated + 1);
+          this.setState({ pageTop_Rated: pageTop_Rated + 1});
+        }
+      }  
     }
   };
+
+  // trackScrolling2 = () => {
+  //   const { stateLoading } = this.state;
+  //   if (document.documentElement.getBoundingClientRect().bottom -100 < document.documentElement.clientHeight) {
+  //     if (!stateLoading){ 
+  //       this.changeStateLoading();
+  //     }  
+  //   }
+  // };
 
   stateListMosaik = () => {
     this.setState({ gritState: false });
@@ -184,7 +207,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getFilms: (filter, page) => dispatch(fetchFilms(filter, page)),
+    getFilms: (filter, page) => dispatch(fetchFilms(filter, page))
   };
 }
 

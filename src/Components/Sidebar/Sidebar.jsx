@@ -42,7 +42,7 @@ Sidebar.propTypes = {
   handleClickStateGrid: PropTypes.func.isRequired,
   handleClickStateBlock: PropTypes.func.isRequired,
   gritState: PropTypes.bool.isRequired,
-  filter: PropTypes.bool.isRequired,
+  filter: PropTypes.string.isRequired,
 };
 
 export default Sidebar;

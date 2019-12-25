@@ -57,6 +57,9 @@ function mapDispatchToProps(dispatch, { id }) {
 InformationItem.defaultProps = {
   genres: [],
   filter:"",
+  gritState: false,
+  time: 0,
+  stateInference: false,
 };
 InformationItem.propTypes = {
   title: PropTypes.string.isRequired,
@@ -64,9 +67,9 @@ InformationItem.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.object),
   putFilmId: PropTypes.func.isRequired,
   filter: PropTypes.string,
-  gritState: PropTypes.bool.isRequired,
-  time: PropTypes.number.isRequired,
-  stateInference: PropTypes.func.isRequired,
+  gritState: PropTypes.bool,
+  time: PropTypes.number,
+  stateInference: PropTypes.bool,
 };
 
 export default connect(

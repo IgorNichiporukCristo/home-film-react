@@ -61,11 +61,13 @@ ImageItem.defaultProps = {
   id: '',
   gritState: false,
   filter: "",
+  poster: "",
+  time: 0,
 };
 ImageItem.propTypes = {
   image: PropTypes.string.isRequired,
   filter: PropTypes.string,
-  poster: PropTypes.string.isRequired,
+  poster: PropTypes.string,
   title: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
   genres: PropTypes.arrayOf(PropTypes.object),
@@ -79,7 +81,7 @@ ImageItem.propTypes = {
   ]),
   handleVideoClick: PropTypes.func.isRequired,
   gritState: PropTypes.bool,
-  time: PropTypes.number.isRequired,
+  time: PropTypes.number,
 };
 
 export default ImageItem;
