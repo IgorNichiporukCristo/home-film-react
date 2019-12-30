@@ -37,7 +37,7 @@ class Video extends Component {
     };
     return (
       <div>
-        {stateVideo
+        {stateVideo && video[0]
           ? ReactDOM.createPortal(
             <div
               className="buttonVideo"

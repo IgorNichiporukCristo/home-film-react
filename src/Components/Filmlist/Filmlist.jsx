@@ -10,9 +10,6 @@ class FilmList extends Component {
     isLoading: false,
   }
 
-  componentDidMount() {
-  }
-
   isLoading = () => {
     this.setState({isLoading: true});
   }
@@ -21,7 +18,6 @@ class FilmList extends Component {
     const { items, handleVideoClick, filter, gritState } = this.props;
     const { isLoading } = this.state;
     const filmList = classNames("film-list-ul", {"show": isLoading}, {"invisible": !isLoading});
-    const loading = classNames("loading", {"show": !isLoading}, {"invisible": isLoading});
     return (
       <div className="film-list-ul">
         <ul className={filmList}>
@@ -36,7 +32,7 @@ class FilmList extends Component {
             />
             ))}
         </ul>
-        <div className={loading}>
+        <div>
           <Loading />
         </div>
       </div>

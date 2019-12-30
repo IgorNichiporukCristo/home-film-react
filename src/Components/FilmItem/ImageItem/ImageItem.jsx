@@ -24,9 +24,10 @@ class ImageItem extends Component {
     const { image, overview, title, vote, genres, video, id, handleVideoClick, gritState, poster, filter, time } = this.props;
     const { showItemOwerwiew } = this.state;
     const ImageInformationItem = classNames("image-button-container", {showItem: !gritState} );
+    const ImageCountainer = classNames("image-container", {"grid": !gritState},{"block": gritState});
     return (
-      <div className="image-container">
-        {gritState ? <img className="image" alt="" src={`https://image.tmdb.org/t/p/original${poster}`} />
+      <div className={ImageCountainer}>
+        {gritState ? <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${poster}`} />
         : <img className="image" alt="" src={`https://image.tmdb.org/t/p/w500${image}`} />}
         <div className={ImageInformationItem}>
           <button onClick={this.handleItemClick} className="image-overview" type="button">

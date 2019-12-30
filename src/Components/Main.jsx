@@ -29,9 +29,6 @@ class Main extends Component {
     document.addEventListener('scroll', this.trackScrolling);
     this.definitionPathnamePage();
   }
-  // componentDidUpdate() {
-  //   document.addEventListener('scroll', this.trackScrolling2);
-  // }
 
   definitionPathnamePage = () => {
     const { getFilms } = this.props;
@@ -68,9 +65,10 @@ class Main extends Component {
       requestPopular, 
       pagePopular, 
       pageUpcoming, 
-      pageTop_Rated 
+      pageTop_Rated,
     } = this.state;
     const { getFilms } = this.props;
+    this.setState({ stateLoading: false });
     if(filter == UPCOMING && requestUpcoming){
       getFilms(filter, pageUpcoming);
       this.setState({ requestUpcoming: false, filter });
@@ -97,23 +95,16 @@ class Main extends Component {
           this.setState({ pagePopular: pagePopular + 1});
         } if (filter == UPCOMING){
           getFilms(filter, pageUpcoming + 1);
+          this.changeStateLoading();
           this.setState({ pageUpcoming: pageUpcoming + 1});
         } if (filter == TOP_RATED) {
           getFilms(filter, pageTop_Rated + 1);
+          this.changeStateLoading();
           this.setState({ pageTop_Rated: pageTop_Rated + 1});
         }
       }  
     }
   };
-
-  // trackScrolling2 = () => {
-  //   const { stateLoading } = this.state;
-  //   if (document.documentElement.getBoundingClientRect().bottom -100 < document.documentElement.clientHeight) {
-  //     if (!stateLoading){ 
-  //       this.changeStateLoading();
-  //     }  
-  //   }
-  // };
 
   stateListMosaik = () => {
     this.setState({ gritState: false });
@@ -198,6 +189,7 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
+    stateLoading: false,
     popular: state.popular,
     upcoming: state.upcoming,
     top_rated: state.top_rated,
